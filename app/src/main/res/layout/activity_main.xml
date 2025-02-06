@@ -8,68 +8,227 @@
     tools:context=".MainActivity">
 
     <!-- Main content of the screen -->
+
+    <!-- Navigation Drawer -->
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/relativeLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#EDDADA">
 
-        <!-- Your main UI content -->
-
-        <!-- Button to open the Drawer -->
+        <!-- Welcome Text -->
 
         <TextView
             android:id="@+id/welcomeText"
-            android:layout_width="173dp"
-            android:layout_height="49dp"
+            android:layout_width="243dp"
+            android:layout_height="56dp"
             android:layout_marginStart="14dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="159dp"
+            android:fontFamily="@font/robotodark"
             android:text="Welcome"
             android:textSize="34sp"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.111"
             app:layout_constraintStart_toEndOf="@+id/buttonOpenDrawer"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <!-- Button to open Drawer -->
         <Button
             android:id="@+id/buttonOpenDrawer"
             android:layout_width="53dp"
             android:layout_height="47dp"
-            app:backgroundTint="@null"
-            android:background="@drawable/settings_icon"
             android:layout_marginStart="25dp"
             android:layout_marginTop="16dp"
-
+            android:background="@drawable/settings_icon"
+            app:backgroundTint="@null"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <!-- Coming Soon Text -->
         <TextView
             android:id="@+id/textView"
-            android:layout_width="293dp"
-            android:layout_height="76dp"
-            android:layout_marginStart="59dp"
+            android:layout_width="400dp"
+            android:layout_height="81dp"
+            android:layout_marginStart="6dp"
             android:layout_marginTop="32dp"
-            android:layout_marginEnd="67dp"
-            android:layout_marginBottom="5dp"
-            android:text="Coming Soon"
-            app:layout_constraintBottom_toTopOf="@+id/recyclerView"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:fontFamily="@font/barriecito"
+            android:text="Select And Add Your Favourite Hair Cut"
+            android:textSize="25sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/welcomeText" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerView"
-            android:layout_width="408dp"
-            android:layout_height="430dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="1dp"
+        <!-- Image Buttons for Men, Women, and Children -->
+        <LinearLayout
+            android:id="@+id/buttonLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:gravity="center"
+            android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView" />
+            app:layout_constraintTop_toBottomOf="@id/textView">
+
+            <ImageButton
+                android:id="@+id/btnMen"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_margin="10dp"
+                android:background="@null"
+                android:contentDescription="Men"
+                android:elevation="8dp"
+                android:padding="8dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/men_icon" />
+
+            <ImageButton
+                android:id="@+id/btnWomen"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_margin="10dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="Women"
+                android:padding="8dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/women_icon" />
+
+            <ImageButton
+                android:id="@+id/btnChildren"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_margin="10dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="Children"
+                android:padding="8dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/children_icon" />
+
+            <TextView
+                android:id="@+id/goback_textview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="GO BACK"
+                android:textSize="27sp"
+                android:visibility="gone"
+
+                />
+        </LinearLayout>
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerview_men"
+            android:layout_width="421dp"
+            android:layout_height="280dp"
+            android:layout_marginStart="1dp"
+
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.133"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/buttonLayout" />
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="94dp"
+            android:orientation="vertical"
+
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <LinearLayout
+                android:id="@+id/address_linear"
+                android:layout_width="400dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="1dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/recyclerview_men">
+
+
+                <TextView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="Address"
+                    android:textSize="24sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/recyclerview_men" />
+
+                <TextView
+                    android:id="@+id/change_address_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:background="@drawable/change_address_button"
+                    android:text="Tap Here To Change Address"
+                    android:textSize="24sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/recyclerview_men" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/textView6"
+                android:layout_width="408dp"
+
+                android:layout_height="48dp"
+                android:layout_marginStart="8dp"
+                android:text="B.K Kakati Road Ulubari CID byeland Guwahati Assam-781007"
+                android:textSize="20sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+
+            <LinearLayout
+                android:id="@+id/linearLayout2"
+                android:layout_width="411dp"
+                android:layout_height="62dp"
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="1dp"
+                android:background="@drawable/continue_background"
+                android:visibility="visible"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView6">
+
+                <TextView
+                    android:id="@+id/continue_button"
+                    android:layout_width="269dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="2dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="4dp"
+                    android:text="Continue"
+                    android:textSize="35sp"
+                    app:layout_constraintEnd_toStartOf="@+id/textView4"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+                <TextView
+                    android:id="@+id/textView4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginEnd="7dp"
+                    android:layout_marginBottom="7dp"
+                    android:text="₹257"
+                    android:textSize="35sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/textView2"
+                    app:layout_constraintTop_toBottomOf="@+id/textView3" />
+            </LinearLayout>
+        </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <!-- Navigation Drawer -->
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/nav_view"
         android:layout_width="250dp"

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/relativeLayout3"
+    android:layout_width="400dp"
+    android:layout_height="300dp">
+
+    <!-- Background Image -->
+    <!-- Replace with your image -->
+
+    <!-- Dialog Content -->
+    <ImageView
+        android:id="@+id/dialog_bg"
+        android:layout_width="399dp"
+        android:layout_height="152dp"
+        android:layout_marginTop="1dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/alert_background"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dialog_message" />
+
+    <LinearLayout
+        android:layout_width="347dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="4dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingTop="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.509"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dialog_message">
+
+        <Button
+            android:id="@+id/btn_yes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button_yes"
+            android:padding="10dp"
+            android:textColor="@android:color/white"
+            app:backgroundTint="@null"
+            tools:layout_editor_absoluteX="102dp"
+            tools:layout_editor_absoluteY="244dp" />
+
+        <Button
+            android:id="@+id/btn_no"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:background="@drawable/button_no"
+            android:padding="10dp"
+            android:textColor="@android:color/white"
+            app:backgroundTint="@null"
+            tools:layout_editor_absoluteX="210dp"
+            tools:layout_editor_absoluteY="244dp" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/dialog_message"
+        android:layout_width="243dp"
+        android:layout_height="132dp"
+        android:layout_marginTop="56dp"
+        android:gravity="center"
+        android:paddingTop="10dp"
+        android:text="Do you want to discard the changes and go back?"
+        android:textColor="@color/black"
+        android:textSize="26sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
