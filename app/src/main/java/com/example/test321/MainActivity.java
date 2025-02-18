@@ -22,6 +22,12 @@ import com.google.android.material.navigation.NavigationView;
 
 import java.util.ArrayList;
 import java.util.List;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -33,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView recyclerView_men;
     private List<MenService> menServices;
     private MenServiceAdapter adapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,19 +55,17 @@ public class MainActivity extends AppCompatActivity {
         layout = findViewById(R.id.relativeLayout);
         goback=findViewById(R.id.goback_textview);
         recyclerView_men=findViewById(R.id.recyclerview_men);
+
+        DatabaseReference menServicesRef = FirebaseDatabase.getInstance()
+                .getReference("services&prices").child("Men");
         // Initialize Men Services List
         menServices = new ArrayList<>();
-        menServices.add(new MenService("Normal Hair Cut", "₹200"));
-        menServices.add(new MenService("Shaving", "₹150"));
-        menServices.add(new MenService("Hair Color", "₹300"));
-        menServices.add(new MenService("Facial", "₹350"));
-        menServices.add(new MenService("Massage", "₹400"));
-
-        adapter = new MenServiceAdapter(this, menServices);
+                adapter = new MenServiceAdapter(this, menServices);
         recyclerView_men.setLayoutManager(new LinearLayoutManager(this));
 
         recyclerView_men.setAdapter(adapter);
         recyclerView_men.setVisibility(View.GONE); // Hide initially
+        fetchMenServices(menServicesRef);
 
 
         // Get the username from Intent and set it in the welcome text
@@ -144,6 +149,30 @@ public class MainActivity extends AppCompatActivity {
         });
 
    }
+
+    private void fetchMenServices(DatabaseReference menServicesRef) {
+        menServicesRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                menServices.clear();  // Clear previous data
+
+                for (DataSnapshot serviceSnapshot : snapshot.getChildren()) {
+                    String serviceName = serviceSnapshot.getKey(); // Service Name
+                    String price = "₹" + serviceSnapshot.getValue(String.class); // Price
+
+                    menServices.add(new MenService(serviceName, price));
+                }
+
+                adapter.notifyDataSetChanged();  // Update RecyclerView
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(MainActivity.this, "Failed to load data", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
 
     private void openDrawer() {
         drawerLayout.openDrawer(GravityCompat.START);

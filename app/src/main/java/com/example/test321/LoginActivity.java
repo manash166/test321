@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,6 +19,7 @@ public class LoginActivity extends AppCompatActivity {
     EditText etName, etPassword;
     Button btnLogin;
     DatabaseReference databaseReference;
+    TextView admin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,8 +29,15 @@ public class LoginActivity extends AppCompatActivity {
         etName = findViewById(R.id.editTextLoginName);
         etPassword = findViewById(R.id.editTextLoginPassword);
         btnLogin = findViewById(R.id.buttonLogin);
-
+        admin=findViewById(R.id.adminscreenbtn);
         databaseReference = FirebaseDatabase.getInstance().getReference("Users");
+   admin.setOnClickListener(new View.OnClickListener() {
+       @Override
+       public void onClick(View view) {
+           Intent intent= new Intent(LoginActivity.this,Admin.class);
+           startActivity(intent);
+       }
+   });
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
