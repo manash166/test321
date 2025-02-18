@@ -7,8 +7,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -29,15 +31,16 @@ public class LoginActivity extends AppCompatActivity {
         etName = findViewById(R.id.editTextLoginName);
         etPassword = findViewById(R.id.editTextLoginPassword);
         btnLogin = findViewById(R.id.buttonLogin);
-        admin=findViewById(R.id.adminscreenbtn);
+        admin = findViewById(R.id.adminscreenbtn);
         databaseReference = FirebaseDatabase.getInstance().getReference("Users");
-   admin.setOnClickListener(new View.OnClickListener() {
-       @Override
-       public void onClick(View view) {
-           Intent intent= new Intent(LoginActivity.this,Admin.class);
-           startActivity(intent);
-       }
-   });
+
+        admin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(LoginActivity.this, Admin.class);
+                startActivity(intent);
+            }
+        });
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -50,7 +53,16 @@ public class LoginActivity extends AppCompatActivity {
                     return;
                 }
 
-                // Check if user exists in Firebase
+                // Check if user is admin (aa/a)
+                if (name.equals("aa") && password.equals("a")) {
+                    Intent intent = new Intent(LoginActivity.this, Admin.class);
+                    startActivity(intent);
+                    finish(); // Optional: Finish LoginActivity
+                    return; // Important: Stop further execution
+                }
+
+
+                // Check if user exists in Firebase (for regular users)
                 databaseReference.child(name).addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -64,6 +76,7 @@ public class LoginActivity extends AppCompatActivity {
                                 intent.putExtra("username", name);
                                 startActivity(intent);
                                 finish();
+
                             } else {
                                 Toast.makeText(LoginActivity.this, "Incorrect password", Toast.LENGTH_SHORT).show();
                             }
