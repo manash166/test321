@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.animation.ScaleAnimation;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -36,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView welcometxt,goback;
     private ImageButton btnMen, btnWomen, btnChildren;
     private ConstraintLayout layout;
+
     private RecyclerView recyclerView_men;
     private List<MenService> menServices;
     private MenServiceAdapter adapter;
@@ -54,7 +56,16 @@ public class MainActivity extends AppCompatActivity {
         btnChildren = findViewById(R.id.btnChildren);
         layout = findViewById(R.id.relativeLayout);
         goback=findViewById(R.id.goback_textview);
+        LinearLayout bottom_part=findViewById(R.id.bottom_part);
         recyclerView_men=findViewById(R.id.recyclerview_men);
+
+        bottom_part.setVisibility(View.GONE);
+
+
+
+
+
+
 
         DatabaseReference menServicesRef = FirebaseDatabase.getInstance()
                 .getReference("services&prices").child("Men");
@@ -87,6 +98,7 @@ public class MainActivity extends AppCompatActivity {
 
         View headerView = navigationView.getHeaderView(0);
         if (headerView != null) {
+
             ImageButton btnCloseDrawer = headerView.findViewById(R.id.btnCloseDrawer);
             btnCloseDrawer.setOnClickListener(v -> drawerLayout.closeDrawer(GravityCompat.START));
         }
@@ -98,6 +110,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 selectButton(btnMen);
+
             }
 
         });
@@ -195,6 +208,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void selectButton(ImageButton selectedButton) {
+
+        // Show Bottom Part i.e address and continue part
+
+ LinearLayout bottom_part =findViewById(R.id.bottom_part);
+        bottom_part.setVisibility(View.VISIBLE);
+
+
         // Hide all buttons first
         btnMen.setVisibility(View.GONE);
         btnWomen.setVisibility(View.GONE);
