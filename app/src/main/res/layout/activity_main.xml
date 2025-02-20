@@ -15,7 +15,7 @@
         android:id="@+id/relativeLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#EDDADA">
+        android:background="#FFFEFE">
 
         <!-- Welcome Text -->
 
@@ -117,28 +117,25 @@
                 />
         </LinearLayout>
 
-
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerview_men"
             android:layout_width="403dp"
             android:layout_height="166dp"
             android:layout_marginStart="1dp"
-
-            app:layout_constraintBottom_toTopOf="@+id/linearLayout3"
+            android:visibility="gone"
+            app:layout_constraintBottom_toTopOf="@+id/bottom_part"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.133"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/buttonLayout" />
-
+            app:layout_constraintTop_toBottomOf="@+id/buttonLayout"
+            app:layout_constraintVertical_chainStyle="packed" />
 
         <LinearLayout
             android:id="@+id/bottom_part"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="94dp"
 
             android:orientation="vertical"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/recyclerview_men">
@@ -229,7 +226,20 @@
                     app:layout_constraintStart_toEndOf="@+id/textView2"
                     app:layout_constraintTop_toBottomOf="@+id/textView3" />
             </LinearLayout>
+
+
         </LinearLayout>
+
+        <TextView
+            android:layout_width="76dp"
+            android:layout_height="39dp"
+            android:layout_marginTop="12dp"
+            android:text="Hhelloffffff"
+            android:textSize="20sp"
+            app:layout_constraintTop_toBottomOf="@+id/bottom_part"
+            tools:layout_editor_absoluteX="16dp" />
+
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <com.google.android.material.navigation.NavigationView
