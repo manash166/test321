@@ -192,17 +192,16 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.nav_address:
-                Toast.makeText(this, "Address clicked", Toast.LENGTH_SHORT).show();
-                break;
-            case R.id.nav_terms_conditions:
-                Toast.makeText(this, "Terms & Conditions clicked", Toast.LENGTH_SHORT).show();
-                break;
-            case R.id.nav_logout:
-                Toast.makeText(this, "Logout clicked", Toast.LENGTH_SHORT).show();
-                break;
+        int id = item.getItemId();
+
+        if (id == R.id.nav_address) {
+            Toast.makeText(this, "Address clicked", Toast.LENGTH_SHORT).show();
+        } else if (id == R.id.nav_terms_conditions) {
+            Toast.makeText(this, "Terms & Conditions clicked", Toast.LENGTH_SHORT).show();
+        } else if (id == R.id.nav_logout) {
+            Toast.makeText(this, "Logout clicked", Toast.LENGTH_SHORT).show();
         }
+
         drawerLayout.closeDrawer(GravityCompat.START);
         return true;
     }
