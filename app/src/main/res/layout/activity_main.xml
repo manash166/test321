@@ -257,6 +257,7 @@
 
 
         <LinearLayout
+            android:id="@+id/flagship_part"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/red_border"

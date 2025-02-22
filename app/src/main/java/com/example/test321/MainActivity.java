@@ -60,6 +60,7 @@ public class MainActivity extends AppCompatActivity {
         recyclerView_men=findViewById(R.id.recyclerview_men);
 
         bottom_part.setVisibility(View.GONE);
+        LinearLayout flagship=findViewById(R.id.flagship_part);
 
 
 
@@ -109,6 +110,7 @@ public class MainActivity extends AppCompatActivity {
         btnMen.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                flagship.setVisibility(View.INVISIBLE);
                 selectButton(btnMen);
 
             }
@@ -118,6 +120,7 @@ public class MainActivity extends AppCompatActivity {
         btnWomen.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                flagship.setVisibility(View.INVISIBLE);
                 selectButton(btnWomen);
             }
         });
@@ -125,6 +128,7 @@ public class MainActivity extends AppCompatActivity {
         btnChildren.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                flagship.setVisibility(View.INVISIBLE);
                 selectButton(btnChildren);
             }
         });
