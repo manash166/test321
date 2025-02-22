@@ -21,115 +21,112 @@
 
         <TextView
             android:id="@+id/welcomeText"
-            android:layout_width="263dp"
-            android:layout_height="65dp"
-            android:layout_marginStart="14dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="159dp"
+            android:layout_width="208dp"
+            android:layout_height="55dp"
             android:fontFamily="@font/robotodark"
             android:text="Welcome"
             android:textSize="34sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.111"
             app:layout_constraintStart_toEndOf="@+id/buttonOpenDrawer"
             app:layout_constraintTop_toTopOf="parent" />
 
         <!-- Button to open Drawer -->
+
+
         <Button
             android:id="@+id/buttonOpenDrawer"
             android:layout_width="53dp"
             android:layout_height="47dp"
-            android:layout_marginStart="25dp"
-            android:layout_marginTop="16dp"
             android:background="@drawable/settings_icon"
             app:backgroundTint="@null"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <!-- Coming Soon Text -->
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="400dp"
-            android:layout_height="81dp"
-            android:layout_marginStart="6dp"
-            android:layout_marginTop="32dp"
-            android:fontFamily="@font/barriecito"
-            android:text="Select And Add Your Favourite Hair Cut"
-            android:textSize="25sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/welcomeText" />
 
-        <!-- Image Buttons for Men, Women, and Children -->
+
+
         <LinearLayout
-            android:id="@+id/buttonLayout"
-            android:layout_width="match_parent"
+            android:id="@+id/linearLayout3"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:gravity="center"
-            android:orientation="horizontal"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical"
+            android:padding="6dp"
+            android:background="@drawable/red_border"
+            android:layout_margin="9dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/textView">
+            app:layout_constraintTop_toBottomOf="@+id/welcomeText">
 
-            <ImageButton
-                android:id="@+id/btnMen"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_margin="10dp"
-                android:background="@null"
-                android:contentDescription="Men"
-                android:elevation="8dp"
-                android:padding="8dp"
-                android:scaleType="centerCrop"
-                android:src="@drawable/men_icon" />
-
-            <ImageButton
-                android:id="@+id/btnWomen"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_margin="10dp"
-                android:background="?attr/selectableItemBackgroundBorderless"
-                android:contentDescription="Women"
-                android:padding="8dp"
-                android:scaleType="centerCrop"
-                android:src="@drawable/women_icon" />
-
-            <ImageButton
-                android:id="@+id/btnChildren"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_margin="10dp"
-                android:background="?attr/selectableItemBackgroundBorderless"
-                android:contentDescription="Children"
-                android:padding="8dp"
-                android:scaleType="centerCrop"
-                android:src="@drawable/children_icon" />
+            <!-- Quick Book Text -->
 
             <TextView
-                android:id="@+id/goback_textview"
-                android:layout_width="wrap_content"
+                android:id="@+id/textView"
+                android:layout_width="400dp"
+                android:layout_height="81dp"
+                android:fontFamily="@font/barriecito"
+                android:text="Select And Add Your Favourite Hair Cut"
+                android:textSize="25sp"
+                tools:layout_editor_absoluteX="6dp"
+                tools:layout_editor_absoluteY="113dp" />
+
+            <!-- Image Buttons for Men, Women, and Children -->
+            <LinearLayout
+                android:id="@+id/buttonLayout"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="GO BACK"
-                android:textSize="27sp"
-                android:visibility="gone"
 
-                />
+                android:gravity="center"
+
+                android:orientation="horizontal"
+                tools:layout_editor_absoluteX="3dp"
+                tools:layout_editor_absoluteY="197dp">
+
+                <ImageButton
+                    android:id="@+id/btnMen"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_margin="10dp"
+                    android:background="@null"
+                    android:contentDescription="Men"
+                    android:elevation="8dp"
+                    android:padding="8dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/men_icon" />
+
+                <ImageButton
+                    android:id="@+id/btnWomen"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_margin="10dp"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:contentDescription="Women"
+                    android:padding="8dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/women_icon" />
+
+                <ImageButton
+                    android:id="@+id/btnChildren"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_margin="10dp"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:contentDescription="Children"
+                    android:padding="8dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/children_icon" />
+
+                <TextView
+                    android:id="@+id/goback_textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="GO BACK"
+                    android:textSize="27sp"
+                    android:visibility="gone"
+
+                    />
+            </LinearLayout>
+
         </LinearLayout>
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerview_men"
-            android:layout_width="403dp"
-            android:layout_height="166dp"
-            android:layout_marginStart="1dp"
-            android:visibility="gone"
-            app:layout_constraintBottom_toTopOf="@+id/bottom_part"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.133"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/buttonLayout"
-            app:layout_constraintVertical_chainStyle="packed" />
-
         <LinearLayout
             android:id="@+id/bottom_part"
             android:layout_width="wrap_content"
@@ -138,7 +135,7 @@
             android:orientation="vertical"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/recyclerview_men">
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout3">
 
             <LinearLayout
                 android:id="@+id/address_linear"
@@ -186,6 +183,16 @@
                 android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerview_men"
+                android:layout_width="403dp"
+                android:layout_height="166dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
 
             <LinearLayout
                 android:id="@+id/linearLayout2"
@@ -228,17 +235,197 @@
             </LinearLayout>
 
 
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+
+            android:padding="8dp"
+            android:layout_margin="6dp"
+            app:layout_constraintTop_toBottomOf="@+id/bottom_part">
+
+            <!-- Content inside LinearLayout -->
         </LinearLayout>
 
-        <TextView
-            android:layout_width="171dp"
-            android:layout_height="203dp"
-            android:layout_marginTop="12dp"
-            android:layout_marginEnd="224dp"
-            android:text="Hhelloffffff"
-            android:textSize="20sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/bottom_part" />
+
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/red_border"
+            android:orientation="vertical"
+            android:padding="6dp"
+            android:layout_margin="10dp"
+            app:layout_constraintTop_toBottomOf="@+id/bottom_part"
+            tools:layout_editor_absoluteX="6dp">
+
+            <!-- Title Text -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:paddingBottom="12dp"
+                android:text="Our Flagship Service Provider"
+                android:textSize="25sp"
+                android:textStyle="bold" />
+
+            <!-- Navigation Button -->
+            <Button
+                android:id="@+id/btnCheckAllSalon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:padding="8dp"
+                android:text="Check All Salon"
+                android:textSize="18sp" />
+
+            <!-- Salon Image Grid -->
+            <GridLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:columnCount="2"
+                android:paddingTop="16dp"
+                android:rowCount="2">
+
+                <!-- Salon 1 -->
+                <androidx.cardview.widget.CardView
+                    android:layout_width="0dp"
+                    android:layout_height="150dp"
+                    android:layout_columnWeight="1"
+                    android:layout_margin="8dp"
+                    app:cardCornerRadius="16dp"
+                    app:cardElevation="8dp">
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <ImageView
+                            android:id="@+id/salon1"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:contentDescription="Salon 1"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/salon_image_1" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="bottom|center_horizontal"
+                            android:background="#80000000"
+                            android:padding="4dp"
+                            android:text="Salon 1"
+                            android:textColor="#FFFFFF"
+                            android:textSize="16sp" />
+                    </FrameLayout>
+                </androidx.cardview.widget.CardView>
+
+                <!-- Salon 2 -->
+                <androidx.cardview.widget.CardView
+                    android:layout_width="0dp"
+                    android:layout_height="150dp"
+                    android:layout_columnWeight="1"
+                    android:layout_margin="8dp"
+                    app:cardCornerRadius="16dp"
+                    app:cardElevation="8dp">
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <ImageView
+                            android:id="@+id/salon2"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:contentDescription="Salon 2"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/salon_image_2" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="bottom|center_horizontal"
+                            android:background="#80000000"
+                            android:padding="4dp"
+                            android:text="Salon 2"
+                            android:textColor="#FFFFFF"
+                            android:textSize="16sp" />
+                    </FrameLayout>
+                </androidx.cardview.widget.CardView>
+
+                <!-- Salon 3 -->
+                <androidx.cardview.widget.CardView
+                    android:layout_width="0dp"
+                    android:layout_height="150dp"
+                    android:layout_columnWeight="1"
+                    android:layout_margin="8dp"
+                    app:cardCornerRadius="16dp"
+                    app:cardElevation="8dp">
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <ImageView
+                            android:id="@+id/salon3"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:contentDescription="Salon 3"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/salon_image_3" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="bottom|center_horizontal"
+                            android:background="#80000000"
+                            android:padding="4dp"
+                            android:text="Salon 3"
+                            android:textColor="#FFFFFF"
+                            android:textSize="16sp" />
+                    </FrameLayout>
+                </androidx.cardview.widget.CardView>
+
+                <!-- Salon 4 -->
+                <androidx.cardview.widget.CardView
+                    android:layout_width="0dp"
+                    android:layout_height="150dp"
+                    android:layout_columnWeight="1"
+                    android:layout_margin="8dp"
+                    app:cardCornerRadius="16dp"
+                    app:cardElevation="8dp">
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <ImageView
+                            android:id="@+id/salon4"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:contentDescription="Salon 4"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/salon_image_4" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="bottom|center_horizontal"
+                            android:background="#80000000"
+                            android:padding="4dp"
+                            android:text="Salon 4"
+                            android:textColor="#FFFFFF"
+                            android:textSize="16sp" />
+                    </FrameLayout>
+                </androidx.cardview.widget.CardView>
+
+            </GridLayout>
+
+        </LinearLayout>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
