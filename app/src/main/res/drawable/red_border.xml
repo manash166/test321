@@ -2,7 +2,7 @@
 
     <!-- Shadow Layer (Creates the card shadow effect) -->
     <item
-        android:left="4dp"
+        
         android:right="4dp"
         android:top="4dp"
         android:bottom="8dp">
@@ -25,7 +25,7 @@
 
             <!-- Elegant Red Border -->
             <stroke
-                android:width="2dp"
+                android:width="3dp"
                 android:color="#FF6347" />
 
             <!-- Smooth Rounded Corners -->
