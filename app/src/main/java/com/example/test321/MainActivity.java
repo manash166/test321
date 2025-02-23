@@ -250,7 +250,7 @@ public class MainActivity extends AppCompatActivity {
                 1.0f, 1.1f,  // Scale from 100% to 110% in Y-axis
                 ScaleAnimation.RELATIVE_TO_SELF, 0.5f,
                 ScaleAnimation.RELATIVE_TO_SELF, 0.5f);
-        scaleAnimation.setDuration(200);
+        scaleAnimation.setDuration(2000);
         scaleAnimation.setFillAfter(true);
         view.startAnimation(scaleAnimation);
     }
