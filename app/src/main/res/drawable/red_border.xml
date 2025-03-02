@@ -12,7 +12,7 @@
             <solid android:color="#B3AAAAAA" />
 
             <!-- Rounded Corners for the Shadow -->
-            <corners android:radius="16dp" />
+            <corners android:radius="6dp" />
         </shape>
     </item>
 
@@ -25,8 +25,8 @@
 
             <!-- Elegant Red Border -->
             <stroke
-                android:width="3dp"
-                android:color="#FF6347" />
+                android:width="2dp"
+                android:color="#5D79DDFF" />
 
             <!-- Smooth Rounded Corners -->
             <corners android:radius="16dp" />
