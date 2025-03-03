@@ -60,6 +60,7 @@ public class MainActivity extends AppCompatActivity {
         recyclerView_men=findViewById(R.id.recyclerview_men);
 // Find the total amount TextView from activity_main.xml
         TextView totalAmountTextView = findViewById(R.id.textView4);
+
         bottom_part.setVisibility(View.GONE);
         LinearLayout flagship=findViewById(R.id.flagship_part);
 
@@ -174,10 +175,17 @@ public class MainActivity extends AppCompatActivity {
 
     private void openOrderReview() {
         List<MenService> selectedServices = adapter.getSelectedServices();
+        TextView addressTextView = findViewById(R.id.textView6);
+        if (addressTextView.getText().toString().equalsIgnoreCase("NA")) {
+            Toast.makeText(this, "Please Add Your Address First", Toast.LENGTH_SHORT).show();
+            return; // Stop further execution if no address
+        }
+
         if (selectedServices.isEmpty()) {
             Toast.makeText(this, "No services selected!", Toast.LENGTH_SHORT).show();
             return;
         }
+
 
         // Calculate total amount and prepare service details
         int totalAmount = 0;
