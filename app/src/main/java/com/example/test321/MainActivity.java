@@ -62,6 +62,9 @@ public class MainActivity extends AppCompatActivity {
         bottom_part.setVisibility(View.GONE);
         LinearLayout flagship=findViewById(R.id.flagship_part);
 
+        // Handle Continue Button Click
+        TextView continueButton = findViewById(R.id.continue_button);
+        continueButton.setOnClickListener(v -> openOrderReview());
 
 
 
@@ -166,6 +169,38 @@ public class MainActivity extends AppCompatActivity {
         });
 
    }
+
+    private void openOrderReview() {
+        List<MenService> selectedServices = adapter.getSelectedServices();
+        if (selectedServices.isEmpty()) {
+            Toast.makeText(this, "No services selected!", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        // Calculate total amount and prepare service details
+        int totalAmount = 0;
+        StringBuilder serviceDetails = new StringBuilder();
+        for (MenService service : selectedServices) {
+            serviceDetails.append(service.getServiceName()).append(": ").append(service.getPrice()).append("\n");
+            totalAmount += extractPrice(service.getPrice());
+        }
+
+        // Generate a unique order ID
+        String orderId = "ORDER-" + System.currentTimeMillis();
+
+        // Send data to order_review activity
+        Intent intent = new Intent(this, order_review.class);
+        intent.putExtra("orderId", orderId);
+        intent.putExtra("serviceDetails", serviceDetails.toString());
+        intent.putExtra("totalAmount", totalAmount);
+        startActivity(intent);
+    }
+
+    // Helper method to extract numeric price from a string (e.g., "₹200" -> 200)
+    private int extractPrice(String price) {
+        return Integer.parseInt(price.replaceAll("[^0-9]", ""));
+    }
+
 
     private void fetchMenServices(DatabaseReference menServicesRef) {
         menServicesRef.addValueEventListener(new ValueEventListener() {

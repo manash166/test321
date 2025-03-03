@@ -8,13 +8,17 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class MenServiceAdapter extends RecyclerView.Adapter<MenServiceAdapter.ViewHolder> {
     private Context context;
     private List<MenService> serviceList;
+    private List<MenService> selectedServices = new ArrayList<>();
 
     public MenServiceAdapter(Context context, List<MenService> serviceList) {
         this.context = context;
@@ -38,10 +42,12 @@ public class MenServiceAdapter extends RecyclerView.Adapter<MenServiceAdapter.Vi
             if (holder.btnAdd.getText().toString().equals("Add")) {
                 holder.btnAdd.setText("Added");
                 holder.btnAdd.setBackgroundColor(Color.GREEN);
+                selectedServices.add(service);
                 Toast.makeText(context, service.getServiceName() + " added!", Toast.LENGTH_SHORT).show();
             } else {
                 holder.btnAdd.setText("Add");
                 holder.btnAdd.setBackgroundColor(Color.LTGRAY);
+                selectedServices.remove(service);
                 Toast.makeText(context, service.getServiceName() + " removed!", Toast.LENGTH_SHORT).show();
             }
         });
@@ -50,6 +56,11 @@ public class MenServiceAdapter extends RecyclerView.Adapter<MenServiceAdapter.Vi
     @Override
     public int getItemCount() {
         return serviceList.size();
+    }
+
+    // Method to get selected services
+    public List<MenService> getSelectedServices() {
+        return selectedServices;
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {

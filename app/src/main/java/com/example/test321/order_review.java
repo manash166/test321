@@ -1,24 +1,30 @@
 package com.example.test321;
 
 import android.os.Bundle;
+import android.widget.TextView;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 public class order_review extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_order_review);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
+
+        // Find Views
+        TextView orderIdText = findViewById(R.id.orderIdText);
+        TextView serviceListText = findViewById(R.id.serviceListText);
+        TextView totalAmountText = findViewById(R.id.totalAmountText);
+
+        // Get Data from Intent
+        String orderId = getIntent().getStringExtra("orderId");
+        String serviceDetails = getIntent().getStringExtra("serviceDetails");
+        int totalAmount = getIntent().getIntExtra("totalAmount", 0);
+
+        // Display Data
+        orderIdText.setText("Order ID: " + orderId);
+        serviceListText.setText(serviceDetails);
+        totalAmountText.setText("Total Amount: ₹" + totalAmount);
     }
 }
