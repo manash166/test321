@@ -58,7 +58,8 @@ public class MainActivity extends AppCompatActivity {
         goback=findViewById(R.id.goback_textview);
         LinearLayout bottom_part=findViewById(R.id.bottom_part);
         recyclerView_men=findViewById(R.id.recyclerview_men);
-
+// Find the total amount TextView from activity_main.xml
+        TextView totalAmountTextView = findViewById(R.id.textView4);
         bottom_part.setVisibility(View.GONE);
         LinearLayout flagship=findViewById(R.id.flagship_part);
 
@@ -75,9 +76,10 @@ public class MainActivity extends AppCompatActivity {
                 .getReference("services&prices").child("Men");
         // Initialize Men Services List
         menServices = new ArrayList<>();
-                adapter = new MenServiceAdapter(this, menServices);
-        recyclerView_men.setLayoutManager(new LinearLayoutManager(this));
+        // Initialize the adapter and pass totalAmountTextView to track price updates
 
+        adapter = new MenServiceAdapter(this, menServices, totalAmountTextView);
+        recyclerView_men.setLayoutManager(new LinearLayoutManager(this));
         recyclerView_men.setAdapter(adapter);
         recyclerView_men.setVisibility(View.GONE); // Hide initially
         fetchMenServices(menServicesRef);

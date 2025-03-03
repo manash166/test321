@@ -19,10 +19,13 @@ public class MenServiceAdapter extends RecyclerView.Adapter<MenServiceAdapter.Vi
     private Context context;
     private List<MenService> serviceList;
     private List<MenService> selectedServices = new ArrayList<>();
+    private TextView totalAmountTextView;  // Reference to total amount TextView
+    private int totalAmount = 0; // Keep track of the total price
 
-    public MenServiceAdapter(Context context, List<MenService> serviceList) {
+    public MenServiceAdapter(Context context, List<MenService> serviceList, TextView totalAmountTextView) {
         this.context = context;
         this.serviceList = serviceList;
+        this.totalAmountTextView = totalAmountTextView;
     }
 
     @NonNull
@@ -43,13 +46,16 @@ public class MenServiceAdapter extends RecyclerView.Adapter<MenServiceAdapter.Vi
                 holder.btnAdd.setText("Added");
                 holder.btnAdd.setBackgroundColor(Color.GREEN);
                 selectedServices.add(service);
+                totalAmount += extractPrice(service.getPrice()); // Add price
                 Toast.makeText(context, service.getServiceName() + " added!", Toast.LENGTH_SHORT).show();
             } else {
                 holder.btnAdd.setText("Add");
                 holder.btnAdd.setBackgroundColor(Color.LTGRAY);
                 selectedServices.remove(service);
+                totalAmount -= extractPrice(service.getPrice()); // Subtract price
                 Toast.makeText(context, service.getServiceName() + " removed!", Toast.LENGTH_SHORT).show();
             }
+            updateTotalAmount();  // Update the total amount dynamically
         });
     }
 
@@ -61,6 +67,16 @@ public class MenServiceAdapter extends RecyclerView.Adapter<MenServiceAdapter.Vi
     // Method to get selected services
     public List<MenService> getSelectedServices() {
         return selectedServices;
+    }
+
+    // Helper method to extract numeric price from a string (e.g., "₹200" -> 200)
+    private int extractPrice(String price) {
+        return Integer.parseInt(price.replaceAll("[^0-9]", ""));
+    }
+
+    // Update the total amount displayed in textView4
+    private void updateTotalAmount() {
+        totalAmountTextView.setText("₹" + totalAmount);
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
