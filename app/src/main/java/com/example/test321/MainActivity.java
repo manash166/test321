@@ -244,6 +244,7 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         if (id == R.id.nav_address) {
+
             Toast.makeText(this, "Address clicked", Toast.LENGTH_SHORT).show();
         } else if (id == R.id.nav_terms_conditions) {
             Toast.makeText(this, "Terms & Conditions clicked", Toast.LENGTH_SHORT).show();
