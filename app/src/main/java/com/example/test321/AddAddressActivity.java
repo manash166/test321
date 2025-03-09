@@ -49,14 +49,16 @@ public class AddAddressActivity extends AppCompatActivity {
     }
 
     private void saveAddress(String address) {
-        // Push new address to Firebase
         userAddressRef.push().setValue(address).addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
-                Toast.makeText(AddAddressActivity.this, "Address added successfully", Toast.LENGTH_SHORT).show();
+                Intent resultIntent = new Intent();
+                resultIntent.putExtra("new_address", address);
+                setResult(RESULT_OK, resultIntent);
                 finish(); // Return to AddressPopupActivity
             } else {
                 Toast.makeText(AddAddressActivity.this, "Failed to add address", Toast.LENGTH_SHORT).show();
             }
         });
     }
+
 }

@@ -11,9 +11,15 @@ import java.util.ArrayList;
 public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.AddressViewHolder> {
 
     private ArrayList<String> addressList;
+    private String selectedAddress = "";
 
     public AddressAdapter(ArrayList<String> addressList) {
         this.addressList = addressList;
+    }
+
+    public void setSelectedAddress(String address) {
+        this.selectedAddress = address;
+        notifyDataSetChanged();
     }
 
     @NonNull
@@ -27,6 +33,21 @@ public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.AddressV
     public void onBindViewHolder(@NonNull AddressViewHolder holder, int position) {
         String address = addressList.get(position);
         holder.addressTextView.setText(address);
+
+        // Highlight selected item in blue
+        if (address.equals(selectedAddress)) {
+            holder.addressTextView.setBackgroundColor(holder.itemView.getContext().getResources().getColor(android.R.color.holo_blue_light));
+        } else {
+            holder.addressTextView.setBackgroundColor(holder.itemView.getContext().getResources().getColor(android.R.color.white));
+        }
+
+        // Handle item click
+        holder.itemView.setOnClickListener(v -> {
+            if (v.getContext() instanceof AddressPopupActivity) {
+                ((AddressPopupActivity) v.getContext()).updateDefaultAddress(address);
+            }
+            setSelectedAddress(address);
+        });
     }
 
     @Override
