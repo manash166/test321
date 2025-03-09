@@ -59,6 +59,7 @@
             android:padding="16dp">
 
             <ImageView
+                android:id="@+id/plus_sign"
                 android:layout_width="35dp"
                 android:layout_height="35dp"
                 android:contentDescription="Add Address"

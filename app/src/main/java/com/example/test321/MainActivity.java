@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
     private NavigationView navigationView;
     private TextView welcometxt,goback;
     private ImageButton btnMen, btnWomen, btnChildren;
-    private ConstraintLayout layout;
+    private String username;
 
     private RecyclerView recyclerView_men;
     private List<MenService> menServices;
@@ -54,7 +54,8 @@ public class MainActivity extends AppCompatActivity {
         btnMen = findViewById(R.id.btnMen);
         btnWomen = findViewById(R.id.btnWomen);
         btnChildren = findViewById(R.id.btnChildren);
-        layout = findViewById(R.id.relativeLayout);
+
+//        layout = findViewById(R.id.relativeLayout);
         goback=findViewById(R.id.goback_textview);
         LinearLayout bottom_part=findViewById(R.id.bottom_part);
         recyclerView_men=findViewById(R.id.recyclerview_men);
@@ -63,6 +64,32 @@ public class MainActivity extends AppCompatActivity {
 
         bottom_part.setVisibility(View.GONE);
         LinearLayout flagship=findViewById(R.id.flagship_part);
+
+
+        username = getIntent().getStringExtra("username");
+        if (username == null) {
+            username = "default_user"; // Fallback if username is missing
+        }
+
+        // Change Address Button (TextView)
+        TextView btn_change_address = findViewById(R.id.change_address_button);
+        btn_change_address.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(MainActivity.this, "Opening Address Popup", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(MainActivity.this, AddressPopupActivity.class);
+                intent.putExtra("username", username); // Ensure 'username' is initialized
+                startActivity(intent);
+            }
+        });
+
+
+
+
+
+
+
+
 
         // Handle Continue Button Click
         TextView continueButton = findViewById(R.id.continue_button);
