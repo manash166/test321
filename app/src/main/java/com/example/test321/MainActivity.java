@@ -202,14 +202,14 @@ public class MainActivity extends AppCompatActivity {
 
         if (requestCode == 1 && resultCode == RESULT_OK && data != null) {
             String updatedAddress = data.getStringExtra("selected_address");
-            Log.d("MainActivity", "Updated address: " + updatedAddress);
-
             if (updatedAddress != null) {
                 TextView addressTextView = findViewById(R.id.textView6);
-                addressTextView.setText(updatedAddress);
+                addressTextView.setText(updatedAddress); // Update address in MainActivity
+                Log.d("MainActivity", "Updated address: " + updatedAddress);
             }
         }
     }
+
 
 
 

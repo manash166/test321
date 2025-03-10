@@ -41,6 +41,7 @@ public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.AddressV
             holder.addressTextView.setBackgroundColor(holder.itemView.getContext().getResources().getColor(android.R.color.white));
         }
 
+
         // Handle item click
         holder.itemView.setOnClickListener(v -> {
             if (v.getContext() instanceof AddressPopupActivity) {
@@ -48,6 +49,7 @@ public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.AddressV
             }
             setSelectedAddress(address);
         });
+
     }
 
     @Override

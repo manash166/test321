@@ -107,23 +107,34 @@ public class AddressPopupActivity extends AppCompatActivity {
         if (requestCode == 1 && resultCode == RESULT_OK && data != null) {
             String newAddress = data.getStringExtra("new_address");
             if (newAddress != null) {
-                // Only update the default address, let Firebase update the RecyclerView
+                // Add new address to the top
+                addressList.add(0, newAddress);
+                addressAdapter.setSelectedAddress(newAddress);
+                addressAdapter.notifyDataSetChanged();
+
+                // Update both local and MainActivity address
                 updateDefaultAddress(newAddress);
             }
         }
     }
 
 
+
+
     //* Updated AddressPopupActivity.java *//
 
     // Send selected address back to MainActivity
+// Update default address TextView
+    // Updated method to send selected address back to MainActivity
     public void updateDefaultAddress(String address) {
-        Intent resultIntent = new Intent();
-        resultIntent.putExtra("selected_address", address);
-        Log.d("AddressPopupActivity", "Sending address: " + address);
-        setResult(RESULT_OK, resultIntent);
-        // Close the popup
+        if (address != null && !address.isEmpty()) {
+            defaultAddress.setText(address); // Update local TextView
+            Intent resultIntent = new Intent();
+            resultIntent.putExtra("selected_address", address);
+            setResult(RESULT_OK, resultIntent); // Send address back to MainActivity
+        }
     }
+
 
 
 }
