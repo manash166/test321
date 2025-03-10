@@ -2,6 +2,7 @@ package com.example.test321;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -68,7 +69,7 @@ public class LoginActivity extends AppCompatActivity {
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         if (snapshot.exists()) {
                             String correctPassword = snapshot.child("password").getValue(String.class);
-                            if (correctPassword.equals(password)) {
+                            if (correctPassword != null && correctPassword.equals(password)) {
                                 Toast.makeText(LoginActivity.this, "Login Successful!", Toast.LENGTH_SHORT).show();
 
                                 // Pass the name to the main activity
@@ -76,6 +77,7 @@ public class LoginActivity extends AppCompatActivity {
                                 intent.putExtra("username", name);
                                 startActivity(intent);
                                 finish();
+                                Log.d("LoginActivity", "Username passed to MainActivity: " + name);
 
                             } else {
                                 Toast.makeText(LoginActivity.this, "Incorrect password", Toast.LENGTH_SHORT).show();

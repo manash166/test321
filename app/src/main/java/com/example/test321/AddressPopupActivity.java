@@ -2,9 +2,12 @@ package com.example.test321;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -78,18 +81,22 @@ public class AddressPopupActivity extends AppCompatActivity {
                     String address = addressSnapshot.getValue(String.class);
                     addressList.add(address);
                 }
-                // Show the latest address at the top
-                Collections.reverse(addressList);
-                addressAdapter.setSelectedAddress(addressList.isEmpty() ? "" : addressList.get(0));
+
+                // Set the first (topmost) address as default if available
                 if (!addressList.isEmpty()) {
-                    updateDefaultAddress(addressList.get(0));
+                    updateDefaultAddress(addressList.get(0)); // Use first item instead of reversing
+                    addressAdapter.setSelectedAddress(addressList.get(0));
+                } else {
+                    updateDefaultAddress("No address found");
                 }
+
                 addressAdapter.notifyDataSetChanged();
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
                 // Handle error
+                Toast.makeText(AddressPopupActivity.this, "Failed to load addresses", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -107,7 +114,16 @@ public class AddressPopupActivity extends AppCompatActivity {
     }
 
 
+    //* Updated AddressPopupActivity.java *//
+
+    // Send selected address back to MainActivity
     public void updateDefaultAddress(String address) {
-        defaultAddress.setText(address);
+        Intent resultIntent = new Intent();
+        resultIntent.putExtra("selected_address", address);
+        Log.d("AddressPopupActivity", "Sending address: " + address);
+        setResult(RESULT_OK, resultIntent);
+        // Close the popup
     }
+
+
 }

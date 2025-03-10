@@ -2,6 +2,7 @@ package com.example.test321;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.ScaleAnimation;
@@ -46,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+     
         // Find views
         drawerLayout = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.nav_view);
@@ -66,27 +67,29 @@ public class MainActivity extends AppCompatActivity {
         LinearLayout flagship=findViewById(R.id.flagship_part);
 
 
+        // Get the username safely
         username = getIntent().getStringExtra("username");
-        if (username == null) {
-            username = "default_user"; // Fallback if username is missing
+
+        if (username == null || username.isEmpty()) {
+            Toast.makeText(this, "Error: Username is missing.", Toast.LENGTH_SHORT).show();
+            finish();  // Exit if username is not passed
+        } else {
+            Log.d("MainActivity", "Username received: " + username);
         }
+        loadDefaultAddress();
 
         // Change Address Button (TextView)
         TextView btn_change_address = findViewById(R.id.change_address_button);
         btn_change_address.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Log.d("MainActivity", "Opening AddressPopupActivity");
                 Toast.makeText(MainActivity.this, "Opening Address Popup", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(MainActivity.this, AddressPopupActivity.class);
                 intent.putExtra("username", username); // Ensure 'username' is initialized
-                startActivity(intent);
+                startActivityForResult(intent, 1); // Correct method to receive result
             }
         });
-
-
-
-
-
 
 
 
@@ -94,10 +97,6 @@ public class MainActivity extends AppCompatActivity {
         // Handle Continue Button Click
         TextView continueButton = findViewById(R.id.continue_button);
         continueButton.setOnClickListener(v -> openOrderReview());
-
-
-
-
 
 
         DatabaseReference menServicesRef = FirebaseDatabase.getInstance()
@@ -114,7 +113,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         // Get the username from Intent and set it in the welcome text
-        String username = getIntent().getStringExtra("username");
+
         if (username != null) {
             welcometxt.setText("Welcome " + username);
         }
@@ -126,8 +125,6 @@ public class MainActivity extends AppCompatActivity {
         // Set up the Navigation View item click listener
         navigationView.setNavigationItemSelectedListener(this::onNavigationItemSelected);
 
-
-
         // Get reference to the existing header view
 
         View headerView = navigationView.getHeaderView(0);
@@ -136,7 +133,6 @@ public class MainActivity extends AppCompatActivity {
             ImageButton btnCloseDrawer = headerView.findViewById(R.id.btnCloseDrawer);
             btnCloseDrawer.setOnClickListener(v -> drawerLayout.closeDrawer(GravityCompat.START));
         }
-
 
 
         // Set click listeners for ImageButtons
@@ -199,6 +195,60 @@ public class MainActivity extends AppCompatActivity {
         });
 
    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == 1 && resultCode == RESULT_OK && data != null) {
+            String updatedAddress = data.getStringExtra("selected_address");
+            Log.d("MainActivity", "Updated address: " + updatedAddress);
+
+            if (updatedAddress != null) {
+                TextView addressTextView = findViewById(R.id.textView6);
+                addressTextView.setText(updatedAddress);
+            }
+        }
+    }
+
+
+
+    // Method to load the default address from Firebase
+    private void loadDefaultAddress() {
+        DatabaseReference userAddressRef = FirebaseDatabase.getInstance()
+                .getReference("Users").child(username).child("addresses");
+
+        userAddressRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()) {
+                    String firstAddress = null;
+                    for (DataSnapshot addressSnapshot : snapshot.getChildren()) {
+                        if (firstAddress == null) {
+                            firstAddress = addressSnapshot.getValue(String.class);
+                            break; // Take only the first address and exit loop
+                        }
+                    }
+
+                    if (firstAddress != null) {
+                        TextView addressTextView = findViewById(R.id.textView6);
+                        addressTextView.setText(firstAddress);
+                        Log.d("MainActivity", "Topmost Address loaded: " + firstAddress);
+                    } else {
+                        Log.d("MainActivity", "No address found.");
+                    }
+                } else {
+                    Log.d("MainActivity", "Address node is empty.");
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(MainActivity.this, "Failed to load address", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
 
     private void openOrderReview() {
         List<MenService> selectedServices = adapter.getSelectedServices();
