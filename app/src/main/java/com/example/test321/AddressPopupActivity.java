@@ -128,10 +128,10 @@ public class AddressPopupActivity extends AppCompatActivity {
     // Updated method to send selected address back to MainActivity
     public void updateDefaultAddress(String address) {
         if (address != null && !address.isEmpty()) {
-            defaultAddress.setText(address); // Update local TextView
+            defaultAddress.setText(address); // Update the local display
             Intent resultIntent = new Intent();
             resultIntent.putExtra("selected_address", address);
-            setResult(RESULT_OK, resultIntent); // Send address back to MainActivity
+            setResult(RESULT_OK, resultIntent); // Send updated address back to MainActivity
         }
     }
 

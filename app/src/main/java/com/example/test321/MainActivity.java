@@ -204,7 +204,7 @@ public class MainActivity extends AppCompatActivity {
             String updatedAddress = data.getStringExtra("selected_address");
             if (updatedAddress != null) {
                 TextView addressTextView = findViewById(R.id.textView6);
-                addressTextView.setText(updatedAddress); // Update address in MainActivity
+                addressTextView.setText(updatedAddress); // Update the default address
                 Log.d("MainActivity", "Updated address: " + updatedAddress);
             }
         }
@@ -321,9 +321,14 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         if (id == R.id.nav_address) {
+            // Open AddressPopupActivity
+            Intent intent = new Intent(this, AddressPopupActivity.class);
+            intent.putExtra("username", username);
+            startActivityForResult(intent, 1); // Use the same request code to capture updates
+            drawerLayout.closeDrawer(GravityCompat.START);
+        }
 
-            Toast.makeText(this, "Address clicked", Toast.LENGTH_SHORT).show();
-        } else if (id == R.id.nav_terms_conditions) {
+        else if (id == R.id.nav_terms_conditions) {
             Toast.makeText(this, "Terms & Conditions clicked", Toast.LENGTH_SHORT).show();
         } else if (id == R.id.nav_logout) {
             Toast.makeText(this, "Logout clicked", Toast.LENGTH_SHORT).show();
