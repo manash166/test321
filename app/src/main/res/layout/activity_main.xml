@@ -142,14 +142,15 @@ android:paddingLeft="10dp"
 
             <LinearLayout
                 android:id="@+id/address_linear"
+
                 android:layout_width="400dp"
-                android:layout_height="40dp"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="1dp"
+
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/recyclerview_men">
 
-
+                <!--  Address TextView-->
                 <TextView
 
                     android:layout_width="wrap_content"
@@ -162,25 +163,41 @@ android:paddingLeft="10dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/recyclerview_men" />
 
-                <TextView
-                    android:id="@+id/change_address_button"
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
+                   android:layout_marginLeft="18dp"
                     android:background="@drawable/change_address_button"
-                    android:text="Tap Here To Change Address"
-                    android:textSize="24sp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/recyclerview_men" />
+                    android:orientation="horizontal">
+
+                    <!-- Animated GIF Icon -->
+                    <ImageView
+                        android:id="@+id/animated_icon"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:src="@drawable/test" />
+
+                    <!-- Button Text -->
+                    <TextView
+                        android:id="@+id/change_address_button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingStart="8dp"
+                        android:paddingEnd="8dp"
+                        android:text="Add Address"
+                        android:textColor="@android:color/black"
+                        android:textSize="24sp" />
+                </LinearLayout>
+
+
             </LinearLayout>
 
             <TextView
                 android:id="@+id/textView6"
                 android:layout_width="408dp"
 
-                android:layout_height="48dp"
+                android:layout_height="63dp"
                 android:layout_marginStart="8dp"
                 android:text="NA"
                 android:textSize="20sp"
