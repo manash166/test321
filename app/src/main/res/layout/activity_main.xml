@@ -167,8 +167,7 @@ android:paddingLeft="10dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
-                   android:layout_marginLeft="18dp"
-                    android:background="@drawable/change_address_button"
+                    android:layout_marginLeft="18dp"
                     android:orientation="horizontal">
 
                     <!-- Animated GIF Icon -->
@@ -181,11 +180,10 @@ android:paddingLeft="10dp"
                     <!-- Button Text -->
                     <TextView
                         android:id="@+id/change_address_button"
+                        android:background="@drawable/red_border"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:paddingStart="8dp"
-                        android:paddingEnd="8dp"
-                        android:text="Add Address"
+                        android:text=" +Add Address"
                         android:textColor="@android:color/black"
                         android:textSize="24sp" />
                 </LinearLayout>

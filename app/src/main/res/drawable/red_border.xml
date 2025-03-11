@@ -2,30 +2,26 @@
 
     <!-- Shadow Layer (Creates the card shadow effect) -->
     <item
-        
         android:right="4dp"
         android:top="4dp"
         android:bottom="8dp">
         <shape android:shape="rectangle">
-
             <!-- Soft Shadow Color -->
             <solid android:color="#B3AAAAAA" />
-
             <!-- Rounded Corners for the Shadow -->
-            <corners android:radius="6dp" />
+            <corners android:radius="16dp" />
         </shape>
     </item>
 
     <!-- Main Card with Red Border -->
     <item>
         <shape android:shape="rectangle">
-
             <!-- Card Background (White) -->
             <solid android:color="#FFFFFF" />
 
-            <!-- Elegant Red Border -->
+            <!-- Bold Elegant Red Border -->
             <stroke
-                android:width="2dp"
+                android:width="5dp"
                 android:color="#5D79DDFF" />
 
             <!-- Smooth Rounded Corners -->

@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.animation.ScaleAnimation;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -20,6 +21,9 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.LinearLayoutManager;
+
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 import com.google.android.material.navigation.NavigationView;
 
 import java.util.ArrayList;
@@ -77,6 +81,17 @@ public class MainActivity extends AppCompatActivity {
             Log.d("MainActivity", "Username received: " + username);
         }
         loadDefaultAddress();
+
+
+//          For Animating the location in Address part
+        ImageView animatedIcon = findViewById(R.id.animated_icon);
+
+        // Load GIF with Glide and crossfade animation
+        Glide.with(this)
+                .asGif() // Ensures animation for GIFs
+                .load(R.drawable.test) // Make sure test.gif is in res/drawable
+                .transition(DrawableTransitionOptions.withCrossFade(500)) // 500ms crossfade
+                .into(animatedIcon);
 
         // Change Address Button (TextView)
         TextView btn_change_address = findViewById(R.id.change_address_button);
