@@ -375,7 +375,7 @@ public class MainActivity extends AppCompatActivity {
         // Show a toast for selection
         if (selectedButton == btnMen) {
             Toast.makeText(this, "Men Category Selected", Toast.LENGTH_SHORT).show();
-       goback.setVisibility(View.VISIBLE);
+            goback.setVisibility(View.VISIBLE);
             recyclerView_men.setVisibility(View.VISIBLE);
         } else if (selectedButton == btnWomen) {
             Toast.makeText(this, "Women Category Selected", Toast.LENGTH_SHORT).show();
@@ -389,12 +389,13 @@ public class MainActivity extends AppCompatActivity {
 
     private void animateButton(View view) {
         ScaleAnimation scaleAnimation = new ScaleAnimation(
-                1.0f, 1.1f,  // Scale from 100% to 110% in X-axis
-                1.0f, 1.1f,  // Scale from 100% to 110% in Y-axis
+                1.0f, 1.2f,  // Scale from 100% to 120%
+                1.0f, 1.2f,
                 ScaleAnimation.RELATIVE_TO_SELF, 0.5f,
                 ScaleAnimation.RELATIVE_TO_SELF, 0.5f);
-        scaleAnimation.setDuration(2000);
-        scaleAnimation.setFillAfter(true);
+        scaleAnimation.setDuration(300);  // Faster animation (300ms)
+        scaleAnimation.setFillAfter(true); // Keep final scale
         view.startAnimation(scaleAnimation);
     }
+
 }
