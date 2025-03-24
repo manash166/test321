@@ -190,26 +190,38 @@ public class MainActivity extends AppCompatActivity {
                 Button btnYes = customView.findViewById(R.id.btn_yes);
                 Button btnNo = customView.findViewById(R.id.btn_no);
 
+                if (btnYes == null || btnNo == null) {
+                    Log.e("MainActivity", "btnYes or btnNo is null. Check dialog_custom.xml.");
+                    return;
+                }
+
                 AlertDialog dialog = builder.create();
                 dialog.show();
 
-                // Set Transparent Background (Optional)
-                dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
-
                 // Handle Button Clicks
                 btnYes.setOnClickListener(v -> {
-                    // Clear all activities from the back stack and restart MainActivity
                     Intent intent = new Intent(MainActivity.this, MainActivity.class);
+                    intent.putExtra("username", username); // ✅ Pass the username
                     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
                     startActivity(intent);
-                    finish();  // This will close the current instance of MainActivity and remove it from the back stack
+                    dialog.dismiss();
                 });
+
 
                 btnNo.setOnClickListener(v -> dialog.dismiss());
             }
         });
+    //Newly Added for Username passing back to MainActivity
+        username = getIntent().getStringExtra("username");
 
-   }
+        if (username == null || username.isEmpty()) {
+            Toast.makeText(this, "Error: Username is missing.", Toast.LENGTH_SHORT).show();
+            Log.e("MainActivity", "Username is null. Check intent passing.");
+            finish();  // ✅ Stop the app to prevent Firebase crash
+            return;
+        }
+
+    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -354,38 +366,40 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void selectButton(ImageButton selectedButton) {
-
-        // Show Bottom Part i.e address and continue part
-
- LinearLayout bottom_part =findViewById(R.id.bottom_part);
+        LinearLayout bottom_part = findViewById(R.id.bottom_part);
         bottom_part.setVisibility(View.VISIBLE);
 
-
-        // Hide all buttons first
+        // Hide all buttons
         btnMen.setVisibility(View.GONE);
         btnWomen.setVisibility(View.GONE);
         btnChildren.setVisibility(View.GONE);
 
-        // Show only the selected button
+        // Show the selected button
         selectedButton.setVisibility(View.VISIBLE);
 
-        // Animate the selected button
+        // Center by adjusting margins
+        LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) selectedButton.getLayoutParams();
+        params.setMargins(320, 0, 0, 30);  // Adjust left margin
+        selectedButton.setLayoutParams(params);
+
+        // Show and center the goback text
+        goback.setVisibility(View.VISIBLE);
+        LinearLayout.LayoutParams gobackParams = (LinearLayout.LayoutParams) goback.getLayoutParams();
+        gobackParams.setMargins(320, 0, 0, 30); // Same margin for alignment
+        goback.setLayoutParams(gobackParams);
+
         animateButton(selectedButton);
 
-        // Show a toast for selection
         if (selectedButton == btnMen) {
             Toast.makeText(this, "Men Category Selected", Toast.LENGTH_SHORT).show();
-            goback.setVisibility(View.VISIBLE);
             recyclerView_men.setVisibility(View.VISIBLE);
         } else if (selectedButton == btnWomen) {
             Toast.makeText(this, "Women Category Selected", Toast.LENGTH_SHORT).show();
-            goback.setVisibility(View.VISIBLE);
         } else if (selectedButton == btnChildren) {
             Toast.makeText(this, "Children Category Selected", Toast.LENGTH_SHORT).show();
-            goback.setVisibility(View.VISIBLE);
         }
-
     }
+
 
     private void animateButton(View view) {
         ScaleAnimation scaleAnimation = new ScaleAnimation(
