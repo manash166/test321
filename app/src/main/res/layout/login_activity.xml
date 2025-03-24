@@ -1,65 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background_salon"
     tools:context=".LoginActivity">
 
-    <EditText
-        android:id="@+id/editTextLoginName"
+    <!-- Glass Effect Card -->
+    <LinearLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:hint="Enter Name"
+        android:padding="24dp"
+        android:background="@drawable/glass_background"
+        android:orientation="vertical"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_margin="16dp"/>
-
-    <EditText
-        android:id="@+id/editTextLoginPassword"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:hint="Enter Password"
-        android:inputType="textPassword"
-        app:layout_constraintTop_toBottomOf="@id/editTextLoginName"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_margin="16dp"/>
-
-    <Button
-        android:id="@+id/buttonLogin"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Login"
-        app:layout_constraintTop_toBottomOf="@id/editTextLoginPassword"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_margin="16dp"/>
-
-    <TextView
-        android:id="@+id/textViewGoToSignup"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Don't have an account? Signup"
-        android:textColor="@android:color/holo_blue_dark"
-        app:layout_constraintTop_toBottomOf="@id/buttonLogin"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_margin="16dp"/>
-
-    <TextView
-        android:id="@+id/adminscreenbtn"
-        android:layout_width="88dp"
-        android:layout_height="56dp"
-        android:layout_marginStart="319dp"
-        android:layout_marginTop="464dp"
-        android:layout_marginEnd="4dp"
-        android:layout_marginBottom="6dp"
-        android:text="TextView"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewGoToSignup"
-        app:layout_constraintVertical_bias="0.0" />
+        android:elevation="20dp"
+        android:layout_margin="24dp">
+
+        <!-- Title -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Salon Home Service"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:textColor="#FFFFFF"
+            android:gravity="center"
+            android:layout_gravity="center_horizontal"
+            android:paddingBottom="16dp" />
+
+        <!-- Name Input -->
+        <EditText
+            android:id="@+id/editTextLoginName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter Name"
+            android:drawableStart="@drawable/ic_user"
+            android:drawablePadding="10dp"
+            android:padding="12dp"
+            android:textColor="#FFFFFF"
+            android:textColorHint="#B0FFFFFF"
+            android:background="@drawable/glass_background"
+            android:elevation="10dp"/>
+
+        <!-- Password Input -->
+        <EditText
+            android:id="@+id/editTextLoginPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter Password"
+            android:drawableStart="@drawable/ic_lock"
+            android:drawablePadding="10dp"
+            android:padding="12dp"
+            android:inputType="textPassword"
+            android:textColor="#FFFFFF"
+            android:textColorHint="#B0FFFFFF"
+            android:background="@drawable/glass_background"
+            android:elevation="10dp"
+            android:layout_marginTop="12dp"/>
+
+        <!-- Login Button -->
+        <Button
+            android:id="@+id/buttonLogin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Login"
+            android:background="@drawable/btn_gradient"
+            app:backgroundTint="@null"
+
+            android:textColor="#FFFFFF"
+            android:textStyle="bold"
+            android:elevation="10dp"
+            android:layout_marginTop="16dp"/>
+
+        <!-- Signup Text -->
+        <TextView
+            android:id="@+id/textViewGoToSignup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Don't have an account? Signup"
+            android:textColor="#00E1FF"
+            android:layout_marginTop="16dp"
+            android:gravity="center"
+            android:layout_gravity="center_horizontal"/>
+
+        <!-- Admin Button -->
+        <TextView
+            android:id="@+id/adminscreenbtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Admin Login"
+            android:textColor="#FFA500"
+            android:textSize="14sp"
+            android:layout_marginTop="16dp"
+            android:gravity="center"
+            android:layout_gravity="center_horizontal"/>
+    </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

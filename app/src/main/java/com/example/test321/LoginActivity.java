@@ -4,6 +4,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
+import android.view.animation.ScaleAnimation;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -35,6 +38,11 @@ public class LoginActivity extends AppCompatActivity {
         admin = findViewById(R.id.adminscreenbtn);
         databaseReference = FirebaseDatabase.getInstance().getReference("Users");
 
+        // Apply fade-in animation to input fields
+        fadeInAnimation(etName);
+        fadeInAnimation(etPassword);
+
+        // Handle admin screen navigation
         admin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -43,9 +51,13 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
+        // Handle login button click
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // Apply button click animation
+                buttonClickAnimation(btnLogin);
+
                 String name = etName.getText().toString().trim();
                 String password = etPassword.getText().toString().trim();
 
@@ -58,12 +70,11 @@ public class LoginActivity extends AppCompatActivity {
                 if (name.equals("aa") && password.equals("a")) {
                     Intent intent = new Intent(LoginActivity.this, Admin.class);
                     startActivity(intent);
-                    finish(); // Optional: Finish LoginActivity
-                    return; // Important: Stop further execution
+                    finish(); // Close login screen
+                    return; // Stop execution
                 }
 
-
-                // Check if user exists in Firebase (for regular users)
+                // Check user in Firebase
                 databaseReference.child(name).addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -72,13 +83,12 @@ public class LoginActivity extends AppCompatActivity {
                             if (correctPassword != null && correctPassword.equals(password)) {
                                 Toast.makeText(LoginActivity.this, "Login Successful!", Toast.LENGTH_SHORT).show();
 
-                                // Pass the name to the main activity
+                                // Pass username to MainActivity
                                 Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                                 intent.putExtra("username", name);
                                 startActivity(intent);
                                 finish();
                                 Log.d("LoginActivity", "Username passed to MainActivity: " + name);
-
                             } else {
                                 Toast.makeText(LoginActivity.this, "Incorrect password", Toast.LENGTH_SHORT).show();
                             }
@@ -94,5 +104,24 @@ public class LoginActivity extends AppCompatActivity {
                 });
             }
         });
+    }
+
+    // Button click animation
+    private void buttonClickAnimation(View view) {
+        ScaleAnimation scaleAnimation = new ScaleAnimation(
+                1.0f, 1.1f, // Scale from 100% to 110%
+                1.0f, 1.1f,
+                Animation.RELATIVE_TO_SELF, 0.5f,
+                Animation.RELATIVE_TO_SELF, 0.5f);
+        scaleAnimation.setDuration(200);
+        scaleAnimation.setFillAfter(true);
+        view.startAnimation(scaleAnimation);
+    }
+
+    // Fade-in animation for EditText fields
+    private void fadeInAnimation(View view) {
+        AlphaAnimation alphaAnimation = new AlphaAnimation(0.0f, 1.0f);
+        alphaAnimation.setDuration(1000);
+        view.startAnimation(alphaAnimation);
     }
 }
