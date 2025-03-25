@@ -43,8 +43,8 @@
             android:drawableStart="@drawable/ic_user"
             android:drawablePadding="10dp"
             android:padding="12dp"
-            android:textColor="#FFFFFF"
-            android:textColorHint="#B0FFFFFF"
+            android:textColor="#121111"
+            android:textColorHint="#B0050505"
             android:background="@drawable/glass_background"
             android:elevation="10dp"/>
 
@@ -58,8 +58,8 @@
             android:drawablePadding="10dp"
             android:padding="12dp"
             android:inputType="textPassword"
-            android:textColor="#FFFFFF"
-            android:textColorHint="#B0FFFFFF"
+            android:textColor="#070707"
+            android:textColorHint="#B0121010"
             android:background="@drawable/glass_background"
             android:elevation="10dp"
             android:layout_marginTop="12dp"/>
@@ -73,7 +73,7 @@
             android:background="@drawable/btn_gradient"
             app:backgroundTint="@null"
 
-            android:textColor="#FFFFFF"
+            android:textColor="#150808"
             android:textStyle="bold"
             android:elevation="10dp"
             android:layout_marginTop="16dp"/>
@@ -84,7 +84,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Don't have an account? Signup"
-            android:textColor="#00E1FF"
+            android:textColor="#660F34"
             android:layout_marginTop="16dp"
             android:gravity="center"
             android:layout_gravity="center_horizontal"/>
