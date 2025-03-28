@@ -21,8 +21,11 @@
 
         <activity android:name=".MainActivity" />
         <activity android:name=".signup_activity" />
+
+        <activity android:name=".LoginActivity" />
+
         <activity
-            android:name=".LoginActivity"
+            android:name=".SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
