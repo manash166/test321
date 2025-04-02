@@ -12,7 +12,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import android.util.Log;  // Add this import at the top
 
 public class AddAddressActivity extends AppCompatActivity {
-
     private EditText addressInput;
     private Button continueButton;
     private DatabaseReference userAddressRef;
@@ -36,7 +35,6 @@ public class AddAddressActivity extends AppCompatActivity {
         userAddressRef = FirebaseDatabase.getInstance().getReference("Users").child(username).child("addresses");
 
         // Handle Continue Button
-
         continueButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

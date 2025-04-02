@@ -118,13 +118,8 @@ public class AddressPopupActivity extends AppCompatActivity {
         if (requestCode == 1 && resultCode == RESULT_OK && data != null) {
             String newAddress = data.getStringExtra("new_address");
             if (newAddress != null) {
-                // Add new address to the top
-                addressList.add(0, newAddress);
-                addressAdapter.setSelectedAddress(newAddress);
-                addressAdapter.notifyDataSetChanged();
-
-                // Update both local and MainActivity address
                 updateDefaultAddress(newAddress);
+                loadAddresses(); // Reload from Firebase to ensure accuracy
             }
         }
     }
