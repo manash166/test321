@@ -77,6 +77,7 @@ public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.ViewHold
         if (addressList.isEmpty()) {
             Log.w("AddressAdapter", "Address list is empty, cannot delete.");
             return;  // Early return if the list is empty
+
         }
 
         if (position >= 0 && position < addressList.size()) {

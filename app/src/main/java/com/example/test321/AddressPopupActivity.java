@@ -94,11 +94,23 @@ public class AddressPopupActivity extends AppCompatActivity implements AddressAd
                     }
                 }
 
-                // Check if there are any addresses
-                if (addressList.isEmpty()) {
-                    defaultAddress.setText("No Address Found");
-                    Log.w("AddressPopupActivity", "Warning: No addresses found in Firebase.");
-                }
+                // ✅ Fetch the default address separately
+                userAddressRef.getParent().child("default_address").addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        if (snapshot.exists()) {
+                            String savedAddress = snapshot.getValue(String.class);
+                            if (savedAddress != null) {
+                                defaultAddress.setText(savedAddress);
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+                        Toast.makeText(AddressPopupActivity.this, "Failed to load default address", Toast.LENGTH_SHORT).show();
+                    }
+                });
 
                 addressAdapter.notifyDataSetChanged();
             }
@@ -127,6 +139,11 @@ public class AddressPopupActivity extends AppCompatActivity implements AddressAd
     public void updateDefaultAddress(String address) {
         if (address != null && !address.isEmpty()) {
             defaultAddress.setText(address); // Update the local display
+
+            // Save to Firebase under user's data
+            userAddressRef.getParent().child("default_address").setValue(address);
+
+
             Intent resultIntent = new Intent();
             resultIntent.putExtra("selected_address", address);
             setResult(RESULT_OK, resultIntent); // Send updated address back to MainActivity

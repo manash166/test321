@@ -80,7 +80,6 @@ public class MainActivity extends AppCompatActivity {
         } else {
             Log.d("MainActivity", "Username received: " + username);
         }
-        loadDefaultAddress();
 
 
 //          For Animating the location in Address part
@@ -100,6 +99,8 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Log.d("MainActivity", "Opening AddressPopupActivity");
                 Toast.makeText(MainActivity.this, "Opening Address Popup", Toast.LENGTH_SHORT).show();
+                loadDefaultAddress();
+
                 Intent intent = new Intent(MainActivity.this, AddressPopupActivity.class);
                 intent.putExtra("username", username); // Ensure 'username' is initialized
                 startActivityForResult(intent, 1); // Correct method to receive result
@@ -242,36 +243,20 @@ public class MainActivity extends AppCompatActivity {
 
     // Method to load the default address from Firebase
     private void loadDefaultAddress() {
-        DatabaseReference userAddressRef = FirebaseDatabase.getInstance()
-                .getReference("Users").child(username).child("addresses");
+        DatabaseReference defaultAddressRef = FirebaseDatabase.getInstance()
+                .getReference("Users")
+                .child(username)  // Using username instead of userId
+                .child("default_address");
 
-        userAddressRef.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if (snapshot.exists()) {
-                    String firstAddress = null;
-                    for (DataSnapshot addressSnapshot : snapshot.getChildren()) {
-                        if (firstAddress == null) {
-                            firstAddress = addressSnapshot.getValue(String.class);
-                            break; // Take only the first address and exit loop
-                        }
-                    }
+        defaultAddressRef.get().addOnCompleteListener(task -> {
+            if (task.isSuccessful() && task.getResult().exists()) {
+                String defaultAddress = task.getResult().getValue(String.class);
+                if (defaultAddress != null) {
+                    // Save defaultAddress for passing to AddressPopupActivity
 
-                    if (firstAddress != null) {
-                        TextView addressTextView = findViewById(R.id.textView6);
-                        addressTextView.setText(firstAddress);
-                        Log.d("MainActivity", "Topmost Address loaded: " + firstAddress);
-                    } else {
-                        Log.d("MainActivity", "No address found.");
-                    }
-                } else {
-                    Log.d("MainActivity", "Address node is empty.");
                 }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(MainActivity.this, "Failed to load address", Toast.LENGTH_SHORT).show();
+            } else {
+                Log.e("MainActivity", "Default address not found or error fetching.");
             }
         });
     }

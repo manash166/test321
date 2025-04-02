@@ -52,12 +52,19 @@ public class AddAddressActivity extends AppCompatActivity {
     }
 
     private void saveAddress(String address) {
-        userAddressRef.push().setValue(address).addOnCompleteListener(task -> {
+        DatabaseReference newAddressRef = userAddressRef.push();  // Generate a unique key
+        newAddressRef.setValue(address).addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
+                // ✅ Also update default address
+                userAddressRef.getParent().child("default_address").setValue(address);
+
+                Toast.makeText(AddAddressActivity.this, "Address Added Successfully", Toast.LENGTH_SHORT).show();
+
                 Intent resultIntent = new Intent();
                 resultIntent.putExtra("new_address", address);
                 setResult(RESULT_OK, resultIntent);
-                finish(); // Return to AddressPopupActivity
+
+                finish(); // ✅ Close activity and return to AddressPopupActivity
             } else {
                 Toast.makeText(AddAddressActivity.this, "Failed to add address", Toast.LENGTH_SHORT).show();
             }
