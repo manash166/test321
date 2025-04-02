@@ -197,7 +197,6 @@ android:paddingLeft="10dp"
 
                 android:layout_height="63dp"
                 android:layout_marginStart="8dp"
-                android:text="NA"
                 android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/linearLayout" />

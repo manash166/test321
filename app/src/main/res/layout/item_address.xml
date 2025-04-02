@@ -16,7 +16,6 @@
             android:id="@+id/item_address"
             android:layout_width="199dp"
             android:layout_height="45dp"
-            android:text="NA"
             android:textSize="24sp"
             android:gravity="center"
             android:background="@drawable/address_recycler_background" />
@@ -29,7 +28,6 @@
         android:layout_height="30dp">
 
         <Button
-
             app:backgroundTint="@null"
             android:id="@+id/delete_button"
             android:layout_width="wrap_content"

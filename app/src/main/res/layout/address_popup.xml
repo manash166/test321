@@ -116,7 +116,6 @@
                 android:layout_marginStart="20dp"
                 android:fontFamily="@font/mer"
                 android:textFontWeight="900"
-                android:text="NA"
                 android:textColor="@color/black"
                 android:textSize="20sp" />
         </LinearLayout>

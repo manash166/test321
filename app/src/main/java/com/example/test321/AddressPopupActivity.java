@@ -31,6 +31,7 @@ public class AddressPopupActivity extends AppCompatActivity {
     private String username;
     private TextView addAddressButton;
     private TextView defaultAddress;
+    private ArrayList<String> keyList; // Stores Firebase keys
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +44,7 @@ public class AddressPopupActivity extends AppCompatActivity {
         defaultAddress = findViewById(R.id.default_address);
 
         addressList = new ArrayList<>();
+        keyList = new ArrayList<>(); // ✅ Initialize keyList
 
         // Get username from Intent
         username = getIntent().getStringExtra("username");
@@ -52,7 +54,7 @@ public class AddressPopupActivity extends AppCompatActivity {
 
         // Setup RecyclerView
         addressRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        addressAdapter = new AddressAdapter(addressList);
+        addressAdapter = new AddressAdapter(addressList, keyList, username, this);
         addressRecyclerView.setAdapter(addressAdapter);
 
         // Firebase Reference
@@ -76,18 +78,29 @@ public class AddressPopupActivity extends AppCompatActivity {
         userAddressRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                addressList.clear();
-                for (DataSnapshot addressSnapshot : snapshot.getChildren()) {
-                    String address = addressSnapshot.getValue(String.class);
-                    addressList.add(address);
+                if (addressList == null) {
+                    addressList = new ArrayList<>();
+                }
+                if (keyList == null) {
+                    keyList = new ArrayList<>();
                 }
 
-                // Set the first (topmost) address as default if available
-                if (!addressList.isEmpty()) {
-                    updateDefaultAddress(addressList.get(0)); // Use first item instead of reversing
-                    addressAdapter.setSelectedAddress(addressList.get(0));
-                } else {
-                    updateDefaultAddress("No address found");
+                addressList.clear();
+                keyList.clear();
+
+                for (DataSnapshot addressSnapshot : snapshot.getChildren()) {
+                    String key = addressSnapshot.getKey();
+                    String address = addressSnapshot.getValue(String.class);
+
+                    if (address != null) {
+                        addressList.add(address);
+                        keyList.add(key);
+                    }
+                }
+
+                if (addressList.isEmpty()) {
+                    defaultAddress.setText("No Address Found");
+                    Log.w("AddressPopupActivity", "Warning: No addresses found in Firebase.");
                 }
 
                 addressAdapter.notifyDataSetChanged();
@@ -95,12 +108,10 @@ public class AddressPopupActivity extends AppCompatActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                // Handle error
                 Toast.makeText(AddressPopupActivity.this, "Failed to load addresses", Toast.LENGTH_SHORT).show();
             }
         });
     }
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -118,23 +129,19 @@ public class AddressPopupActivity extends AppCompatActivity {
         }
     }
 
-
-
-
-    //* Updated AddressPopupActivity.java *//
-
     // Send selected address back to MainActivity
 // Update default address TextView
     // Updated method to send selected address back to MainActivity
     public void updateDefaultAddress(String address) {
+
         if (address != null && !address.isEmpty()) {
             defaultAddress.setText(address); // Update the local display
             Intent resultIntent = new Intent();
             resultIntent.putExtra("selected_address", address);
             setResult(RESULT_OK, resultIntent); // Send updated address back to MainActivity
+        } else if (address.isEmpty()) {
+            defaultAddress.setText("No Address Found");
+
         }
     }
-
-
-
 }

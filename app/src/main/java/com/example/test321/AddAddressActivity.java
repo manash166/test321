@@ -9,6 +9,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import android.util.Log;  // Add this import at the top
 
 public class AddAddressActivity extends AppCompatActivity {
 
@@ -35,13 +36,17 @@ public class AddAddressActivity extends AppCompatActivity {
         userAddressRef = FirebaseDatabase.getInstance().getReference("Users").child(username).child("addresses");
 
         // Handle Continue Button
+
         continueButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String address = addressInput.getText().toString().trim();
+
                 if (!address.isEmpty()) {
+                    Log.d("AddAddressActivity", "Saving address: " + address);  // ✅ Log successful input
                     saveAddress(address);
                 } else {
+                    Log.e("AddAddressActivity", "Error: Address field is empty!");  // ✅ Log error for empty input
                     Toast.makeText(AddAddressActivity.this, "Please enter an address", Toast.LENGTH_SHORT).show();
                 }
             }

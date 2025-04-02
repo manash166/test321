@@ -280,7 +280,10 @@ public class MainActivity extends AppCompatActivity {
     private void openOrderReview() {
         List<MenService> selectedServices = adapter.getSelectedServices();
         TextView addressTextView = findViewById(R.id.textView6);
-        if (addressTextView.getText().toString().equalsIgnoreCase("NA")) {
+        String address = addressTextView.getText().toString().trim();
+
+        // Check if the address is empty or equals "No Address Found"
+        if (address.isEmpty() || address.equalsIgnoreCase("No Address Found")) {
             Toast.makeText(this, "Please Add Your Address First", Toast.LENGTH_SHORT).show();
             return; // Stop further execution if no address
         }
@@ -289,7 +292,6 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this, "No services selected!", Toast.LENGTH_SHORT).show();
             return;
         }
-
 
         // Calculate total amount and prepare service details
         int totalAmount = 0;
