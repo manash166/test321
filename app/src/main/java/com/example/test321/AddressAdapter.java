@@ -34,6 +34,10 @@ public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.ViewHold
         this.context = context;
         this.userAddressRef = FirebaseDatabase.getInstance().getReference("Users").child(userId).child("addresses");
     }
+    public interface OnAddressSelectedListener {
+        void onAddressSelected(String address);
+    }
+
 
     @NonNull
     @Override
