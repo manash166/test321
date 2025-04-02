@@ -13,25 +13,26 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import java.util.ArrayList;
-import java.util.Collections;
 
-public class AddressPopupActivity extends AppCompatActivity {
+import java.util.ArrayList;
+
+public class AddressPopupActivity extends AppCompatActivity implements AddressAdapter.OnAddressSelectedListener {
 
     private ImageView closeButton;
     private RecyclerView addressRecyclerView;
     private AddressAdapter addressAdapter;
     private ArrayList<String> addressList;
-    private DatabaseReference userAddressRef;
+    private ArrayList<String> keyList;
     private String username;
     private TextView addAddressButton;
     private TextView defaultAddress;
-    private ArrayList<String> keyList; // Stores Firebase keys
+    private DatabaseReference userAddressRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,8 +44,9 @@ public class AddressPopupActivity extends AppCompatActivity {
         addressRecyclerView = findViewById(R.id.address_recycler_view);
         defaultAddress = findViewById(R.id.default_address);
 
+        // Initialize address lists
         addressList = new ArrayList<>();
-        keyList = new ArrayList<>(); // ✅ Initialize keyList
+        keyList = new ArrayList<>();
 
         // Get username from Intent
         username = getIntent().getStringExtra("username");
@@ -54,7 +56,7 @@ public class AddressPopupActivity extends AppCompatActivity {
 
         // Setup RecyclerView
         addressRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        addressAdapter = new AddressAdapter(addressList, keyList, username, this);
+        addressAdapter = new AddressAdapter(addressList, keyList, username, this, this);
         addressRecyclerView.setAdapter(addressAdapter);
 
         // Firebase Reference
@@ -74,17 +76,11 @@ public class AddressPopupActivity extends AppCompatActivity {
         });
     }
 
+    // Load addresses from Firebase
     private void loadAddresses() {
         userAddressRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if (addressList == null) {
-                    addressList = new ArrayList<>();
-                }
-                if (keyList == null) {
-                    keyList = new ArrayList<>();
-                }
-
                 addressList.clear();
                 keyList.clear();
 
@@ -98,6 +94,7 @@ public class AddressPopupActivity extends AppCompatActivity {
                     }
                 }
 
+                // Check if there are any addresses
                 if (addressList.isEmpty()) {
                     defaultAddress.setText("No Address Found");
                     Log.w("AddressPopupActivity", "Warning: No addresses found in Firebase.");
@@ -112,6 +109,8 @@ public class AddressPopupActivity extends AppCompatActivity {
             }
         });
     }
+
+    // Handle the result from AddAddressActivity
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -124,19 +123,21 @@ public class AddressPopupActivity extends AppCompatActivity {
         }
     }
 
-    // Send selected address back to MainActivity
-// Update default address TextView
-    // Updated method to send selected address back to MainActivity
+    // Update default address in the TextView and send it back to the main activity
     public void updateDefaultAddress(String address) {
-
         if (address != null && !address.isEmpty()) {
             defaultAddress.setText(address); // Update the local display
             Intent resultIntent = new Intent();
             resultIntent.putExtra("selected_address", address);
             setResult(RESULT_OK, resultIntent); // Send updated address back to MainActivity
-        } else if (address.isEmpty()) {
+        } else {
             defaultAddress.setText("No Address Found");
-
         }
+    }
+
+    // Implement the onAddressSelected method to update the default address
+    @Override
+    public void onAddressSelected(String address) {
+        updateDefaultAddress(address);
     }
 }

@@ -6,7 +6,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,23 +20,23 @@ import java.util.ArrayList;
 public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.ViewHolder> {
 
     private ArrayList<String> addressList;
-    private ArrayList<String> keyList; // Store Firebase keys
-    private DatabaseReference userAddressRef;
-    private String userId; // Store the user ID
+    private ArrayList<String> keyList;
+    private String userId;
     private Context context;
     private String selectedAddress = "";
+    private OnAddressSelectedListener listener;
 
-    public AddressAdapter(ArrayList<String> addressList, ArrayList<String> keyList, String userId, Context context) {
-        this.addressList = addressList;
-        this.keyList = keyList;
-        this.userId = userId;
-        this.context = context;
-        this.userAddressRef = FirebaseDatabase.getInstance().getReference("Users").child(userId).child("addresses");
-    }
     public interface OnAddressSelectedListener {
         void onAddressSelected(String address);
     }
 
+    public AddressAdapter(ArrayList<String> addressList, ArrayList<String> keyList, String userId, Context context, OnAddressSelectedListener listener) {
+        this.addressList = addressList;
+        this.keyList = keyList;
+        this.userId = userId;
+        this.context = context;
+        this.listener = listener;
+    }
 
     @NonNull
     @Override
@@ -48,18 +47,8 @@ public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.ViewHold
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        if (addressList == null || addressList.isEmpty() || keyList == null || keyList.isEmpty()) {
-            Log.e("AddressAdapter", "Error: Trying to bind view with an empty list!");
-            return; // Exit method to prevent crash
-        }
-
-        if (position >= addressList.size() || position >= keyList.size()) {
-            Log.e("AddressAdapter", "Error: Position out of bounds! Position: " + position);
-            return; // Exit method safely
-        }
-
         String address = addressList.get(position);
-        String key = keyList.get(position); // Get Firebase key for this address
+        String key = keyList.get(position); // Get the key for the current address
 
         holder.addressTextView.setText(address);
 
@@ -70,8 +59,50 @@ public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.ViewHold
             holder.addressTextView.setTextColor(context.getResources().getColor(R.color.black)); // Default color
         }
 
-        // Delete address on click
+        // Handle address selection
+        holder.addressTextView.setOnClickListener(v -> {
+            selectedAddress = address;
+            notifyDataSetChanged(); // Refresh the list to update highlight
+
+            if (listener != null) {
+                listener.onAddressSelected(address); // Send address to activity
+            }
+        });
+
+        // Handle delete action with both position and key
         holder.deleteIcon.setOnClickListener(v -> deleteAddress(position, key));
+    }
+
+    private void deleteAddress(int position, String key) {
+        if (addressList.isEmpty()) {
+            Log.w("AddressAdapter", "Address list is empty, cannot delete.");
+            return;  // Early return if the list is empty
+        }
+
+        if (position >= 0 && position < addressList.size()) {
+            // Proceed with deletion only if the position is valid
+            addressList.remove(position);
+            keyList.remove(position);
+
+            // Remove from Firebase
+            DatabaseReference addressRef = FirebaseDatabase.getInstance()
+                    .getReference("Users")
+                    .child(userId)
+                    .child("addresses")
+                    .child(key);
+
+            addressRef.removeValue()
+                    .addOnSuccessListener(aVoid -> {
+                        Log.d("AddressAdapter", "Address deleted successfully");
+                        notifyDataSetChanged(); // Notify adapter to refresh the view
+                    })
+                    .addOnFailureListener(e -> {
+                        Log.e("AddressAdapter", "Failed to delete address", e);
+                        Toast.makeText(context, "Failed to delete address", Toast.LENGTH_SHORT).show();
+                    });
+        } else {
+            Log.w("AddressAdapter", "Invalid position for deletion: " + position);
+        }
     }
 
     @Override
@@ -88,28 +119,6 @@ public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.ViewHold
             addressTextView = itemView.findViewById(R.id.item_address);
             deleteIcon = itemView.findViewById(R.id.delete_button);
         }
-    }
-
-    private void deleteAddress(int position, String key) {
-        userAddressRef.child(key).removeValue().addOnSuccessListener(aVoid -> {
-            // Check if the position is valid before removing
-            if (position >= 0 && position < addressList.size()) {
-                addressList.remove(position);
-                keyList.remove(position);
-            }
-
-            // If the list is empty, refresh RecyclerView completely
-            if (addressList.isEmpty()) {
-                notifyDataSetChanged();
-            } else {
-                notifyItemRemoved(position);
-                notifyItemRangeChanged(position, addressList.size());
-            }
-
-            Toast.makeText(context, "Address deleted", Toast.LENGTH_SHORT).show();
-        }).addOnFailureListener(e -> {
-            Toast.makeText(context, "Failed to delete address", Toast.LENGTH_SHORT).show();
-        });
     }
 
     public void setSelectedAddress(String address) {
