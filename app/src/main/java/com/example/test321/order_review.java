@@ -23,12 +23,12 @@ public class order_review extends AppCompatActivity {
         String serviceDetails = getIntent().getStringExtra("serviceDetails");
         int totalAmount = getIntent().getIntExtra("totalAmount", 0);
         String addressname =getIntent().getStringExtra("address");
-String username=getIntent().getStringExtra("userid");
+        String username=getIntent().getStringExtra("userid");
         // Display Data
         address_textview.setText(addressname);
         orderIdText.setText("Order ID: " + orderId);
         serviceListText.setText(serviceDetails);
-        totalAmountText.setText("Total Amount: ₹" + totalAmount);
+        totalAmountText.setText("₹" + totalAmount);
         userid_preview.setText(username);
     }
 }

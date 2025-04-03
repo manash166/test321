@@ -26,14 +26,12 @@
 
     <TextView
         android:id="@+id/orderIdText"
-        android:layout_width="240dp"
-        android:layout_height="44dp"
+        android:layout_width="390dp"
+        android:layout_height="46dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="74dp"
-        android:layout_marginEnd="155dp"
+        android:layout_marginTop="5dp"
         android:text="Order ID:"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:textSize="25sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/userid_preview" />
 
@@ -43,7 +41,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:text="Selected Services:"
-        android:textSize="18sp"
+        android:textSize="25sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/orderIdText" />
 
@@ -51,35 +49,76 @@
         android:id="@+id/totalAmountText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="53dp"
+        android:layout_marginEnd="34dp"
         android:text="Total Amount:"
-        android:textSize="18sp"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="392dp" />
+        android:textSize="25sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView12"
+        app:layout_constraintTop_toBottomOf="@+id/serviceListText" />
 
     <TextView
         android:id="@+id/address_textview"
         android:layout_width="379dp"
         android:layout_height="41dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
         android:text="Address"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="335dp" />
+        android:textSize="28sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/totalAmountText" />
 
     <TextView
         android:id="@+id/userid_preview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="3dp"
+        android:layout_marginTop="15dp"
         android:text="UserID"
         android:textSize="25sp"
-        tools:layout_editor_absoluteX="111dp"
-        tools:layout_editor_absoluteY="94dp" />
+        app:layout_constraintStart_toEndOf="@+id/textView9"
+        app:layout_constraintTop_toBottomOf="@+id/relativeLayout2" />
 
     <TextView
         android:id="@+id/textView9"
         android:layout_width="89dp"
         android:layout_height="31dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="15dp"
         android:text="Hello"
         android:textSize="25sp"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="94dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/relativeLayout2" />
+
+    <TextView
+        android:id="@+id/textView10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="Other Charges"
+        android:textSize="25sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/address_textview" />
+
+    <TextView
+        android:id="@+id/other_charges"
+        android:layout_width="164dp"
+        android:layout_height="36dp"
+        android:layout_marginEnd="16dp"
+        android:text="other_charges"
+        android:textSize="25sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/address_textview" />
+
+    <TextView
+        android:id="@+id/textView12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="Total Amount"
+        android:textSize="25sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/serviceListText" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
