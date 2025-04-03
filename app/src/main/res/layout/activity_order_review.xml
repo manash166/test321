@@ -8,6 +8,7 @@
         android:id="@+id/relativeLayout2"
         android:layout_width="match_parent"
         android:layout_height="79dp"
+        android:layout_marginBottom="1dp"
         android:background="#6286F3"
         android:gravity="center_horizontal|center_vertical"
         app:layout_constraintEnd_toEndOf="parent"
@@ -24,117 +25,173 @@
             android:textSize="30sp" />
     </RelativeLayout>
 
-    <TextView
-        android:id="@+id/textView9"
+<!--    //First Part i.e Vertical Linear Layout -->
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+       android:layout_marginStart="14dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/relativeLayout2">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/linearLayout5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="0dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/textView9"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/funnel"
+                    android:text="Hello"
+                    android:textSize="25sp" />
+
+                <TextView
+                    android:id="@+id/userid_preview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/funnel"
+                    android:text="UserID"
+                    android:textSize="25sp" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/orderIdText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Order ID:"
+                android:textSize="25sp" />
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="15dp"
-        android:fontFamily="@font/funnel"
-        android:text="Hello"
-        android:textSize="25sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/relativeLayout2" />
+        app:layout_constraintTop_toBottomOf="@+id/cardView">
 
-    <TextView
-        android:id="@+id/userid_preview"
+        <TextView
+            android:id="@+id/serviceListText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/mer"
+            android:includeFontPadding="false"
+            android:padding="0dp"
+            android:text="Selected Services:"
+            android:textSize="25sp" />
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="3dp"
-        android:layout_marginTop="15dp"
-        android:fontFamily="@font/funnel"
-        android:text="UserID"
-        android:textSize="25sp"
-        app:layout_constraintStart_toEndOf="@+id/textView9"
-        app:layout_constraintTop_toBottomOf="@+id/relativeLayout2" />
+        android:layout_marginStart="14dp"
+        android:layout_marginTop="7dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardView2">
 
-    <TextView
-        android:id="@+id/orderIdText"
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textView12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/funnel"
+                android:text="Amount"
+                android:textSize="25sp" />
+
+            <TextView
+                android:id="@+id/totalAmountText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="99dp"
+                android:fontFamily="@font/funnel"
+                android:text="Total Amount:"
+                android:textSize="25sp" />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView4"
+        android:layout_width="380dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="14dp"
+        android:layout_marginTop="1dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardView3">
+
+        <!-- Changed to Vertical Layout -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            tools:layout_editor_absoluteX="16dp"
+            tools:layout_editor_absoluteY="229dp">
+
+            <TextView
+                android:id="@+id/textView5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Address"
+                android:textSize="25sp" />
+
+            <TextView
+                android:id="@+id/address_textview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:ellipsize="end"
+                android:fontFamily="@font/funnel"
+                android:maxLines="5"
+                android:text="AddresstoshowAddresstoshowAddresstoshow"
+                android:textSize="20sp" />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="5dp"
-        android:text="Order ID:"
-        android:textSize="25sp"
+        android:layout_marginTop="6dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/userid_preview" />
+        app:layout_constraintTop_toBottomOf="@+id/cardView4">
 
-    <TextView
-        android:id="@+id/serviceListText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:fontFamily="@font/mer"
-        android:includeFontPadding="false"
-        android:padding="0dp"
-        android:text="Selected Services:"
-        android:textSize="25sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/orderIdText" />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
-    <TextView
-        android:id="@+id/textView12"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:fontFamily="@font/funnel"
-        android:text="Amount"
-        android:textSize="25sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/serviceListText" />
+            <TextView
+                android:id="@+id/textView10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/funnel"
+                android:text="Other Charges"
+                android:textSize="25sp" />
 
-    <TextView
-        android:id="@+id/totalAmountText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="99dp"
-        android:fontFamily="@font/funnel"
-        android:text="Total Amount:"
-        android:textSize="25sp"
-        app:layout_constraintStart_toEndOf="@+id/textView12"
-        app:layout_constraintTop_toBottomOf="@+id/serviceListText" />
-
-    <TextView
-        android:id="@+id/textView5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:text="Address"
-        android:textSize="25sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView12" />
-
-    <TextView
-        android:id="@+id/address_textview"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:fontFamily="@font/funnel"
-        android:text="Addresstoshow"
-        android:textSize="28sp"
-        app:layout_constraintStart_toEndOf="@+id/textView5"
-        app:layout_constraintTop_toBottomOf="@+id/totalAmountText" />
-
-    <TextView
-        android:id="@+id/textView10"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:fontFamily="@font/funnel"
-        android:text="Other Charges"
-        android:textSize="25sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/address_textview" />
-
-    <TextView
-        android:id="@+id/other_charges"
-        android:layout_width="164dp"
-        android:layout_height="36dp"
-        android:layout_marginEnd="59dp"
-        android:fontFamily="@font/funnel"
-        android:text="other_charges"
-        android:textSize="25sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/address_textview" />
+            <TextView
+                android:id="@+id/other_charges"
+                android:layout_width="164dp"
+                android:layout_height="36dp"
+                android:fontFamily="@font/funnel"
+                android:text="other_charges"
+                android:textSize="25sp" />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
