@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
 
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
-    private TextView welcometxt,goback;
+    private TextView welcometxt,goback,mainactivity_default_address;
     private ImageButton btnMen, btnWomen, btnChildren;
     private String username;
 
@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
         btnMen = findViewById(R.id.btnMen);
         btnWomen = findViewById(R.id.btnWomen);
         btnChildren = findViewById(R.id.btnChildren);
-
+        mainactivity_default_address=findViewById(R.id.textView6);
 //        layout = findViewById(R.id.relativeLayout);
         goback=findViewById(R.id.goback_textview);
         LinearLayout bottom_part=findViewById(R.id.bottom_part);
@@ -247,18 +247,23 @@ public class MainActivity extends AppCompatActivity {
                 .getReference("Users")
                 .child(username)  // Using username instead of userId
                 .child("default_address");
+   defaultAddressRef.addListenerForSingleValueEvent(new ValueEventListener() {
+       @Override
+       public void onDataChange(@NonNull DataSnapshot snapshot) {
+           if (snapshot.exists()) {
+               String defaultAddress = snapshot.getValue(String.class);
+               mainactivity_default_address.setText(defaultAddress);
+           } else {
+               Toast.makeText(MainActivity.this, "No address found", Toast.LENGTH_SHORT).show();
+           }
+       }
 
-        defaultAddressRef.get().addOnCompleteListener(task -> {
-            if (task.isSuccessful() && task.getResult().exists()) {
-                String defaultAddress = task.getResult().getValue(String.class);
-                if (defaultAddress != null) {
-                    // Save defaultAddress for passing to AddressPopupActivity
+       @Override
+       public void onCancelled(@NonNull DatabaseError error) {
 
-                }
-            } else {
-                Log.e("MainActivity", "Default address not found or error fetching.");
-            }
-        });
+       }
+   });
+
     }
 
 
