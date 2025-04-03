@@ -1,6 +1,9 @@
 package com.example.test321;
 
+import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -30,5 +33,20 @@ public class order_review extends AppCompatActivity {
         serviceListText.setText(serviceDetails);
         totalAmountText.setText("₹" + totalAmount);
         userid_preview.setText(username);
+//        serviceListText.setBackgroundColor(Color.RED);
+
+        ViewGroup.MarginLayoutParams layoutParams = (ViewGroup.MarginLayoutParams) serviceListText.getLayoutParams();
+        Log.d("Margins", "Left: " + layoutParams.leftMargin +
+                ", Top: " + layoutParams.topMargin +
+                ", Right: " + layoutParams.rightMargin +
+                ", Bottom: " + layoutParams.bottomMargin);
+        Log.d("Padding", "Left: " + serviceListText.getPaddingLeft() +
+                ", Top: " + serviceListText.getPaddingTop() +
+                ", Right: " + serviceListText.getPaddingRight() +
+                ", Bottom: " + serviceListText.getPaddingBottom());
+
+
+
+
     }
 }

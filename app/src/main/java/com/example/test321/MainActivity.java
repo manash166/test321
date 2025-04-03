@@ -287,10 +287,21 @@ public class MainActivity extends AppCompatActivity {
         // Calculate total amount and prepare service details
         int totalAmount = 0;
         StringBuilder serviceDetails = new StringBuilder();
-        for (MenService service : selectedServices) {
-            serviceDetails.append(service.getServiceName()).append(": ").append(service.getPrice()).append("\n");
+        for (int i = 0; i < selectedServices.size(); i++) {
+            MenService service = selectedServices.get(i);
+            serviceDetails.append(service.getServiceName()).append(": ").append(service.getPrice());
+
+            // Extract and add price to total amount
             totalAmount += extractPrice(service.getPrice());
+
+
+
+            // Add newline if it's not the last item
+            if (i < selectedServices.size() - 1) {
+                serviceDetails.append("\n");
+            }
         }
+
 
         // Generate a unique order ID
         String orderId = "ORDER-" + System.currentTimeMillis();
@@ -303,10 +314,12 @@ public class MainActivity extends AppCompatActivity {
         intent.putExtra("address",address);
         intent.putExtra("userid",username);
         startActivity(intent);
+        Log.d("checktotalamount", "checktotalamount: "+totalAmount);
     }
 
     // Helper method to extract numeric price from a string (e.g., "₹200" -> 200)
     private int extractPrice(String price) {
+
         return Integer.parseInt(price.replaceAll("[^0-9]", ""));
     }
 
