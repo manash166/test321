@@ -2,13 +2,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/linearLayout4"
-    style="@style/cont">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background_salon">
 
     <RelativeLayout
         android:id="@+id/relativeLayout2"
         android:layout_width="match_parent"
         android:layout_height="79dp"
-        android:layout_marginBottom="1dp"
         android:background="#6286F3"
         android:gravity="center_horizontal|center_vertical"
         app:layout_constraintEnd_toEndOf="parent"
@@ -25,19 +26,19 @@
             android:textSize="30sp" />
     </RelativeLayout>
 
-<!--    //First Part i.e Vertical Linear Layout -->
-
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-       android:layout_marginStart="14dp"
+        android:layout_marginStart="14dp"
+        app:cardBackgroundColor="@android:color/transparent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/relativeLayout2">
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@drawable/glass_background"
             android:orientation="vertical">
 
             <LinearLayout
@@ -74,102 +75,85 @@
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cardView2"
+    <TextView
+        android:id="@+id/serviceListText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="14dp"
+        android:background="@drawable/glass_background"
+        android:fontFamily="@font/mer"
+        android:includeFontPadding="false"
+        android:padding="0dp"
+        android:text="Selected Services:"
+        android:textSize="30sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardView">
+        app:layout_constraintTop_toBottomOf="@+id/cardView" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/glass_background"
+        android:orientation="vertical"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="229dp">
 
         <TextView
-            android:id="@+id/serviceListText"
+            android:id="@+id/textView5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/mer"
-            android:includeFontPadding="false"
-            android:padding="0dp"
-            android:text="Selected Services:"
+            android:text="Address"
             android:textSize="25sp" />
-    </androidx.cardview.widget.CardView>
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cardView3"
+        <TextView
+            android:id="@+id/address_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:ellipsize="end"
+            android:fontFamily="@font/funnel"
+            android:maxLines="5"
+            android:text="AddresstoshowAddresstoshowAddresstoshow"
+            android:textSize="20sp" />
+    </LinearLayout>
+
+    <!--    //First Part i.e Vertical Linear Layout -->
+
+    <LinearLayout
+        android:id="@+id/linearLayout6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="14dp"
-        android:layout_marginTop="7dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardView2">
+        android:background="@drawable/glass_background"
+        android:elevation="20dp"
+        android:orientation="horizontal"
+        tools:layout_editor_absoluteX="14dp"
+        tools:layout_editor_absoluteY="193dp">
 
-        <LinearLayout
+        <TextView
+            android:id="@+id/textView12"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:fontFamily="@font/funnel"
+            android:text="Amount"
+            android:textSize="25sp" />
 
-            <TextView
-                android:id="@+id/textView12"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/funnel"
-                android:text="Amount"
-                android:textSize="25sp" />
-
-            <TextView
-                android:id="@+id/totalAmountText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="99dp"
-                android:fontFamily="@font/funnel"
-                android:text="Total Amount:"
-                android:textSize="25sp" />
-        </LinearLayout>
-    </androidx.cardview.widget.CardView>
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cardView4"
-        android:layout_width="380dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="14dp"
-        android:layout_marginTop="1dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardView3">
-
-        <!-- Changed to Vertical Layout -->
-        <LinearLayout
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/totalAmountText"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            tools:layout_editor_absoluteX="16dp"
-            tools:layout_editor_absoluteY="229dp">
-
-            <TextView
-                android:id="@+id/textView5"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Address"
-                android:textSize="25sp" />
-
-            <TextView
-                android:id="@+id/address_textview"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="2dp"
-                android:ellipsize="end"
-                android:fontFamily="@font/funnel"
-                android:maxLines="5"
-                android:text="AddresstoshowAddresstoshowAddresstoshow"
-                android:textSize="20sp" />
-        </LinearLayout>
-    </androidx.cardview.widget.CardView>
+            android:layout_marginStart="99dp"
+            android:fontFamily="@font/funnel"
+            android:text="Total Amount:"
+            android:textSize="25sp" />
+    </LinearLayout>
 
     <androidx.cardview.widget.CardView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="6dp"
+
+        app:cardBackgroundColor="@android:color/transparent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardView4">
+        tools:layout_editor_absoluteY="315dp">
 
         <LinearLayout
             android:layout_width="wrap_content"

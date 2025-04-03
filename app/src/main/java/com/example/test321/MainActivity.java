@@ -289,7 +289,7 @@ public class MainActivity extends AppCompatActivity {
         StringBuilder serviceDetails = new StringBuilder();
         for (int i = 0; i < selectedServices.size(); i++) {
             MenService service = selectedServices.get(i);
-            serviceDetails.append(service.getServiceName()).append(": ").append(service.getPrice());
+            serviceDetails.append(service.getServiceName()).append(":").append(service.getPrice());
 
             // Extract and add price to total amount
             totalAmount += extractPrice(service.getPrice());

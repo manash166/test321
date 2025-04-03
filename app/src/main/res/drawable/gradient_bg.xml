@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Background Blur Effect (Requires RenderScript) -->
+    <item>
+        <shape android:shape="rectangle">
+            <gradient
+                android:angle="90"
+                android:startColor="#99ADD8E6"/>  <!-- Light Blue with Transparency -->
+            android:endColor="#99B0E0E6"/>  <!-- Slightly Darker Blue with Transparency -->
+            <corners android:radius="16dp"/>  <!-- Rounded Corners -->
+        </shape>
+    </item>
+
+</layer-list>
