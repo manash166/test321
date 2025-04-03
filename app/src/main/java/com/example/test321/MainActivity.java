@@ -71,6 +71,7 @@ public class MainActivity extends AppCompatActivity {
         LinearLayout flagship=findViewById(R.id.flagship_part);
 
 
+
         // Get the username safely
         username = getIntent().getStringExtra("username");
 
@@ -92,18 +93,18 @@ public class MainActivity extends AppCompatActivity {
                 .transition(DrawableTransitionOptions.withCrossFade(500)) // 500ms crossfade
                 .into(animatedIcon);
 
+        loadDefaultAddress();
         // Change Address Button (TextView)
         TextView btn_change_address = findViewById(R.id.change_address_button);
-        btn_change_address.setOnClickListener(new View.OnClickListener() {
+         btn_change_address.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Log.d("MainActivity", "Opening AddressPopupActivity");
                 Toast.makeText(MainActivity.this, "Opening Address Popup", Toast.LENGTH_SHORT).show();
-                loadDefaultAddress();
-
                 Intent intent = new Intent(MainActivity.this, AddressPopupActivity.class);
                 intent.putExtra("username", username); // Ensure 'username' is initialized
                 startActivityForResult(intent, 1); // Correct method to receive result
+
             }
         });
 
@@ -299,6 +300,8 @@ public class MainActivity extends AppCompatActivity {
         intent.putExtra("orderId", orderId);
         intent.putExtra("serviceDetails", serviceDetails.toString());
         intent.putExtra("totalAmount", totalAmount);
+        intent.putExtra("address",address);
+        intent.putExtra("userid",username);
         startActivity(intent);
     }
 
