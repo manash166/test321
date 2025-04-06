@@ -4,7 +4,7 @@
     android:id="@+id/linearLayout4"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background_salon">
+>
 
     <RelativeLayout
         android:id="@+id/relativeLayout2"
@@ -54,7 +54,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/funnel"
                     android:text="Hello"
-                    android:textSize="25sp" />
+                    android:textSize="28sp" />
 
                 <TextView
                     android:id="@+id/userid_preview"
@@ -62,7 +62,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/funnel"
                     android:text="UserID"
-                    android:textSize="25sp" />
+                    android:textSize="28sp" />
             </LinearLayout>
 
             <TextView
@@ -70,7 +70,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Order ID:"
-                android:textSize="25sp" />
+                android:textSize="28sp" />
 
         </LinearLayout>
     </androidx.cardview.widget.CardView>
@@ -85,24 +85,26 @@
         android:includeFontPadding="false"
         android:padding="0dp"
         android:text="Selected Services:"
-        android:textSize="30sp"
+        android:textSize="28sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cardView" />
 
     <LinearLayout
+        android:id="@+id/linearLayout7"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
         android:background="@drawable/glass_background"
         android:orientation="vertical"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="229dp">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout6">
 
         <TextView
             android:id="@+id/textView5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Address"
-            android:textSize="25sp" />
+            android:textSize="28sp" />
 
         <TextView
             android:id="@+id/address_textview"
@@ -122,11 +124,13 @@
         android:id="@+id/linearLayout6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="14dp"
+        android:layout_marginTop="10dp"
         android:background="@drawable/glass_background"
         android:elevation="20dp"
         android:orientation="horizontal"
-        tools:layout_editor_absoluteX="14dp"
-        tools:layout_editor_absoluteY="193dp">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/serviceListText">
 
         <TextView
             android:id="@+id/textView12"
@@ -134,7 +138,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/funnel"
             android:text="Amount"
-            android:textSize="25sp" />
+            android:textSize="28sp" />
 
         <TextView
             android:id="@+id/totalAmountText"
@@ -143,39 +147,32 @@
             android:layout_marginStart="99dp"
             android:fontFamily="@font/funnel"
             android:text="Total Amount:"
-            android:textSize="25sp" />
+            android:textSize="28sp" />
     </LinearLayout>
 
-    <androidx.cardview.widget.CardView
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-
-        app:cardBackgroundColor="@android:color/transparent"
+        android:orientation="horizontal"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="315dp">
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout7">
 
-        <LinearLayout
+        <TextView
+            android:id="@+id/textView10"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:fontFamily="@font/funnel"
+            android:text="Other Charges"
+            android:textSize="28sp" />
 
-            <TextView
-                android:id="@+id/textView10"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/funnel"
-                android:text="Other Charges"
-                android:textSize="25sp" />
-
-            <TextView
-                android:id="@+id/other_charges"
-                android:layout_width="164dp"
-                android:layout_height="36dp"
-                android:fontFamily="@font/funnel"
-                android:text="other_charges"
-                android:textSize="25sp" />
-        </LinearLayout>
-    </androidx.cardview.widget.CardView>
+        <TextView
+            android:id="@+id/other_charges"
+            android:layout_width="164dp"
+            android:layout_height="36dp"
+            android:fontFamily="@font/funnel"
+            android:text="other_charges"
+            android:textSize="28sp" />
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
