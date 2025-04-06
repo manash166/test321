@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <style name="Widget.Test321.MaterialSwitch" parent="Widget.Material3.CompoundButton.MaterialSwitch">
-        <item name="thumbTint">@color/purple_200</item>
+        <item name="thumbTint">@color/blue</item>
         <item name="trackTint">@color/md_theme_light_surfaceVariant</item>
     </style>
 

@@ -9,5 +9,5 @@
     <color name="md_theme_light_onPrimaryContainer">#21005D</color>
     <color name="md_theme_light_surfaceVariant">#E7E0EC</color>
     <color name="md_theme_light_outline">#79747E</color>
-
+     <color name="blue">#6921F3</color>
 </resources>

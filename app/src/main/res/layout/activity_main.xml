@@ -452,6 +452,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
+                android:fontFamily="@font/tinosregular"
                 android:text="Service Now"
                 android:textSize="24sp"
                 android:textStyle="bold" />
@@ -472,6 +473,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Later on? Schedule it"
+                android:fontFamily="@font/tinosbold"
                 android:textColor="@color/black"
                 android:textSize="18sp" />
 
