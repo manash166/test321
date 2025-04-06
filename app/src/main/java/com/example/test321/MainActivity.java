@@ -83,8 +83,10 @@ public class MainActivity extends AppCompatActivity {
         }
 
 
-//          For Animating the location in Address part
+
+//          For Animating the location in Address icon ,Calendar Icon
         ImageView animatedIcon = findViewById(R.id.animated_icon);
+        ImageView animatedCalendar=findViewById(R.id.icon_service);
 
         // Load GIF with Glide and crossfade animation
         Glide.with(this)
@@ -92,6 +94,16 @@ public class MainActivity extends AppCompatActivity {
                 .load(R.drawable.test) // Make sure test.gif is in res/drawable
                 .transition(DrawableTransitionOptions.withCrossFade(500)) // 500ms crossfade
                 .into(animatedIcon);
+
+        // Load GIF with Glide and schedule icon animation
+        Glide.with(this)
+                .asGif() // Ensures animation for GIFs
+                .load(R.drawable.calendar) // Make sure test.gif is in res/drawable
+                .transition(DrawableTransitionOptions.withCrossFade(500)) // 500ms crossfade
+                .into(animatedCalendar);
+
+
+
 
         loadDefaultAddress();
         // Change Address Button (TextView)
@@ -376,6 +388,8 @@ public class MainActivity extends AppCompatActivity {
     private void selectButton(ImageButton selectedButton) {
         LinearLayout bottom_part = findViewById(R.id.bottom_part);
         bottom_part.setVisibility(View.VISIBLE);
+        LinearLayout schedule_part= findViewById(R.id.schedule_layer);
+        schedule_part.setVisibility(View.VISIBLE);
 
         // Hide all buttons
         btnMen.setVisibility(View.GONE);
