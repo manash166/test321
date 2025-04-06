@@ -304,7 +304,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         // Generate a unique order ID
-        String orderId = "ORDER-" + System.currentTimeMillis();
+        String orderId = "ORD-" + (System.currentTimeMillis() % 100000);
 
         // Send data to order_review activity
         Intent intent = new Intent(this, order_review.class);
