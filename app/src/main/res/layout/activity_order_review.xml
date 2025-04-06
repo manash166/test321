@@ -195,7 +195,7 @@
             android:textSize="28sp" />
 
         <TextView
-            android:id="@+id/other_charges"
+            android:id="@+id/dl_charges"
             android:layout_width="164dp"
             android:layout_height="36dp"
             android:layout_marginStart="5dp"
@@ -219,6 +219,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+           android:fontFamily="@font/sariff"
             android:text="Amount Payable"
             android:textSize="28sp" />
 
@@ -226,7 +227,8 @@
             android:id="@+id/payable_amount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_marginLeft="8dp"
+            android:fontFamily="@font/tinosregular"
             android:text="Payble Amount"
             android:textSize="25sp" />
     </LinearLayout>

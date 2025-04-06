@@ -21,14 +21,24 @@ public class order_review extends AppCompatActivity {
         TextView totalAmountText = findViewById(R.id.totalAmountText);
         TextView address_textview=findViewById(R.id.address_textview);
         TextView userid_preview=findViewById(R.id.userid_preview);
+        TextView dl_charges= findViewById(R.id.dl_charges);
+        TextView payable_amount=findViewById(R.id.payable_amount);
+        int dlcharge=100;
+
         // Get Data from Intent
         String orderId = getIntent().getStringExtra("orderId");
         Log.d("orderID", "orderID is"+orderId);
         String serviceDetails = getIntent().getStringExtra("serviceDetails");
         int totalAmount = getIntent().getIntExtra("totalAmount", 0);
+        int payable= totalAmount+dlcharge;
+        Log.d("payable", "payable"+payable);
         String addressname =getIntent().getStringExtra("address");
         String username=getIntent().getStringExtra("userid");
+
+
         // Display Data
+        dl_charges.setText("₹" + dlcharge);
+        payable_amount.setText("₹" + payable);
         address_textview.setText(addressname);
         orderIdText.setText("Order ID: " + orderId);
         serviceListText.setText(serviceDetails);
