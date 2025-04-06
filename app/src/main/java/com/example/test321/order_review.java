@@ -23,6 +23,7 @@ public class order_review extends AppCompatActivity {
         TextView userid_preview=findViewById(R.id.userid_preview);
         // Get Data from Intent
         String orderId = getIntent().getStringExtra("orderId");
+        Log.d("orderID", "orderID is"+orderId);
         String serviceDetails = getIntent().getStringExtra("serviceDetails");
         int totalAmount = getIntent().getIntExtra("totalAmount", 0);
         String addressname =getIntent().getStringExtra("address");

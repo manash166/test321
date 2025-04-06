@@ -43,7 +43,6 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
-            android:background="@drawable/glass_background"
             android:orientation="vertical">
 
             <LinearLayout
@@ -96,7 +95,6 @@
             android:id="@+id/serviceListText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/glass_background"
             android:fontFamily="@font/delius"
             android:includeFontPadding="false"
             android:padding="0dp"
@@ -104,35 +102,46 @@
             android:textSize="28sp" />
     </androidx.cardview.widget.CardView>
 
-    <LinearLayout
-        android:id="@+id/linearLayout7"
-        android:layout_width="match_parent"
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView3"
+        android:layout_width="390dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="14dp"
         android:layout_marginTop="10dp"
-        android:background="@drawable/glass_background"
-        android:orientation="vertical"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="24dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout6">
 
-        <TextView
-            android:id="@+id/textView5"
-            android:layout_width="wrap_content"
-            android:fontFamily="@font/sariff"
-            android:layout_height="wrap_content"
-            android:text="Address"
-            android:textSize="28sp" />
 
-        <TextView
-            android:id="@+id/address_textview"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:id="@+id/linearLayout7"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="2dp"
-            android:layout_marginBottom="10dp"
-            android:fontFamily="@font/tinosregular"
-            android:maxLines="5"
-            android:text="AddresstoshowAddresstoshowAddresstoshow"
-            android:textSize="20sp" />
-    </LinearLayout>
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/sariff"
+                android:text="Address"
+                android:textSize="28sp" />
+
+            <TextView
+                android:id="@+id/address_textview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="10dp"
+                android:fontFamily="@font/tinosregular"
+                android:maxLines="5"
+                android:text="AddresstoshowAddresstoshowAddresstoshow"
+                android:textSize="20sp" />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
 
     <!--    //First Part i.e Vertical Linear Layout -->
 
@@ -152,7 +161,7 @@
             android:id="@+id/textView12"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/delius"
+            android:fontFamily="@font/sariff"
             android:text="Amount"
             android:textSize="28sp" />
 
@@ -173,22 +182,23 @@
         android:layout_marginTop="10dp"
         android:orientation="horizontal"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout7">
+        app:layout_constraintTop_toBottomOf="@+id/cardView3">
 
         <TextView
             android:id="@+id/textView10"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/sariff"
-            android:text="Other Charges"
+            android:text="Delivery Charges "
             android:textSize="28sp" />
 
         <TextView
             android:id="@+id/other_charges"
             android:layout_width="164dp"
             android:layout_height="36dp"
+            android:layout_marginStart="5dp"
             android:fontFamily="@font/tinosregular"
-            android:text="other_charges"
+            android:text="dl_charges"
             android:textSize="28sp" />
     </LinearLayout>
 
