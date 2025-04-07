@@ -39,14 +39,11 @@ public class ScheduleBottomSheet {
             // Update TextView in current activity
             if (textLater != null) {
                 textLater.setText(result);
+                dialog.dismiss();
             }
 
-            // Start the OrderReviewActivity
-            Intent intent = new Intent(context, order_review.class);
-            intent.putExtra("schedule_info", result);
-            context.startActivity(intent);
 
-            dialog.dismiss();
+
         });
 
         closeBtn.setOnClickListener(v -> dialog.dismiss());

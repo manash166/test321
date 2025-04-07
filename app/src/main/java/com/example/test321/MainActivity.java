@@ -95,13 +95,6 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-
-
-
-
-
-
-
         //          For Animating the location in Address icon ,Calendar Icon
         ImageView animatedIcon = findViewById(R.id.animated_icon);
         ImageView animatedCalendar=findViewById(R.id.icon_service);
@@ -120,9 +113,6 @@ public class MainActivity extends AppCompatActivity {
                 .transition(DrawableTransitionOptions.withCrossFade(500)) // 500ms crossfade
                 .into(animatedCalendar);
 
-
-
-
         loadDefaultAddress();
         // Change Address Button (TextView)
         TextView btn_change_address = findViewById(R.id.change_address_button);
@@ -138,13 +128,9 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
-
-
         // Handle Continue Button Click
         TextView continueButton = findViewById(R.id.continue_button);
         continueButton.setOnClickListener(v -> openOrderReview());
-
 
         DatabaseReference menServicesRef = FirebaseDatabase.getInstance()
                 .getReference("services&prices").child("Men");
@@ -157,15 +143,10 @@ public class MainActivity extends AppCompatActivity {
         recyclerView_men.setAdapter(adapter);
         recyclerView_men.setVisibility(View.GONE); // Hide initially
         fetchMenServices(menServicesRef);
-
-
         // Get the username from Intent and set it in the welcome text
-
         if (username != null) {
             welcometxt.setText("Welcome " + username);
         }
-
-
         // Button to open the navigation drawer
         findViewById(R.id.buttonOpenDrawer).setOnClickListener(v -> openDrawer());
 
@@ -252,7 +233,6 @@ public class MainActivity extends AppCompatActivity {
             finish();  // ✅ Stop the app to prevent Firebase crash
             return;
         }
-
     }
 
     @Override
@@ -268,9 +248,6 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
-
-
-
 
     // Method to load the default address from Firebase
     private void loadDefaultAddress() {
@@ -288,7 +265,6 @@ public class MainActivity extends AppCompatActivity {
                Toast.makeText(MainActivity.this, "No address found", Toast.LENGTH_SHORT).show();
            }
        }
-
        @Override
        public void onCancelled(@NonNull DatabaseError error) {
 
@@ -352,7 +328,6 @@ public class MainActivity extends AppCompatActivity {
 
         return Integer.parseInt(price.replaceAll("[^0-9]", ""));
     }
-
 
     private void fetchMenServices(DatabaseReference menServicesRef) {
         menServicesRef.addValueEventListener(new ValueEventListener() {
@@ -440,7 +415,6 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-
     private void animateButton(View view) {
         ScaleAnimation scaleAnimation = new ScaleAnimation(
                 1.0f, 1.2f,  // Scale from 100% to 120%
@@ -451,5 +425,4 @@ public class MainActivity extends AppCompatActivity {
         scaleAnimation.setFillAfter(true); // Keep final scale
         view.startAnimation(scaleAnimation);
     }
-
 }
