@@ -149,7 +149,7 @@
 
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
+                    android:layout_marginTop="10dp"
                     android:fontFamily="@font/sariff"
                     android:text="Address"
                     android:textSize="24sp"
@@ -168,19 +168,23 @@
                     <!-- Animated GIF Icon -->
                     <ImageView
                         android:id="@+id/animated_icon"
+                        android:layout_marginTop="5dp"
                         android:layout_width="40dp"
                         android:layout_height="40dp"
                         android:src="@drawable/test" />
 
                     <!-- Button Text -->
-                    <TextView
+                    <com.google.android.material.button.MaterialButton
+                        android:layout_marginTop="3dp"
+                        style="@style/Widget.Material3.Button.ElevatedButton"
                         android:id="@+id/change_address_button"
                         android:layout_width="wrap_content"
+                        android:fontFamily="@font/sariff"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/red_border"
-                        android:text=" +Add Address"
-                        android:textColor="@android:color/black"
-                        android:textSize="24sp" />
+                        android:backgroundTint="#606FE1"
+                        android:textColor="@color/md_theme_light_onPrimary"
+                        android:text="Add Address"
+                        android:textSize="20sp" />
                 </LinearLayout>
 
 
@@ -192,7 +196,7 @@
 
                 android:layout_height="63dp"
                 android:layout_marginStart="8dp"
-                android:textSize="20sp"
+                android:textSize="22sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
@@ -239,6 +243,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="4dp"
                     android:layout_marginTop="3dp"
+                   android:fontFamily="@font/tinosregular"
                     android:layout_marginEnd="7dp"
                     android:layout_marginBottom="7dp"
                     android:text="₹ 0"

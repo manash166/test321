@@ -24,6 +24,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
+import com.google.android.material.button.MaterialButton;
 import com.google.android.material.materialswitch.MaterialSwitch;
 import com.google.android.material.navigation.NavigationView;
 
@@ -115,7 +116,7 @@ public class MainActivity extends AppCompatActivity {
 
         loadDefaultAddress();
         // Change Address Button (TextView)
-        TextView btn_change_address = findViewById(R.id.change_address_button);
+        MaterialButton btn_change_address = findViewById(R.id.change_address_button);
          btn_change_address.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
