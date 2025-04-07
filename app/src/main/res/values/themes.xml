@@ -1,9 +1,31 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
-    <style name="Base.Theme.Test321" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+
+    <style name="Theme.Test321" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Primary brand color -->
+        <item name="colorPrimaryContainer">@color/md_theme_light_onPrimaryContainer</item>
+        <item name="colorOnPrimaryContainer">@color/md_theme_light_onPrimaryContainer</item>
+
+        <item name="colorPrimary">@color/shrine_pink_100</item>
+        <item name="colorOnPrimary">@color/shrine_pink_900</item>
+        <!-- Surface colors -->
+        <item name="colorSurface">@color/md_theme_light_surface</item>
+        <item name="colorOnSurface">@color/md_theme_light_onSurface</item>
+        <item name="colorSurfaceVariant">@color/md_theme_light_surfaceVariant</item>
+        <item name="colorOnSurfaceVariant">@color/blue</item>
+
+        <!-- Background -->
+        <item name="android:colorBackground">@color/md_theme_light_background</item>
+
+
+        <!-- Optional corner treatment -->
+        <item name="shapeAppearanceSmallComponent">@style/ShapeAppearance.Material3.Corner.Medium</item>
     </style>
 
-    <style name="Theme.Test321" parent="Base.Theme.Test321" />
+    <style name="CustomDatePickerStyle" parent="@style/ThemeOverlay.Material3.MaterialCalendar">
+        <item name="android:headerBackground">#309CF8</item> <!-- or your color -->
+         <item name="android:background">#DEEFFD</item>
+        <item name="shapeCornerFamily">cut</item>
+    </style>
+
+
 </resources>

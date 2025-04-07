@@ -24,6 +24,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
+import com.google.android.material.materialswitch.MaterialSwitch;
 import com.google.android.material.navigation.NavigationView;
 
 import java.util.ArrayList;
@@ -83,8 +84,25 @@ public class MainActivity extends AppCompatActivity {
         }
 
 
+//           Schedule date and time
+        TextView textLater = findViewById(R.id.text_later);
 
-//          For Animating the location in Address icon ,Calendar Icon
+        MaterialSwitch switchSchedule = findViewById(R.id.switch_schedule);
+        switchSchedule.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            if (isChecked) {
+                ScheduleBottomSheet.show(MainActivity.this, textLater);
+            }
+        });
+
+
+
+
+
+
+
+
+
+        //          For Animating the location in Address icon ,Calendar Icon
         ImageView animatedIcon = findViewById(R.id.animated_icon);
         ImageView animatedCalendar=findViewById(R.id.icon_service);
 
