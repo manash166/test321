@@ -4,13 +4,10 @@
         <!-- Primary brand color -->
         <item name="colorPrimaryContainer">@color/md_theme_light_onPrimaryContainer</item>
         <item name="colorOnPrimaryContainer">@color/md_theme_light_onPrimaryContainer</item>
-
-        <item name="colorPrimary">@color/shrine_pink_100</item>
+        <item name="colorPrimary">@color/md_theme_light_background</item>
         <item name="colorOnPrimary">@color/shrine_pink_900</item>
         <!-- Surface colors -->
-        <item name="colorSurface">@color/md_theme_light_surface</item>
         <item name="colorOnSurface">@color/md_theme_light_onSurface</item>
-        <item name="colorSurfaceVariant">@color/md_theme_light_surfaceVariant</item>
         <item name="colorOnSurfaceVariant">@color/blue</item>
 
         <!-- Background -->
@@ -23,9 +20,27 @@
 
     <style name="CustomDatePickerStyle" parent="@style/ThemeOverlay.Material3.MaterialCalendar">
         <item name="android:headerBackground">#309CF8</item> <!-- or your color -->
-         <item name="android:background">#DEEFFD</item>
+         <item name="android:background">#CADCEB</item>
         <item name="shapeCornerFamily">cut</item>
     </style>
+
+    <style name="Custom_check_allsalon" parent="Widget.Material3.Button">
+        <item name="android:textColor">@color/md_theme_light_background</item>
+        <item name="backgroundTint">#4A7FF3</item>
+        <item name="strokeColor">@color/md_theme_light_onSurface</item>
+        <item name="strokeWidth">2dp</item>
+        <item name="elevation">25dp</item>
+    </style>
+
+    <style name="default_buttons" parent="Widget.Material3.Button">
+        <item name="android:textColor">@color/md_theme_light_background</item>
+        <item name="backgroundTint">#4A7FF3</item>
+        <item name="elevation">25dp</item>
+    </style>
+
+
+
+
 
 
 </resources>
