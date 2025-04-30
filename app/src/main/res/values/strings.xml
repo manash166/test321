@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">test321</string>
+    <string name="entername">Enter Phone Number</string>
+
 </resources>

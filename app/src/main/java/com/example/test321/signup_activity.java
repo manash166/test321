@@ -12,7 +12,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class signup_activity extends AppCompatActivity {
-    EditText etName, etPassword;
+    EditText etName, phonenumber ,etPassword_1,etPassword_2;
     Button btnSignup;
 
     DatabaseReference databaseReference;
@@ -23,7 +23,9 @@ public class signup_activity extends AppCompatActivity {
         setContentView(R.layout.activity_signup);
 
         etName = findViewById(R.id.editTextSignupName);
-        etPassword = findViewById(R.id.editTextSignupPassword);
+        etPassword_1 = findViewById(R.id.create_your_password1);
+        etPassword_2=findViewById(R.id.create_your_password2);
+//        phonenumber=findViewById(R.id.phonenumber);
         btnSignup = findViewById(R.id.buttonSignup);
 
         databaseReference = FirebaseDatabase.getInstance().getReference("Users");
@@ -32,20 +34,15 @@ public class signup_activity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String name = etName.getText().toString().trim();
-                String password = etPassword.getText().toString().trim();
+                String password1 = etPassword_1.getText().toString().trim();
+                String password2 = etPassword_2.getText().toString().trim();
 
-                if (name.isEmpty() || password.isEmpty()) {
+                if (name.isEmpty() || password1.isEmpty() ||password2.isEmpty()) {
                     Toast.makeText(signup_activity.this, "Please enter all details", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
-                // Save user to Firebase
-                databaseReference.child(name).child("password").setValue(password);
-                Toast.makeText(signup_activity.this, "Signup Successful!", Toast.LENGTH_SHORT).show();
 
-                // Move to Login
-                startActivity(new Intent(signup_activity.this, LoginActivity.class));
-                finish();
             }
         });
     }
