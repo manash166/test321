@@ -21,38 +21,70 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
-        <EditText
+        <TextView
+            android:id="@+id/textView11"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:fontFamily="@font/tinosregular"
+            android:text="Sign Up"
+            android:textSize="30sp" />
+
+        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/editTextSignupName"
             android:layout_width="match_parent"
+            app:hintTextAppearance="@style/CustomHintTextStyle"
             android:layout_height="wrap_content"
-            android:hint="Enter Name" />
+            android:layout_marginBottom="10dp"
+            android:hint="Enter Name">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:textSize="20sp" />
+        </com.google.android.material.textfield.TextInputLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:layout_marginBottom="10dp">
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/outlinedTextField"
+                android:id="@+id/edit_phone"
+                android:layout_width="match_parent"
+
                 android:layout_height="wrap_content"
-              android:layout_width="wrap_content"
-                android:layout_weight="1"
-                android:hint="@string/entername"
-                app:errorEnabled="true"
+
+                android:hint="Enter Phone Number"
+                app:hintTextAppearance="@style/CustomHintTextStyle"
+                 android:textColorHint="@color/black"
+                app:prefixTextColor="@color/black"
+                app:startIconDrawable="@drawable/call_20px"
+                app:endIconDrawable="@drawable/cancel_24"
                 app:endIconMode="clear_text"
-                app:endIconDrawable="@drawable/cross_border"
-                app:endIconMinSize="10dp">
+                app:endIconTint="@color/black"
+                app:prefixText="+91"
+                app:prefixTextAppearance="@style/PrefixTextAppearance"
+                app:boxStrokeColor="@color/white"
+                app:boxStrokeWidth="2dp">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editTextPhone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    />
+                    android:textSize="25sp" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <Button
+                android:id="@+id/getOtpButton"
                 style="@style/Widget.Material3.Button.ElevatedButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:visibility="gone"
                 android:background="@drawable/btn_otp"
                 android:elevation="20dp"
                 android:text="Get Otp"
@@ -64,21 +96,26 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Create Your Password"
-            android:inputType="textPassword" />
+            android:inputType="textPassword"
+            android:textSize="18sp"
+            android:layout_marginBottom="10dp"/>
 
         <EditText
             android:id="@+id/create_your_password2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Confirm Your Password"
-            android:inputType="textPassword" />
+            android:inputType="textPassword"
+            android:textSize="18sp"
+            android:layout_marginBottom="10dp"/>
 
         <TextView
             android:id="@+id/textViewGoToLogin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Already have an account? Login"
-            android:textColor="@android:color/holo_blue_dark" />
+            android:textColor="@android:color/holo_blue_dark"
+            android:layout_marginBottom="10dp" />
 
         <Button
             android:id="@+id/buttonSignup"
@@ -89,5 +126,4 @@
             android:text="Sign Up"
             app:backgroundTint="@null" />
     </LinearLayout>
-
 </androidx.constraintlayout.widget.ConstraintLayout>
