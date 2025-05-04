@@ -19,12 +19,15 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
+import com.google.firebase.Firebase;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthException;
 
 public class signup_activity extends AppCompatActivity {
 
+    FirebaseAuth mAuth;
     private TextInputEditText editTextName, editTextPhone;
     private Button buttonSignup,getOtpButton;
-    private TextView textViewGoToLogin;
     private  String phone;
 
     @Override
@@ -39,8 +42,6 @@ public class signup_activity extends AppCompatActivity {
         editTextPhone = findViewById(R.id.editTextPhone);
         buttonSignup = findViewById(R.id.buttonSignup);
         getOtpButton =findViewById(R.id.getOtpButton);
-
-
 
         TextInputLayout phoneInputLayout = findViewById(R.id.edit_phone);
         TextInputEditText editTextPhone = findViewById(R.id.editTextPhone);
@@ -84,10 +85,9 @@ public class signup_activity extends AppCompatActivity {
               editTextPhone.setError("Enter Valid Phone Number");
               return;
           }
+//                            Enter Send Otp Logic Here
       }
   });
-
-
         // Sign Up button logic
         buttonSignup.setOnClickListener(v -> {
             String name = editTextName.getText().toString().trim();
@@ -99,31 +99,18 @@ public class signup_activity extends AppCompatActivity {
                 return;
             }
 
-
             if (TextUtils.isEmpty(phone) || phone.length() != 10) {
                 editTextPhone.setError("Enter a valid 10-digit phone number");
                 return;
             }
 
-
-
-
-
-
             // All validations passed - proceed with signup logic (e.g., Firebase or API call)
-
-
             Toast.makeText(signup_activity.this, "Signup Successful!", Toast.LENGTH_SHORT).show();
-
-
             // You can navigate to another screen after signup (e.g., login or home)
             // startActivity(new Intent(SignupActivity.this, LoginActivity.class));
             // finish();
         });
-
-
-
-        EditText[] otpFields = {
+                EditText[] otpFields = {
                 findViewById(R.id.otpDigit1),
                 findViewById(R.id.otpDigit2),
                 findViewById(R.id.otpDigit3),
@@ -131,9 +118,6 @@ public class signup_activity extends AppCompatActivity {
                 findViewById(R.id.otpDigit5),
                 findViewById(R.id.otpDigit6)
         };
-
         OtpInputHelper.setupOtpFields(otpFields);
-
-
     }
 }
