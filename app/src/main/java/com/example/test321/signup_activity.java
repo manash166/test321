@@ -39,7 +39,6 @@ public class signup_activity extends AppCompatActivity {
         editTextPhone = findViewById(R.id.editTextPhone);
         buttonSignup = findViewById(R.id.buttonSignup);
         getOtpButton =findViewById(R.id.getOtpButton);
-        textViewGoToLogin = findViewById(R.id.textViewGoToLogin);
 
 
 
@@ -122,11 +121,7 @@ public class signup_activity extends AppCompatActivity {
             // finish();
         });
 
-        // Navigate to Login screen
-        textViewGoToLogin.setOnClickListener(v -> {
-            Intent intent = new Intent(signup_activity.this, LoginActivity.class);
-            startActivity(intent);
-        });
+
 
         EditText[] otpFields = {
                 findViewById(R.id.otpDigit1),
