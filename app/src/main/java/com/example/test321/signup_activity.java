@@ -10,6 +10,8 @@ import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,7 +22,7 @@ import com.google.android.material.textfield.TextInputLayout;
 
 public class signup_activity extends AppCompatActivity {
 
-    private TextInputEditText editTextName, editTextPhone, editTextPassword1, editTextPassword2;
+    private TextInputEditText editTextName, editTextPhone;
     private Button buttonSignup,getOtpButton;
     private TextView textViewGoToLogin;
     private  String phone;
@@ -30,11 +32,11 @@ public class signup_activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup); // Make sure the name matches your XML file
 
+        LinearLayout otpLayout = findViewById(R.id.otpLayout);
+
         // Bind views
         editTextName = findViewById(R.id.editTextName);
         editTextPhone = findViewById(R.id.editTextPhone);
-        editTextPassword1 = findViewById(R.id.editTextPassword1);
-        editTextPassword2 = findViewById(R.id.editTextPassword2);
         buttonSignup = findViewById(R.id.buttonSignup);
         getOtpButton =findViewById(R.id.getOtpButton);
         textViewGoToLogin = findViewById(R.id.textViewGoToLogin);
@@ -73,14 +75,25 @@ public class signup_activity extends AppCompatActivity {
             public void afterTextChanged(Editable s) {}
         });
 
+  getOtpButton.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View view) {
+          // Show OTP input fields
+          otpLayout.setVisibility(View.VISIBLE);
+          String phone=editTextPhone.getText().toString().trim();
+          if (phone.isEmpty() || phone.length() != 10){
+              editTextPhone.setError("Enter Valid Phone Number");
+              return;
+          }
+      }
+  });
 
 
         // Sign Up button logic
         buttonSignup.setOnClickListener(v -> {
             String name = editTextName.getText().toString().trim();
             String phone = editTextPhone.getText().toString().trim();
-            String password = editTextPassword1.getText().toString().trim();
-            String confirmPassword = editTextPassword2.getText().toString().trim();
+
 
             if (TextUtils.isEmpty(name) || name.length() < 4) {
                 editTextName.setError("Name must be at least 4 characters");
@@ -93,20 +106,7 @@ public class signup_activity extends AppCompatActivity {
                 return;
             }
 
-            if (TextUtils.isEmpty(password)) {
-                editTextPassword1.setError("Password is required");
-                return;
-            }
 
-            if (TextUtils.isEmpty(confirmPassword)) {
-                editTextPassword2.setError("Confirm your password");
-                return;
-            }
-
-            if (!password.equals(confirmPassword)) {
-                editTextPassword2.setError("Passwords do not match");
-                return;
-            }
 
 
 
@@ -127,5 +127,18 @@ public class signup_activity extends AppCompatActivity {
             Intent intent = new Intent(signup_activity.this, LoginActivity.class);
             startActivity(intent);
         });
+
+        EditText[] otpFields = {
+                findViewById(R.id.otpDigit1),
+                findViewById(R.id.otpDigit2),
+                findViewById(R.id.otpDigit3),
+                findViewById(R.id.otpDigit4),
+                findViewById(R.id.otpDigit5),
+                findViewById(R.id.otpDigit6)
+        };
+
+        OtpInputHelper.setupOtpFields(otpFields);
+
+
     }
 }

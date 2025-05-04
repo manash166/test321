@@ -94,50 +94,87 @@
                 android:text="Get Otp"
                 app:backgroundTint="@null" />
         </LinearLayout>
-
-        <!-- Create Password -->
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/passwordInputLayout1"
+        <LinearLayout
+            android:id="@+id/otpLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:endIconTint="@color/black"
-            app:prefixTextColor="@color/black"
-            android:textColorHint="@color/black"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:visibility="gone"
+            android:layout_marginBottom="10dp">
 
-            android:hint="Create Password"
-            app:endIconMode="password_toggle"
-            app:boxStrokeColor="#FF4081"
-            app:hintTextAppearance="@style/CustomHintTextStyle">
+            <EditText
+                android:id="@+id/otpDigit1"
+                android:layout_width="40dp"
+                android:layout_height="50dp"
+                android:layout_margin="4dp"
+                android:inputType="number"
+                android:maxLength="1"
+                android:gravity="center"
+                android:textSize="24sp"
+                android:background="@drawable/otp_box" />
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/editTextPassword1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="textPassword"
-                android:textSize="18sp" />
-        </com.google.android.material.textfield.TextInputLayout>
+            <EditText
+                android:id="@+id/otpDigit2"
+                android:layout_width="40dp"
+                android:layout_height="50dp"
+                android:layout_margin="4dp"
+                android:inputType="number"
+                android:maxLength="1"
+                android:gravity="center"
+                android:textSize="24sp"
+                android:background="@drawable/otp_box" />
 
-        <!-- Confirm Password -->
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/passwordInputLayout2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Confirm Password"
-            app:endIconMode="password_toggle"
-            app:endIconTint="@color/black"
-            app:prefixTextColor="@color/black"
-            android:textColorHint="@color/black"
-            app:boxStrokeColor="#FF4081"
-            app:hintTextAppearance="@style/CustomHintTextStyle">
+            <EditText
+                android:id="@+id/otpDigit3"
+                android:layout_width="40dp"
+                android:layout_height="50dp"
+                android:layout_margin="4dp"
+                android:inputType="number"
+                android:maxLength="1"
+                android:gravity="center"
+                android:textSize="24sp"
+                android:background="@drawable/otp_box" />
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/editTextPassword2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="textPassword"
+            <EditText
+                android:id="@+id/otpDigit4"
+                android:layout_width="40dp"
+                android:layout_height="50dp"
+                android:layout_margin="4dp"
+                android:inputType="number"
+                android:maxLength="1"
+                android:gravity="center"
+                android:textSize="24sp"
+                android:background="@drawable/otp_box" />
 
-                android:textSize="18sp" />
-        </com.google.android.material.textfield.TextInputLayout>
+            <EditText
+                android:id="@+id/otpDigit5"
+                android:layout_width="40dp"
+                android:layout_height="50dp"
+                android:layout_margin="4dp"
+                android:inputType="number"
+                android:maxLength="1"
+                android:gravity="center"
+                android:textSize="24sp"
+                android:background="@drawable/otp_box" />
+
+            <EditText
+                android:id="@+id/otpDigit6"
+                android:layout_width="40dp"
+                android:layout_height="50dp"
+                android:layout_margin="4dp"
+                android:inputType="number"
+                android:maxLength="1"
+                android:gravity="center"
+                android:textSize="24sp"
+                android:background="@drawable/otp_box" />
+        </LinearLayout>
+
+
+
+
+
+
 
         <TextView
             android:id="@+id/textViewGoToLogin"
