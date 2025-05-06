@@ -1,116 +1,95 @@
 package com.example.test321;
 
-import static android.view.View.GONE;
-import static android.view.View.VISIBLE;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.text.Editable;
 import android.text.TextUtils;
-import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
-import com.google.firebase.Firebase;
+import com.google.firebase.FirebaseException;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseAuthException;
+import com.google.firebase.auth.PhoneAuthCredential;
+import com.google.firebase.auth.PhoneAuthOptions;
+import com.google.firebase.auth.PhoneAuthProvider;
+
+import java.util.concurrent.TimeUnit;
 
 public class signup_activity extends AppCompatActivity {
 
-    FirebaseAuth mAuth;
     private TextInputEditText editTextName, editTextPhone;
-    private Button buttonSignup,getOtpButton;
-    private  String phone;
+    private Button getOtpButton, buttonSignup;
+    private LinearLayout otpLayout;
+    private EditText otpDigit1, otpDigit2, otpDigit3, otpDigit4, otpDigit5, otpDigit6;
+
+    private FirebaseAuth mAuth;
+    private String verificationId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_signup); // Make sure the name matches your XML file
+        setContentView(R.layout.activity_signup);
 
-        LinearLayout otpLayout = findViewById(R.id.otpLayout);
+        mAuth = FirebaseAuth.getInstance();
 
-        // Bind views
         editTextName = findViewById(R.id.editTextName);
         editTextPhone = findViewById(R.id.editTextPhone);
+        getOtpButton = findViewById(R.id.getOtpButton);
         buttonSignup = findViewById(R.id.buttonSignup);
-        getOtpButton =findViewById(R.id.getOtpButton);
+        otpLayout = findViewById(R.id.otpLayout);
 
+        otpDigit1 = findViewById(R.id.otpDigit1);
+        otpDigit2 = findViewById(R.id.otpDigit2);
+        otpDigit3 = findViewById(R.id.otpDigit3);
+        otpDigit4 = findViewById(R.id.otpDigit4);
+        otpDigit5 = findViewById(R.id.otpDigit5);
+        otpDigit6 = findViewById(R.id.otpDigit6);
         TextInputLayout phoneInputLayout = findViewById(R.id.edit_phone);
-        TextInputEditText editTextPhone = findViewById(R.id.editTextPhone);
-        Button getOtpButton = findViewById(R.id.getOtpButton);
-        getOtpButton.setVisibility(GONE);
+        editTextPhone.addTextChangedListener(new PhoneIconWatcher(phoneInputLayout, R.drawable.call_20px));
 
-        editTextPhone.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
 
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (!TextUtils.isEmpty(s) && s.length()<=9||s.equals(null)){
-                    phoneInputLayout.setStartIconDrawable(R.drawable.call_20px);
-                    phoneInputLayout.setStartIconVisible(true);
-                }
 
-                if (!TextUtils.isEmpty(s) && s.length() == 10) {
-                    // Valid phone number
-                    phoneInputLayout.setStartIconDrawable(null);
-                    phoneInputLayout.setEndIconMode(TextInputLayout.END_ICON_CLEAR_TEXT);
-                    getOtpButton.setVisibility(View.VISIBLE); // Show Get OTP button
-                } else {
-                    // Invalid phone number
-                    phoneInputLayout.setEndIconMode(TextInputLayout.END_ICON_CLEAR_TEXT); // Show cancel icon
-                    getOtpButton.setVisibility(View.GONE); // Hide Get OTP button
-                }
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {}
-        });
-
-  getOtpButton.setOnClickListener(new View.OnClickListener() {
-      @Override
-      public void onClick(View view) {
-          // Show OTP input fields
-          otpLayout.setVisibility(View.VISIBLE);
-          String phone=editTextPhone.getText().toString().trim();
-          if (phone.isEmpty() || phone.length() != 10){
-              editTextPhone.setError("Enter Valid Phone Number");
-              return;
-          }
-//                            Enter Send Otp Logic Here
-      }
-  });
-        // Sign Up button logic
-        buttonSignup.setOnClickListener(v -> {
+        getOtpButton.setOnClickListener(v -> {
             String name = editTextName.getText().toString().trim();
             String phone = editTextPhone.getText().toString().trim();
 
-
-            if (TextUtils.isEmpty(name) || name.length() < 4) {
-                editTextName.setError("Name must be at least 4 characters");
+            if (TextUtils.isEmpty(name)) {
+                editTextName.setError("Name required");
                 return;
             }
 
             if (TextUtils.isEmpty(phone) || phone.length() != 10) {
-                editTextPhone.setError("Enter a valid 10-digit phone number");
+                editTextPhone.setError("Valid 10-digit phone required");
                 return;
             }
 
-            // All validations passed - proceed with signup logic (e.g., Firebase or API call)
-            Toast.makeText(signup_activity.this, "Signup Successful!", Toast.LENGTH_SHORT).show();
-            // You can navigate to another screen after signup (e.g., login or home)
-            // startActivity(new Intent(SignupActivity.this, LoginActivity.class));
-            // finish();
+            String fullPhoneNumber = "+91" + phone;
+            sendOtp(fullPhoneNumber);
         });
-                EditText[] otpFields = {
+
+        buttonSignup.setOnClickListener(v -> {
+            String code = getOtpFromInputs();
+            if (code.length() != 6) {
+                Toast.makeText(this, "Enter 6-digit OTP", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            if (verificationId != null) {
+                PhoneAuthCredential credential = PhoneAuthProvider.getCredential(verificationId, code);
+                signInWithPhoneAuthCredential(credential);
+            } else {
+                Toast.makeText(this, "Verification ID is null. Try again.", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        EditText[] otpFields = {
                 findViewById(R.id.otpDigit1),
                 findViewById(R.id.otpDigit2),
                 findViewById(R.id.otpDigit3),
@@ -118,6 +97,78 @@ public class signup_activity extends AppCompatActivity {
                 findViewById(R.id.otpDigit5),
                 findViewById(R.id.otpDigit6)
         };
+
         OtpInputHelper.setupOtpFields(otpFields);
+
+
     }
+
+    private void sendOtp(String phoneNumber) {
+        PhoneAuthOptions options =
+                PhoneAuthOptions.newBuilder(mAuth)
+                        .setPhoneNumber(phoneNumber)
+                        .setTimeout(60L, TimeUnit.SECONDS)
+                        .setActivity(this)
+                        .setCallbacks(new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
+                            @Override
+                            public void onVerificationCompleted(@NonNull PhoneAuthCredential credential) {
+                                // Auto verification (optional)
+                                String code = credential.getSmsCode();
+                                if (code != null) {
+                                    fillOtpFields(code);
+                                    signInWithPhoneAuthCredential(credential);
+                                }
+                            }
+
+                            @Override
+                            public void onVerificationFailed(@NonNull FirebaseException e) {
+                                Toast.makeText(signup_activity.this, "OTP Failed: " + e.getMessage(), Toast.LENGTH_LONG).show();
+                            }
+
+                            @Override
+                            public void onCodeSent(@NonNull String verificationId,
+                                                   @NonNull PhoneAuthProvider.ForceResendingToken token) {
+                                signup_activity.this.verificationId = verificationId;
+                                otpLayout.setVisibility(View.VISIBLE);
+                                Toast.makeText(signup_activity.this, "OTP Sent", Toast.LENGTH_SHORT).show();
+                            }
+                        })
+                        .build();
+        PhoneAuthProvider.verifyPhoneNumber(options);
+    }
+
+    private void signInWithPhoneAuthCredential(PhoneAuthCredential credential) {
+        mAuth.signInWithCredential(credential)
+                .addOnCompleteListener(this, task -> {
+                    if (task.isSuccessful()) {
+                        Toast.makeText(this, "Verification Successful!", Toast.LENGTH_SHORT).show();
+                        // Navigate to next activity or save user data here
+                    } else {
+                        Toast.makeText(this, "Verification Failed", Toast.LENGTH_SHORT).show();
+                    }
+                });
+    }
+
+    private String getOtpFromInputs() {
+        return otpDigit1.getText().toString().trim()
+                + otpDigit2.getText().toString().trim()
+                + otpDigit3.getText().toString().trim()
+                + otpDigit4.getText().toString().trim()
+                + otpDigit5.getText().toString().trim()
+                + otpDigit6.getText().toString().trim();
+    }
+
+    private void fillOtpFields(String code) {
+        if (code.length() == 6) {
+            otpDigit1.setText(String.valueOf(code.charAt(0)));
+            otpDigit2.setText(String.valueOf(code.charAt(1)));
+            otpDigit3.setText(String.valueOf(code.charAt(2)));
+            otpDigit4.setText(String.valueOf(code.charAt(3)));
+            otpDigit5.setText(String.valueOf(code.charAt(4)));
+            otpDigit6.setText(String.valueOf(code.charAt(5)));
+        }
+    }
+
+
+
 }

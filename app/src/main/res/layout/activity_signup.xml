@@ -9,17 +9,16 @@
     tools:context=".signup_activity">
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="340dp"
         android:layout_height="wrap_content"
-        android:layout_margin="24dp"
         android:background="@drawable/glass_background"
-        android:gravity="center_horizontal"
         android:elevation="20dp"
+        android:gravity="center_horizontal"
         android:orientation="vertical"
-        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:id="@+id/textView11"
@@ -29,7 +28,7 @@
             android:layout_marginBottom="5dp"
             android:fontFamily="@font/tinosregular"
             android:text="Sign Up"
-            android:textSize="30sp" />
+            android:textSize="20sp" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/editTextSignupName"
@@ -37,49 +36,49 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
             android:hint="Enter Name"
-            app:endIconTint="@color/black"
-            app:prefixTextColor="@color/black"
             android:textColorHint="@color/black"
-            app:hintTextAppearance="@style/CustomHintTextStyle">
+            app:endIconTint="@color/black"
+            app:hintTextAppearance="@style/CustomHintTextStyle"
+            app:prefixTextColor="@color/black">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/editTextName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="20sp" />
+                android:textSize="15sp" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginBottom="10dp">
+            android:layout_marginBottom="10dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/edit_phone"
-                android:layout_width="0dp"
-                android:layout_weight="1"
+                android:layout_width="220dp"
                 android:layout_height="wrap_content"
                 android:hint="Enter Phone Number"
-                app:hintTextAppearance="@style/CustomHintTextStyle"
-                android:textColorHint="@color/black"
-                app:prefixTextColor="@color/black"
-                app:startIconDrawable="@drawable/call_20px"
+                app:boxStrokeColor="@color/white"
+                app:boxStrokeWidth="2dp"
                 app:endIconDrawable="@drawable/cancel_24"
                 app:endIconMode="clear_text"
-                app:endIconTint="@color/black"
+                app:endIconTint="@null"
                 app:prefixText="+91"
                 app:prefixTextAppearance="@style/PrefixTextAppearance"
-                app:boxStrokeColor="@color/white"
-                app:boxStrokeWidth="2dp">
+                app:prefixTextColor="@color/black"
+                app:startIconDrawable="@drawable/call_20px"
+                app:startIconTint="@null">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/editTextPhone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:inputType="phone"
                     android:maxLength="10"
-                    android:textSize="20sp" />
-
+                    android:singleLine="true"
+                    android:textSize="15sp" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <Button
@@ -87,87 +86,90 @@
                 style="@style/Widget.Material3.Button.ElevatedButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                android:visibility="visible"
                 android:background="@drawable/btn_otp"
+                android:layout_marginLeft="5dp"
                 android:elevation="20dp"
+                android:gravity="center_horizontal|center_vertical"
                 android:text="Get Otp"
+                android:textSize="10sp"
+                android:visibility="visible"
                 app:backgroundTint="@null" />
         </LinearLayout>
+
         <LinearLayout
             android:id="@+id/otpLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
+            android:layout_marginBottom="10dp"
             android:gravity="center"
-            android:visibility="gone"
-            android:layout_marginBottom="10dp">
+            android:orientation="horizontal"
+            android:visibility="gone">
 
             <EditText
                 android:id="@+id/otpDigit1"
                 android:layout_width="40dp"
                 android:layout_height="50dp"
                 android:layout_margin="4dp"
+                android:background="@drawable/otp_box"
+                android:gravity="center"
                 android:inputType="number"
                 android:maxLength="1"
-                android:gravity="center"
-                android:textSize="24sp"
-                android:background="@drawable/otp_box" />
+                android:textSize="24sp" />
 
             <EditText
                 android:id="@+id/otpDigit2"
                 android:layout_width="40dp"
                 android:layout_height="50dp"
                 android:layout_margin="4dp"
+                android:background="@drawable/otp_box"
+                android:gravity="center"
                 android:inputType="number"
                 android:maxLength="1"
-                android:gravity="center"
-                android:textSize="24sp"
-                android:background="@drawable/otp_box" />
+                android:textSize="24sp" />
 
             <EditText
                 android:id="@+id/otpDigit3"
                 android:layout_width="40dp"
                 android:layout_height="50dp"
                 android:layout_margin="4dp"
+                android:background="@drawable/otp_box"
+                android:gravity="center"
                 android:inputType="number"
                 android:maxLength="1"
-                android:gravity="center"
-                android:textSize="24sp"
-                android:background="@drawable/otp_box" />
+                android:textSize="24sp" />
 
             <EditText
                 android:id="@+id/otpDigit4"
                 android:layout_width="40dp"
                 android:layout_height="50dp"
                 android:layout_margin="4dp"
+                android:background="@drawable/otp_box"
+                android:gravity="center"
                 android:inputType="number"
                 android:maxLength="1"
-                android:gravity="center"
-                android:textSize="24sp"
-                android:background="@drawable/otp_box" />
+                android:textSize="24sp" />
 
             <EditText
                 android:id="@+id/otpDigit5"
                 android:layout_width="40dp"
                 android:layout_height="50dp"
                 android:layout_margin="4dp"
+                android:background="@drawable/otp_box"
+                android:gravity="center"
                 android:inputType="number"
                 android:maxLength="1"
-                android:gravity="center"
-                android:textSize="24sp"
-                android:background="@drawable/otp_box" />
+                android:textSize="24sp" />
 
             <EditText
                 android:id="@+id/otpDigit6"
                 android:layout_width="40dp"
                 android:layout_height="50dp"
                 android:layout_margin="4dp"
+                android:background="@drawable/otp_box"
+                android:gravity="center"
                 android:inputType="number"
                 android:maxLength="1"
-                android:gravity="center"
-                android:textSize="24sp"
-                android:background="@drawable/otp_box" />
+                android:textSize="24sp" />
         </LinearLayout>
 
 
@@ -176,9 +178,10 @@
             style="@style/Widget.Material3.Button.ElevatedButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="15dp"
+            android:layout_marginBottom="10dp"
             android:background="@drawable/btn_otp"
             android:text="Verify and Log In"
+            android:textSize="15sp"
             app:backgroundTint="@null" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
