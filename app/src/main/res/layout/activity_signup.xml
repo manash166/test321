@@ -57,7 +57,7 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/edit_phone"
-                android:layout_width="220dp"
+                android:layout_width="250dp"
                 android:layout_height="wrap_content"
                 android:hint="Enter Phone Number"
                 app:boxStrokeColor="@color/white"
@@ -67,30 +67,34 @@
                 app:endIconTint="@null"
                 app:prefixText="+91"
                 app:prefixTextAppearance="@style/PrefixTextAppearance"
-                app:prefixTextColor="@color/black"
                 app:startIconDrawable="@drawable/call_20px"
                 app:startIconTint="@null">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/editTextPhone"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:inputType="phone"
+                    android:fontFamily="@font/tinosregular"
+                     android:textSize="15sp"
                     android:maxLength="10"
-                    android:singleLine="true"
-                    android:textSize="15sp" />
+                    android:singleLine="true" />
+
             </com.google.android.material.textfield.TextInputLayout>
 
             <Button
                 android:id="@+id/getOtpButton"
-                style="@style/Widget.Material3.Button.ElevatedButton"
-                android:layout_width="wrap_content"
+                android:layout_width="45dp"
                 android:layout_height="wrap_content"
-                android:background="@drawable/btn_otp"
                 android:layout_marginLeft="5dp"
+                android:background="@drawable/btn_otp"
+
                 android:elevation="20dp"
-                android:gravity="center_horizontal|center_vertical"
-                android:text="Get Otp"
+                android:fontFamily="@font/tinosbold"
+                android:padding="0dp"
+                android:text="GetOtp"
+                android:textColor="#D9EFFF"
+
                 android:textSize="10sp"
                 android:visibility="visible"
                 app:backgroundTint="@null" />

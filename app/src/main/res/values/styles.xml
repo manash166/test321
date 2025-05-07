@@ -4,8 +4,8 @@
         <item name="thumbTint">@color/light_blue</item>
         <item name="trackTint">@color/md_theme_light_primaryContainer</item>
     </style>
-    <style name="PrefixTextAppearance" parent="TextAppearance.Material3.BodyLarge">
-        <item name="android:textSize">20sp</item>
+    <style name="PrefixTextAppearance" parent="TextAppearance.Material3.BodyMedium">
+        <item name="android:textSize">15sp</item>
         <item name="fontFamily">@font/tinosregular</item>
     </style>
 

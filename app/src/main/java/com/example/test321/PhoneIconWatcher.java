@@ -30,6 +30,7 @@ public class PhoneIconWatcher implements TextWatcher {
     public void afterTextChanged(Editable s) {
         if (s.length() > 5) {
             inputLayout.setStartIconDrawable(null); // Hide icon
+
         } else {
             inputLayout.setStartIconDrawable(iconResId); // Show icon
         }
