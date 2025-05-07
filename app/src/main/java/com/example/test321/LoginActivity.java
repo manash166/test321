@@ -1,8 +1,12 @@
 package com.example.test321;
 
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
@@ -22,7 +26,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class LoginActivity extends AppCompatActivity {
-    EditText etName, etPassword;
+    EditText phone_input;
     Button btnLogin;
     DatabaseReference databaseReference;
     TextView admin;
@@ -31,16 +35,53 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login_activity);
-
-        etName = findViewById(R.id.editTextLoginName);
-        etPassword = findViewById(R.id.editTextLoginPassword);
         btnLogin = findViewById(R.id.buttonLogin);
         admin = findViewById(R.id.adminscreenbtn);
         databaseReference = FirebaseDatabase.getInstance().getReference("Users");
+        EditText phone_input = findViewById(R.id.phone_input);
+
+// Initially hide the end drawable (cancel icon)
+        phone_input.setCompoundDrawablesWithIntrinsicBounds(R.drawable.call_20px, 0, 0, 0);
+
+// Show/hide cancel icon based on text
+        phone_input.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (s.length() > 0) {
+                    phone_input.setCompoundDrawablesWithIntrinsicBounds(R.drawable.call_20px, 0, R.drawable.cancel_24, 0);
+                } else {
+                    phone_input.setCompoundDrawablesWithIntrinsicBounds(R.drawable.call_20px, 0, 0, 0);
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {}
+        });
+
+// Clear phone number when cancel icon is tapped
+        phone_input.setOnTouchListener((v, event) -> {
+            if (event.getAction() == MotionEvent.ACTION_UP) {
+                Drawable endDrawable = phone_input.getCompoundDrawables()[2]; // Right drawable
+                if (endDrawable != null) {
+                    int drawableStart = phone_input.getWidth() - phone_input.getPaddingEnd() - endDrawable.getIntrinsicWidth();
+                    if (event.getX() >= drawableStart) {
+                        phone_input.setText(""); // Clear input
+                        // Accessibility compliance
+                        v.performClick();
+                        return true;
+                    }
+                }
+            }
+            return false;
+        });
+
+
 
         // Apply fade-in animation to input fields
-        fadeInAnimation(etName);
-        fadeInAnimation(etPassword);
+        fadeInAnimation(phone_input);
 
         // Handle admin screen navigation
         admin.setOnClickListener(new View.OnClickListener() {
@@ -52,56 +93,16 @@ public class LoginActivity extends AppCompatActivity {
         });
 
         // Handle login button click
+
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // Apply button click animation
                 buttonClickAnimation(btnLogin);
 
-                String name = etName.getText().toString().trim();
-                String password = etPassword.getText().toString().trim();
 
-                if (name.isEmpty() || password.isEmpty()) {
-                    Toast.makeText(LoginActivity.this, "Please enter all details", Toast.LENGTH_SHORT).show();
-                    return;
-                }
 
-                // Check if user is admin (aa/a)
-                if (name.equals("aa") && password.equals("a")) {
-                    Intent intent = new Intent(LoginActivity.this, Admin.class);
-                    startActivity(intent);
-                    finish(); // Close login screen
-                    return; // Stop execution
-                }
 
-                // Check user in Firebase
-                databaseReference.child(name).addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        if (snapshot.exists()) {
-                            String correctPassword = snapshot.child("password").getValue(String.class);
-                            if (correctPassword != null && correctPassword.equals(password)) {
-                                Toast.makeText(LoginActivity.this, "Login Successful!", Toast.LENGTH_SHORT).show();
-
-                                // Pass username to MainActivity
-                                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                                intent.putExtra("username", name);
-                                startActivity(intent);
-                                finish();
-                                Log.d("LoginActivity", "Username passed to MainActivity: " + name);
-                            } else {
-                                Toast.makeText(LoginActivity.this, "Incorrect password", Toast.LENGTH_SHORT).show();
-                            }
-                        } else {
-                            Toast.makeText(LoginActivity.this, "User not found", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-                        Toast.makeText(LoginActivity.this, "Database Error", Toast.LENGTH_SHORT).show();
-                    }
-                });
             }
         });
     }
