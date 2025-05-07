@@ -176,7 +176,6 @@
                 android:textSize="24sp" />
         </LinearLayout>
 
-
         <Button
             android:id="@+id/buttonSignup"
             style="@style/Widget.Material3.Button.ElevatedButton"
@@ -187,5 +186,7 @@
             android:text="Verify and Log In"
             android:textSize="15sp"
             app:backgroundTint="@null" />
+
     </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

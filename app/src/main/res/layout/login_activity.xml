@@ -78,15 +78,6 @@
             android:layout_marginTop="16dp"/>
 
         <!-- Signup Text -->
-        <TextView
-            android:id="@+id/textViewGoToSignup"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Don't have an account? Signup"
-            android:textColor="#660F34"
-            android:layout_marginTop="16dp"
-            android:gravity="center"
-            android:layout_gravity="center_horizontal"/>
 
         <!-- Admin Button -->
         <TextView

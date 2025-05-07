@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
     private NavigationView navigationView;
     private TextView welcometxt,goback,mainactivity_default_address;
     private ImageButton btnMen, btnWomen, btnChildren;
-    private String username;
+    private String username,phonenumber;
 
     private RecyclerView recyclerView_men;
     private List<MenService> menServices;
@@ -62,11 +62,11 @@ public class MainActivity extends AppCompatActivity {
         btnWomen = findViewById(R.id.btnWomen);
         btnChildren = findViewById(R.id.btnChildren);
         mainactivity_default_address=findViewById(R.id.textView6);
-//        layout = findViewById(R.id.relativeLayout);
+
         goback=findViewById(R.id.goback_textview);
         LinearLayout bottom_part=findViewById(R.id.bottom_part);
         recyclerView_men=findViewById(R.id.recyclerview_men);
-// Find the total amount TextView from activity_main.xml
+
         TextView totalAmountTextView = findViewById(R.id.textView4);
 
         bottom_part.setVisibility(View.GONE);
@@ -74,14 +74,15 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        // Get the username safely
+        // Get the username and phonenumbersafely
         username = getIntent().getStringExtra("username");
-
+        phonenumber=getIntent().getStringExtra("phonenumber");
         if (username == null || username.isEmpty()) {
             Toast.makeText(this, "Error: Username is missing.", Toast.LENGTH_SHORT).show();
             finish();  // Exit if username is not passed
         } else {
             Log.d("MainActivity", "Username received: " + username);
+            Log.d("phonenumber_received or not", "phone no. received: " + phonenumber);
         }
 
 

@@ -1,6 +1,8 @@
 package com.example.test321;
 
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -19,6 +21,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthOptions;
 import com.google.firebase.auth.PhoneAuthProvider;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.concurrent.TimeUnit;
 
@@ -44,7 +48,6 @@ public class signup_activity extends AppCompatActivity {
         getOtpButton = findViewById(R.id.getOtpButton);
         buttonSignup = findViewById(R.id.buttonSignup);
         otpLayout = findViewById(R.id.otpLayout);
-
         otpDigit1 = findViewById(R.id.otpDigit1);
         otpDigit2 = findViewById(R.id.otpDigit2);
         otpDigit3 = findViewById(R.id.otpDigit3);
@@ -53,8 +56,6 @@ public class signup_activity extends AppCompatActivity {
         otpDigit6 = findViewById(R.id.otpDigit6);
         TextInputLayout phoneInputLayout = findViewById(R.id.edit_phone);
         editTextPhone.addTextChangedListener(new PhoneIconWatcher(phoneInputLayout, R.drawable.call_20px));
-
-
 
         getOtpButton.setOnClickListener(v -> {
             String name = editTextName.getText().toString().trim();
@@ -70,8 +71,24 @@ public class signup_activity extends AppCompatActivity {
                 return;
             }
 
-            String fullPhoneNumber = "+91" + phone;
-            sendOtp(fullPhoneNumber);
+            DatabaseReference userRef = FirebaseDatabase.getInstance()
+                    .getReference("Users")
+                    .child(phone);
+
+            userRef.get().addOnCompleteListener(task -> {
+                if (task.isSuccessful()) {
+                    if (task.getResult().exists()) {
+                        // User already exists
+                        Toast.makeText(this, "User already has an account. Go to Login.", Toast.LENGTH_LONG).show();
+                    } else {
+                        // User doesn't exist, proceed with OTP
+                        String fullPhoneNumber = "+91" + phone;
+                        sendOtp(fullPhoneNumber);
+                    }
+                } else {
+                    Toast.makeText(this, "Failed to check user. Try again.", Toast.LENGTH_SHORT).show();
+                }
+            });
         });
 
         buttonSignup.setOnClickListener(v -> {
@@ -99,7 +116,6 @@ public class signup_activity extends AppCompatActivity {
         };
 
         OtpInputHelper.setupOtpFields(otpFields);
-
 
     }
 
@@ -142,7 +158,26 @@ public class signup_activity extends AppCompatActivity {
                 .addOnCompleteListener(this, task -> {
                     if (task.isSuccessful()) {
                         Toast.makeText(this, "Verification Successful!", Toast.LENGTH_SHORT).show();
+                        String name = editTextName.getText().toString().trim();
+                        String phoneNumber = editTextPhone.getText().toString().trim();
+                        SaveUserDataToFirebase.saveUserDataToFirebase(name, phoneNumber);
                         // Navigate to next activity or save user data here
+                        if (!name.isEmpty() && phoneNumber.length() == 10) {
+                                                       // Save locally if needed using SharedPreferences (optional)
+                            SharedPreferences sharedPreferences = getSharedPreferences("UserPrefs", MODE_PRIVATE);
+                            SharedPreferences.Editor editor = sharedPreferences.edit();
+                            editor.putString("username", name);
+                            editor.putString("phone", phoneNumber);
+                            editor.apply();
+
+                            // Go to MainActivity
+                            Intent intent = new Intent(signup_activity.this, MainActivity.class);
+                            intent.putExtra("username", name);
+                            intent.putExtra("phone", phoneNumber);
+                            startActivity(intent);
+                            finish();
+                        }
+
                     } else {
                         Toast.makeText(this, "Verification Failed", Toast.LENGTH_SHORT).show();
                     }
