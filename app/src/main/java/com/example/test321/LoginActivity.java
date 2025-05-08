@@ -43,15 +43,18 @@ public class LoginActivity extends AppCompatActivity {
 // Initially hide the end drawable (cancel icon)
         phone_input.setCompoundDrawablesWithIntrinsicBounds(R.drawable.call_20px, 0, 0, 0);
 
-// Show/hide cancel icon based on text
+// TextWatcher for phone_input
         phone_input.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
+
                 if (s.length() > 0) {
                     phone_input.setCompoundDrawablesWithIntrinsicBounds(R.drawable.call_20px, 0, R.drawable.cancel_24, 0);
+
+
                 } else {
                     phone_input.setCompoundDrawablesWithIntrinsicBounds(R.drawable.call_20px, 0, 0, 0);
                 }
@@ -78,11 +81,8 @@ public class LoginActivity extends AppCompatActivity {
             return false;
         });
 
-
-
         // Apply fade-in animation to input fields
         fadeInAnimation(phone_input);
-
         // Handle admin screen navigation
         admin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -91,7 +91,6 @@ public class LoginActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
         // Handle login button click
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
@@ -99,15 +98,10 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 // Apply button click animation
                 buttonClickAnimation(btnLogin);
-
-
-
-
             }
         });
     }
-
-    // Button click animation
+   // Button click animation
     private void buttonClickAnimation(View view) {
         ScaleAnimation scaleAnimation = new ScaleAnimation(
                 1.0f, 1.1f, // Scale from 100% to 110%
@@ -118,7 +112,6 @@ public class LoginActivity extends AppCompatActivity {
         scaleAnimation.setFillAfter(true);
         view.startAnimation(scaleAnimation);
     }
-
     // Fade-in animation for EditText fields
     private void fadeInAnimation(View view) {
         AlphaAnimation alphaAnimation = new AlphaAnimation(0.0f, 1.0f);
