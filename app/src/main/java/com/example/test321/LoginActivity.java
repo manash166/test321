@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
@@ -61,20 +62,20 @@ public class LoginActivity extends AppCompatActivity {
         otpDigit5_login = findViewById(R.id.otpDigit5_login);
         otpDigit6_login = findViewById(R.id.otpDigit6_login);
 
-        SharedPreferences sharedPreferences = getSharedPreferences("UserPrefs_LOGIN", MODE_PRIVATE);
-        boolean isLoggedIn = sharedPreferences.getBoolean("is_logged_in", false);
-
-        if (isLoggedIn) {
-            String phone = sharedPreferences.getString("phone", null);
-            if (phone != null) {
-                // Directly go to MainActivity
-                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                intent.putExtra("phoneNumber", phone);
-                startActivity(intent);
-                finish(); // Close login screen
-                return;
-            }
-        }
+//        SharedPreferences sharedPreferences = getSharedPreferences("UserPrefs_LOGIN", MODE_PRIVATE);
+//        boolean isLoggedIn = sharedPreferences.getBoolean("is_logged_in", false);
+//
+//        if (isLoggedIn) {
+//            String phone = sharedPreferences.getString("phone", null);
+//            if (phone != null) {
+//                // Directly go to MainActivity
+//                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+//                intent.putExtra("phoneNumber", phone);
+//                startActivity(intent);
+//                finish(); // Close login screen
+//                return;
+//            }
+//        }
 
         login_otp_btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -237,15 +238,20 @@ public class LoginActivity extends AppCompatActivity {
                         String phoneNumber_final = phoneNumber.substring(3); // Extract phone number after +91
                         if (phoneNumber_final.length() == 10) {
                             //  login info to Firebase
+
                             LoginUserDataToFirebase.loginUserDataToFirebase(this, phoneNumber_final);
-                            SharedPreferences sharedPreferences = getSharedPreferences("UserPrefs_LOGIN", MODE_PRIVATE);
-                            SharedPreferences.Editor editor = sharedPreferences.edit();
-                            editor.putBoolean("is_logged_in", true);
-                            editor.putString("phone", phoneNumber_final); // Store phone number
-                            editor.apply();
+//                            SharedPreferences sharedPreferences = getSharedPreferences("UserPrefs_LOGIN", MODE_PRIVATE);
+//                            SharedPreferences.Editor editor = sharedPreferences.edit();
+//                            editor.putBoolean("is_logged_in", true);
+//                            editor.putString("phone", phoneNumber_final); // Store phone number
+//                            editor.apply();
+                            String username=getIntent().getStringExtra("username");
+                            Log.d("LoginActivity", "username outside"+username);
 
                             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                             intent.putExtra("phoneNumber", phoneNumber_final);
+                            intent.putExtra("username",username);
+
                             startActivity(intent);
                             finish();
                         }

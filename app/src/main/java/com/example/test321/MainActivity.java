@@ -70,14 +70,21 @@ public class MainActivity extends AppCompatActivity {
         bottom_part.setVisibility(View.GONE);
         LinearLayout flagship=findViewById(R.id.flagship_part);
 
-
+        username=getIntent().getStringExtra("username");
         phonenumber=getIntent().getStringExtra("phoneNumber");
+
+        Log.d("MainActivity", "Phone: " + phonenumber + ", Username: " + username);
+
+        // Example usage: show username in a Toast
+        Toast.makeText(this, "Welcome " + username, Toast.LENGTH_SHORT).show();
         Log.d("phone number in MainActivity", "phone number in MainActivity"+phonenumber);
         if (phonenumber == null || phonenumber.isEmpty()) {
             Toast.makeText(this, "Phone number missing", Toast.LENGTH_SHORT).show();
             finish();
             return;
         }
+
+
         DatabaseReference userRef = FirebaseDatabase.getInstance()
                 .getReference("Users")
                 .child(phonenumber);
@@ -255,7 +262,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
+        username=getIntent().getStringExtra("username");
         if (username == null || username.isEmpty()) {
             Toast.makeText(this, "Error: Username is missing.", Toast.LENGTH_SHORT).show();
             Log.e("MainActivity", "Username is null. Check intent passing.");

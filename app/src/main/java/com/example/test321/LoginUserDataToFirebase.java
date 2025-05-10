@@ -32,8 +32,13 @@ public class LoginUserDataToFirebase {
                 if (snapshot.exists()) {
                     Log.d("loginFirebase", "User FOUND in DB: " + phoneNumber_final);
 
+                    // Get username from "name" field
+                    String username = snapshot.child("name").getValue(String.class);
+                    Log.d("loginFirebase", "Username: " + username);
+
                     Intent intent = new Intent(context, MainActivity.class);
                     intent.putExtra("phoneNumber", phoneNumber_final);
+                    intent.putExtra("username", username); // pass username to MainActivity
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
 
                     context.startActivity(intent);
@@ -42,6 +47,7 @@ public class LoginUserDataToFirebase {
                     Toast.makeText(context, "Phone number not registered.", Toast.LENGTH_SHORT).show();
                 }
             }
+
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
