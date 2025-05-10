@@ -63,6 +63,21 @@ public class LoginActivity extends AppCompatActivity {
         otpDigit5_login=findViewById(R.id.otpDigit5_login);
         otpDigit6_login=findViewById(R.id.otpDigit6_login);
 
+        SharedPreferences sharedPreferences = getSharedPreferences("UserPrefs_LOGIN", MODE_PRIVATE);
+        boolean isLoggedIn = sharedPreferences.getBoolean("is_logged_in", false);
+
+        if (isLoggedIn) {
+            String phone = sharedPreferences.getString("phone", null);
+            if (phone != null) {
+                // Directly go to MainActivity
+                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                intent.putExtra("phoneNumber", phone);
+                startActivity(intent);
+                finish(); // Close login screen
+                return;
+            }
+        }
+
         login_otp_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -119,11 +134,6 @@ public class LoginActivity extends AppCompatActivity {
         };
 
         OtpInputHelper.setupOtpFields(otpFields_login);
-
-
-
-
-
         // Initially hide the end drawable (cancel icon)
         phone_input.setCompoundDrawablesWithIntrinsicBounds(R.drawable.call_20px, 0, 0, 0);
 
@@ -177,13 +187,13 @@ public class LoginActivity extends AppCompatActivity {
         });
         // Handle login button click
 
-        btnLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Apply button click animation
-                buttonClickAnimation(btnLogin);
-            }
-        });
+//        btnLogin.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                // Apply button click animation
+//                buttonClickAnimation(btnLogin);
+//            }
+//        });
     }
 
     private String getOtpFromInputs() {
@@ -235,28 +245,30 @@ public class LoginActivity extends AppCompatActivity {
                 .addOnCompleteListener(this, task -> {
                     if (task.isSuccessful()) {
                         Toast.makeText(this, "Verification Successful!", Toast.LENGTH_SHORT).show();
-                        EditText phone_input = findViewById(R.id.phone_input);
-                        String phoneNumber = phone_input.getText().toString().trim();
+                        String phoneNumber = FirebaseAuth.getInstance().getCurrentUser().getPhoneNumber();
+                        Log.d("phonenumber_outside", "phoneNumber is"+phoneNumber);
+                        String phoneNumber_final = phoneNumber.substring(3);
+                        Log.d("phoneNumber_final", "phoneNumber_final: "+phoneNumber_final);
+                        if (phoneNumber_final.length() == 10) {
 
-
-                        if (phoneNumber.length() == 10) {
-                            // Save login info to Firebase
-                            LoginUserDataToFirebase.loginUserDataToFirebase(phoneNumber);
-
+                            //  login info to Firebase
+                            Log.d("LoginActivity", "Calling loginUserDataToFirebase with " + phoneNumber_final);
+                            LoginUserDataToFirebase.loginUserDataToFirebase(this, phoneNumber_final);
                             SharedPreferences sharedPreferences = getSharedPreferences("UserPrefs_LOGIN", MODE_PRIVATE);
                             SharedPreferences.Editor editor = sharedPreferences.edit();
-                            editor.putString("phone", phoneNumber);
+                            editor.putBoolean("is_logged_in", true);
+                            editor.putString("phone", phoneNumber_final); // Store phone too
                             editor.apply();
 
                             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-
-                            intent.putExtra("phone", phoneNumber);
+                            intent.putExtra("phoneNumber", phoneNumber_final);
                             startActivity(intent);
                             finish();
                         }
 
                     } else {
                         Toast.makeText(this, "Verification Failed", Toast.LENGTH_SHORT).show();
+
                     }
                 });
     }

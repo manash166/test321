@@ -73,17 +73,48 @@ public class MainActivity extends AppCompatActivity {
         LinearLayout flagship=findViewById(R.id.flagship_part);
 
 
-
-        // Get the username and phonenumbersafely
-        username = getIntent().getStringExtra("username");
-        phonenumber=getIntent().getStringExtra("phonenumber");
-        if (username == null || username.isEmpty()) {
-            Toast.makeText(this, "Error: Username is missing.", Toast.LENGTH_SHORT).show();
-            finish();  // Exit if username is not passed
-        } else {
-            Log.d("MainActivity", "Username received: " + username);
-            Log.d("phonenumber_received or not", "phone no. received: " + phonenumber);
+        phonenumber=getIntent().getStringExtra("phoneNumber");
+        Log.d("phone number in MainActivity", "phone number in MainActivity"+phonenumber);
+        if (phonenumber == null || phonenumber.isEmpty()) {
+            Toast.makeText(this, "Phone number missing", Toast.LENGTH_SHORT).show();
+            finish();
+            return;
         }
+        DatabaseReference userRef = FirebaseDatabase.getInstance()
+                .getReference("Users")
+                .child(phonenumber);
+
+        userRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()) {
+                    // Get name
+                    String name = snapshot.child("name").getValue(String.class);
+                    welcometxt.setText("Welcome " + name);
+                    String username = name; // if needed later
+
+                    // Get default address
+                    String defaultAddress = snapshot.child("default_address").getValue(String.class);
+                    mainactivity_default_address.setText(defaultAddress);
+
+                    // Example: Get all addresses
+                    for (DataSnapshot addressSnap : snapshot.child("addresses").getChildren()) {
+                        String key = addressSnap.getKey();
+                        String value = addressSnap.getValue(String.class);
+                        Log.d("Address", key + ": " + value);
+                    }
+
+                } else {
+                    Toast.makeText(MainActivity.this, "User not found", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(MainActivity.this, "Firebase error: " + error.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
 
 
 //           Schedule date and time
@@ -226,8 +257,7 @@ public class MainActivity extends AppCompatActivity {
                 btnNo.setOnClickListener(v -> dialog.dismiss());
             }
         });
-    //Newly Added for Username passing back to MainActivity
-        username = getIntent().getStringExtra("username");
+
 
         if (username == null || username.isEmpty()) {
             Toast.makeText(this, "Error: Username is missing.", Toast.LENGTH_SHORT).show();
@@ -255,7 +285,7 @@ public class MainActivity extends AppCompatActivity {
     private void loadDefaultAddress() {
         DatabaseReference defaultAddressRef = FirebaseDatabase.getInstance()
                 .getReference("Users")
-                .child(username)  // Using username instead of userId
+                .child(phonenumber)  // Using username instead of userId
                 .child("default_address");
    defaultAddressRef.addListenerForSingleValueEvent(new ValueEventListener() {
        @Override
