@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
@@ -27,17 +26,15 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthOptions;
 import com.google.firebase.auth.PhoneAuthProvider;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 import java.util.concurrent.TimeUnit;
 
 public class LoginActivity extends AppCompatActivity {
+
     EditText phone_input;
-    Button btnLogin,login_otp_btn;
+    Button btnLogin, login_otp_btn;
     DatabaseReference databaseReference;
     TextView admin;
     private LinearLayout otpLayout_login;
@@ -49,19 +46,20 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login_activity);
+
         btnLogin = findViewById(R.id.buttonLogin);
         admin = findViewById(R.id.adminscreenbtn);
         databaseReference = FirebaseDatabase.getInstance().getReference("Users");
-        EditText phone_input = findViewById(R.id.phone_input);
-        mAuth=FirebaseAuth.getInstance();
-        otpLayout_login=findViewById(R.id.otpLayout_login);
-        login_otp_btn=findViewById(R.id.get_login_OtpButton);
-        otpDigit1_login=findViewById(R.id.otpDigit1_login);
-        otpDigit2_login=findViewById(R.id.otpDigit2_login);
-        otpDigit3_login=findViewById(R.id.otpDigit3_login);
-        otpDigit4_login=findViewById(R.id.otpDigit4_login);
-        otpDigit5_login=findViewById(R.id.otpDigit5_login);
-        otpDigit6_login=findViewById(R.id.otpDigit6_login);
+        phone_input = findViewById(R.id.phone_input);
+        mAuth = FirebaseAuth.getInstance();
+        otpLayout_login = findViewById(R.id.otpLayout_login);
+        login_otp_btn = findViewById(R.id.get_login_OtpButton);
+        otpDigit1_login = findViewById(R.id.otpDigit1_login);
+        otpDigit2_login = findViewById(R.id.otpDigit2_login);
+        otpDigit3_login = findViewById(R.id.otpDigit3_login);
+        otpDigit4_login = findViewById(R.id.otpDigit4_login);
+        otpDigit5_login = findViewById(R.id.otpDigit5_login);
+        otpDigit6_login = findViewById(R.id.otpDigit6_login);
 
         SharedPreferences sharedPreferences = getSharedPreferences("UserPrefs_LOGIN", MODE_PRIVATE);
         boolean isLoggedIn = sharedPreferences.getBoolean("is_logged_in", false);
@@ -124,6 +122,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
+        // Setup OTP input fields
         EditText[] otpFields_login = {
                 findViewById(R.id.otpDigit1_login),
                 findViewById(R.id.otpDigit2_login),
@@ -134,21 +133,19 @@ public class LoginActivity extends AppCompatActivity {
         };
 
         OtpInputHelper.setupOtpFields(otpFields_login);
+
         // Initially hide the end drawable (cancel icon)
         phone_input.setCompoundDrawablesWithIntrinsicBounds(R.drawable.call_20px, 0, 0, 0);
 
-// TextWatcher for phone_input
+        // TextWatcher for phone_input
         phone_input.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-
                 if (s.length() > 0) {
                     phone_input.setCompoundDrawablesWithIntrinsicBounds(R.drawable.call_20px, 0, R.drawable.cancel_24, 0);
-
-
                 } else {
                     phone_input.setCompoundDrawablesWithIntrinsicBounds(R.drawable.call_20px, 0, 0, 0);
                 }
@@ -158,7 +155,7 @@ public class LoginActivity extends AppCompatActivity {
             public void afterTextChanged(Editable s) {}
         });
 
-// Clear phone number when cancel icon is tapped
+        // Clear phone number when cancel icon is tapped
         phone_input.setOnTouchListener((v, event) -> {
             if (event.getAction() == MotionEvent.ACTION_UP) {
                 Drawable endDrawable = phone_input.getCompoundDrawables()[2]; // Right drawable
@@ -177,6 +174,7 @@ public class LoginActivity extends AppCompatActivity {
 
         // Apply fade-in animation to input fields
         fadeInAnimation(phone_input);
+
         // Handle admin screen navigation
         admin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -185,15 +183,6 @@ public class LoginActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        // Handle login button click
-
-//        btnLogin.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                // Apply button click animation
-//                buttonClickAnimation(btnLogin);
-//            }
-//        });
     }
 
     private String getOtpFromInputs() {
@@ -204,7 +193,6 @@ public class LoginActivity extends AppCompatActivity {
                 + otpDigit5_login.getText().toString().trim()
                 + otpDigit6_login.getText().toString().trim();
     }
-
 
     private void sendOtp(String phoneNumber) {
         PhoneAuthOptions options =
@@ -246,18 +234,14 @@ public class LoginActivity extends AppCompatActivity {
                     if (task.isSuccessful()) {
                         Toast.makeText(this, "Verification Successful!", Toast.LENGTH_SHORT).show();
                         String phoneNumber = FirebaseAuth.getInstance().getCurrentUser().getPhoneNumber();
-                        Log.d("phonenumber_outside", "phoneNumber is"+phoneNumber);
-                        String phoneNumber_final = phoneNumber.substring(3);
-                        Log.d("phoneNumber_final", "phoneNumber_final: "+phoneNumber_final);
+                        String phoneNumber_final = phoneNumber.substring(3); // Extract phone number after +91
                         if (phoneNumber_final.length() == 10) {
-
                             //  login info to Firebase
-                            Log.d("LoginActivity", "Calling loginUserDataToFirebase with " + phoneNumber_final);
                             LoginUserDataToFirebase.loginUserDataToFirebase(this, phoneNumber_final);
                             SharedPreferences sharedPreferences = getSharedPreferences("UserPrefs_LOGIN", MODE_PRIVATE);
                             SharedPreferences.Editor editor = sharedPreferences.edit();
                             editor.putBoolean("is_logged_in", true);
-                            editor.putString("phone", phoneNumber_final); // Store phone too
+                            editor.putString("phone", phoneNumber_final); // Store phone number
                             editor.apply();
 
                             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
@@ -268,7 +252,6 @@ public class LoginActivity extends AppCompatActivity {
 
                     } else {
                         Toast.makeText(this, "Verification Failed", Toast.LENGTH_SHORT).show();
-
                     }
                 });
     }
@@ -284,8 +267,6 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
-
-
     // Button click animation
     private void buttonClickAnimation(View view) {
         ScaleAnimation scaleAnimation = new ScaleAnimation(
@@ -297,6 +278,7 @@ public class LoginActivity extends AppCompatActivity {
         scaleAnimation.setFillAfter(true);
         view.startAnimation(scaleAnimation);
     }
+
     // Fade-in animation for EditText fields
     private void fadeInAnimation(View view) {
         AlphaAnimation alphaAnimation = new AlphaAnimation(0.0f, 1.0f);

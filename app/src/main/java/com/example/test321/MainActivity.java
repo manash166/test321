@@ -62,11 +62,9 @@ public class MainActivity extends AppCompatActivity {
         btnWomen = findViewById(R.id.btnWomen);
         btnChildren = findViewById(R.id.btnChildren);
         mainactivity_default_address=findViewById(R.id.textView6);
-
         goback=findViewById(R.id.goback_textview);
         LinearLayout bottom_part=findViewById(R.id.bottom_part);
         recyclerView_men=findViewById(R.id.recyclerview_men);
-
         TextView totalAmountTextView = findViewById(R.id.textView4);
 
         bottom_part.setVisibility(View.GONE);
@@ -126,7 +124,6 @@ public class MainActivity extends AppCompatActivity {
                 ScheduleBottomSheet.show(MainActivity.this, textLater);
             }
         });
-
 
         //          For Animating the location in Address icon ,Calendar Icon
         ImageView animatedIcon = findViewById(R.id.animated_icon);
