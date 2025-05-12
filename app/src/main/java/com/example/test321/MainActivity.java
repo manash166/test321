@@ -160,6 +160,7 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this, "Opening Address Popup", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(MainActivity.this, AddressPopupActivity.class);
                 intent.putExtra("username", username); // Ensure 'username' is initialized
+                intent.putExtra("phonenumber", phonenumber);
                 startActivityForResult(intent, 1); // Correct method to receive result
 
             }
@@ -400,6 +401,7 @@ public class MainActivity extends AppCompatActivity {
             // Open AddressPopupActivity
             Intent intent = new Intent(this, AddressPopupActivity.class);
             intent.putExtra("username", username);
+            intent.putExtra("phonenumber",phonenumber);
             startActivityForResult(intent, 1); // Use the same request code to capture updates
             drawerLayout.closeDrawer(GravityCompat.START);
         }

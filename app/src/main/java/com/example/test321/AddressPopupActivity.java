@@ -48,6 +48,9 @@ public class AddressPopupActivity extends AppCompatActivity implements AddressAd
         addressList = new ArrayList<>();
         keyList = new ArrayList<>();
 
+       //
+
+
         // Get username from Intent
         username = getIntent().getStringExtra("username");
         if (username == null) {
@@ -59,8 +62,10 @@ public class AddressPopupActivity extends AppCompatActivity implements AddressAd
         addressAdapter = new AddressAdapter(addressList, keyList, username, this, this);
         addressRecyclerView.setAdapter(addressAdapter);
 
+       String phonenumber=getIntent().getStringExtra("phonenumber");
+        Log.d("AddressPopupActivity", "AddressPopupActivity ,phonenumber is"+phonenumber);
         // Firebase Reference
-        userAddressRef = FirebaseDatabase.getInstance().getReference("Users").child(username).child("addresses");
+        userAddressRef = FirebaseDatabase.getInstance().getReference("Users").child(phonenumber).child("addresses");
 
         // Load saved addresses
         loadAddresses();

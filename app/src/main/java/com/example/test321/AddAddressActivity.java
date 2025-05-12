@@ -15,7 +15,7 @@ public class AddAddressActivity extends AppCompatActivity {
     private EditText addressInput;
     private Button continueButton;
     private DatabaseReference userAddressRef;
-    private String username;
+    private String username,phonenumber;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +25,10 @@ public class AddAddressActivity extends AppCompatActivity {
         addressInput = findViewById(R.id.address_input);
         continueButton = findViewById(R.id.continue_button);
 
+          // Get Phonenumber from Intent
+
+       phonenumber=getIntent().getStringExtra("phonenumber");
+        Log.d("AddAddressActivity", "phn number on addaddressactivity is"+phonenumber);
         // Get Username from Intent
         username = getIntent().getStringExtra("username");
         if (username == null) {
@@ -32,7 +36,7 @@ public class AddAddressActivity extends AppCompatActivity {
         }
 
         // Firebase Reference
-        userAddressRef = FirebaseDatabase.getInstance().getReference("Users").child(username).child("addresses");
+        userAddressRef = FirebaseDatabase.getInstance().getReference("Users").child(phonenumber).child("addresses");
 
         // Handle Continue Button
         continueButton.setOnClickListener(new View.OnClickListener() {

@@ -41,7 +41,7 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:paddingBottom="10dp">
-        <EditText
+        <com.example.test321.ClearableEditText
             android:id="@+id/phone_input"
             android:layout_width="215dp"
             android:layout_height="58dp"

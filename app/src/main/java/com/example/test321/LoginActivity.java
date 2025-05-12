@@ -156,22 +156,32 @@ public class LoginActivity extends AppCompatActivity {
             public void afterTextChanged(Editable s) {}
         });
 
-        // Clear phone number when cancel icon is tapped
-        phone_input.setOnTouchListener((v, event) -> {
-            if (event.getAction() == MotionEvent.ACTION_UP) {
-                Drawable endDrawable = phone_input.getCompoundDrawables()[2]; // Right drawable
-                if (endDrawable != null) {
-                    int drawableStart = phone_input.getWidth() - phone_input.getPaddingEnd() - endDrawable.getIntrinsicWidth();
-                    if (event.getX() >= drawableStart) {
-                        phone_input.setText(""); // Clear input
-                        // Accessibility compliance
-                        v.performClick();
-                        return true;
-                    }
-                }
-            }
-            return false;
-        });
+
+//        phone_input.setOnTouchListener((v, event) -> {
+//            if (event.getAction() == MotionEvent.ACTION_UP) {
+//                Drawable endDrawable = phone_input.getCompoundDrawables()[2]; // Right drawable
+//                if (endDrawable != null) {
+//                    int drawableStart = phone_input.getWidth()
+//                            - phone_input.getPaddingEnd()
+//                            - endDrawable.getIntrinsicWidth();
+//
+//                    if (event.getX() >= drawableStart) {
+//                        phone_input.setText(""); // Clear input
+//                        v.performClick(); // Ensure accessibility
+//                        return true;
+//                    }
+//                }
+//            }
+//            return false;
+//        });
+
+// Optional: override performClick for full accessibility support (recommended)
+//        @Override
+//        public boolean performClick() {
+//            super.performClick(); // call to the superclass
+//            return true;
+//        }
+
 
         // Apply fade-in animation to input fields
         fadeInAnimation(phone_input);
@@ -240,11 +250,11 @@ public class LoginActivity extends AppCompatActivity {
                             //  login info to Firebase
 
                             LoginUserDataToFirebase.loginUserDataToFirebase(this, phoneNumber_final);
-//                            SharedPreferences sharedPreferences = getSharedPreferences("UserPrefs_LOGIN", MODE_PRIVATE);
-//                            SharedPreferences.Editor editor = sharedPreferences.edit();
-//                            editor.putBoolean("is_logged_in", true);
-//                            editor.putString("phone", phoneNumber_final); // Store phone number
-//                            editor.apply();
+                            SharedPreferences sharedPreferences = getSharedPreferences("UserPrefs_LOGIN", MODE_PRIVATE);
+                            SharedPreferences.Editor editor = sharedPreferences.edit();
+                            editor.putBoolean("is_logged_in", true);
+                            editor.putString("phone", phoneNumber_final); // Store phone number
+                            editor.apply();
                             String username=getIntent().getStringExtra("username");
                             Log.d("LoginActivity", "username outside"+username);
 
