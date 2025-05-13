@@ -1,6 +1,7 @@
 package com.example.test321;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -70,14 +71,20 @@ public class MainActivity extends AppCompatActivity {
         bottom_part.setVisibility(View.GONE);
         LinearLayout flagship=findViewById(R.id.flagship_part);
 
-        username=getIntent().getStringExtra("username");
-        phonenumber=getIntent().getStringExtra("phoneNumber");
+
+        // Get data from SharedPreferences
+        SharedPreferences sharedPreferences = getSharedPreferences("loginPrefs", MODE_PRIVATE);
+        String username = sharedPreferences.getString("username", "Not Found");
+        String phonenumber = sharedPreferences.getString("phoneNumber", "Not Found");
+
+
 
         Log.d("MainActivity", "Phone: " + phonenumber + ", Username: " + username);
 
         // Example usage: show username in a Toast
+
         Toast.makeText(this, "Welcome " + username, Toast.LENGTH_SHORT).show();
-        Log.d("phone number in MainActivity", "phone number in MainActivity"+phonenumber);
+        Log.d("phone number in MainActivity", "phone number in MainActivity "+phonenumber);
         if (phonenumber == null || phonenumber.isEmpty()) {
             Toast.makeText(this, "Phone number missing", Toast.LENGTH_SHORT).show();
             finish();
@@ -156,7 +163,9 @@ public class MainActivity extends AppCompatActivity {
          btn_change_address.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                String username = sharedPreferences.getString("username", "Not Found");
                 Log.d("MainActivity", "Opening AddressPopupActivity");
+                Log.d("MainActivity", "shared_preferences_username is"+username);
                 Toast.makeText(MainActivity.this, "Opening Address Popup", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(MainActivity.this, AddressPopupActivity.class);
                 intent.putExtra("username", username); // Ensure 'username' is initialized
@@ -251,6 +260,7 @@ public class MainActivity extends AppCompatActivity {
 
                 // Handle Button Clicks
                 btnYes.setOnClickListener(v -> {
+                    String username = sharedPreferences.getString("username", "Not Found");
                     Intent intent = new Intent(MainActivity.this, MainActivity.class);
                     intent.putExtra("username", username); // ✅ Pass the username
                     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -288,6 +298,8 @@ public class MainActivity extends AppCompatActivity {
 
     // Method to load the default address from Firebase
     private void loadDefaultAddress() {
+        SharedPreferences sharedPreferences = getSharedPreferences("loginPrefs", MODE_PRIVATE);
+        String phonenumber = sharedPreferences.getString("phoneNumber", "Not Found");
         DatabaseReference defaultAddressRef = FirebaseDatabase.getInstance()
                 .getReference("Users")
                 .child(phonenumber)  // Using username instead of userId
@@ -409,6 +421,15 @@ public class MainActivity extends AppCompatActivity {
         else if (id == R.id.nav_terms_conditions) {
             Toast.makeText(this, "Terms & Conditions clicked", Toast.LENGTH_SHORT).show();
         } else if (id == R.id.nav_logout) {
+            SharedPreferences sharedPreferences = getSharedPreferences("loginPrefs", MODE_PRIVATE);
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.clear();
+            editor.apply();
+            // Redirect to LoginActivity
+            Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK); // optional: clear back stack
+            startActivity(intent);
+            finish(); // optional: finish current activity
             Toast.makeText(this, "Logout clicked", Toast.LENGTH_SHORT).show();
         }
 

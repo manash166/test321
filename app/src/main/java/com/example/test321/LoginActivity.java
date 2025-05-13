@@ -42,10 +42,31 @@ public class LoginActivity extends AppCompatActivity {
     private EditText otpDigit1_login, otpDigit2_login, otpDigit3_login, otpDigit4_login, otpDigit5_login, otpDigit6_login;
     private FirebaseAuth mAuth;
     private String verificationId;
-
+    String phoneNumber_final,username;
+    SharedPreferences sharedPreferences;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        SharedPreferences sharedPreferences = getSharedPreferences("loginPrefs", MODE_PRIVATE);
+
+        boolean isLoggedIn = sharedPreferences.getBoolean("isLoggedIn", false);
+
+        if (isLoggedIn) {
+            // Reading from SharedPreferences
+            String phone = sharedPreferences.getString("phoneNumber", "Not Found");
+            Log.d("LoginActivity", "check_through_sharepreferences_phone is"+phone);
+            String username = sharedPreferences.getString("username", "Not Found");
+            Log.d("LoginActivity", "check_through_sharepreferences_username is"+username);
+            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+            intent.putExtra("phoneNumber", phoneNumber_final);
+            intent.putExtra("username",username);
+
+            startActivity(intent);
+            finish();
+            return;
+        }
+
+
         setContentView(R.layout.login_activity);
 
         btnLogin = findViewById(R.id.buttonLogin);
@@ -62,20 +83,8 @@ public class LoginActivity extends AppCompatActivity {
         otpDigit5_login = findViewById(R.id.otpDigit5_login);
         otpDigit6_login = findViewById(R.id.otpDigit6_login);
 
-//        SharedPreferences sharedPreferences = getSharedPreferences("UserPrefs_LOGIN", MODE_PRIVATE);
-//        boolean isLoggedIn = sharedPreferences.getBoolean("is_logged_in", false);
-//
-//        if (isLoggedIn) {
-//            String phone = sharedPreferences.getString("phone", null);
-//            if (phone != null) {
-//                // Directly go to MainActivity
-//                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-//                intent.putExtra("phoneNumber", phone);
-//                startActivity(intent);
-//                finish(); // Close login screen
-//                return;
-//            }
-//        }
+
+
 
         login_otp_btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -157,30 +166,7 @@ public class LoginActivity extends AppCompatActivity {
         });
 
 
-//        phone_input.setOnTouchListener((v, event) -> {
-//            if (event.getAction() == MotionEvent.ACTION_UP) {
-//                Drawable endDrawable = phone_input.getCompoundDrawables()[2]; // Right drawable
-//                if (endDrawable != null) {
-//                    int drawableStart = phone_input.getWidth()
-//                            - phone_input.getPaddingEnd()
-//                            - endDrawable.getIntrinsicWidth();
-//
-//                    if (event.getX() >= drawableStart) {
-//                        phone_input.setText(""); // Clear input
-//                        v.performClick(); // Ensure accessibility
-//                        return true;
-//                    }
-//                }
-//            }
-//            return false;
-//        });
 
-// Optional: override performClick for full accessibility support (recommended)
-//        @Override
-//        public boolean performClick() {
-//            super.performClick(); // call to the superclass
-//            return true;
-//        }
 
 
         // Apply fade-in animation to input fields
@@ -250,18 +236,20 @@ public class LoginActivity extends AppCompatActivity {
                             //  login info to Firebase
 
                             LoginUserDataToFirebase.loginUserDataToFirebase(this, phoneNumber_final);
-                            SharedPreferences sharedPreferences = getSharedPreferences("UserPrefs_LOGIN", MODE_PRIVATE);
+                            String username = getIntent().getStringExtra("username");
+                            Log.d("LoginActivity", "username outside " + username);
+
+                            // Save data to SharedPreferences
+                            SharedPreferences sharedPreferences = getSharedPreferences("loginPrefs", MODE_PRIVATE);
                             SharedPreferences.Editor editor = sharedPreferences.edit();
-                            editor.putBoolean("is_logged_in", true);
-                            editor.putString("phone", phoneNumber_final); // Store phone number
+                            editor.putBoolean("isLoggedIn", true);
+                            editor.putString("phoneNumber", phoneNumber_final);
+                            editor.putString("username", username);
                             editor.apply();
-                            String username=getIntent().getStringExtra("username");
-                            Log.d("LoginActivity", "username outside"+username);
 
                             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                             intent.putExtra("phoneNumber", phoneNumber_final);
-                            intent.putExtra("username",username);
-
+                            intent.putExtra("username", username);
                             startActivity(intent);
                             finish();
                         }
