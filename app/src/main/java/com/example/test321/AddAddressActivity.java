@@ -15,7 +15,7 @@ public class AddAddressActivity extends AppCompatActivity {
     private EditText addressInput;
     private Button continueButton;
     private DatabaseReference userAddressRef;
-    private String username,phonenumber;
+    private String phonenumber;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,16 +26,17 @@ public class AddAddressActivity extends AppCompatActivity {
         continueButton = findViewById(R.id.continue_button);
 
           // Get Phonenumber from Intent
+        phonenumber = getIntent().getStringExtra("phonenumber");
 
-       phonenumber=getIntent().getStringExtra("phonenumber");
-        Log.d("AddAddressActivity", "phn number on addaddressactivity is"+phonenumber);
-        // Get Username from Intent
-        username = getIntent().getStringExtra("username");
-        if (username == null) {
-            username = "default_user"; // Fallback if no username is passed
+        if (phonenumber == null || phonenumber.isEmpty()) {
+            Toast.makeText(this, "Phone number not received", Toast.LENGTH_SHORT).show();
+            finish(); // Exit safely instead of crashing
+            return;
         }
 
-        // Firebase Reference
+        Log.d("AddAddressActivity", "Phone number received: " + phonenumber);
+
+// Now safe to use:
         userAddressRef = FirebaseDatabase.getInstance().getReference("Users").child(phonenumber).child("addresses");
 
         // Handle Continue Button
@@ -45,21 +46,21 @@ public class AddAddressActivity extends AppCompatActivity {
                 String address = addressInput.getText().toString().trim();
 
                 if (!address.isEmpty()) {
-                    Log.d("AddAddressActivity", "Saving address: " + address);  // ✅ Log successful input
                     saveAddress(address);
                 } else {
-                    Log.e("AddAddressActivity", "Error: Address field is empty!");  // ✅ Log error for empty input
                     Toast.makeText(AddAddressActivity.this, "Please enter an address", Toast.LENGTH_SHORT).show();
                 }
             }
         });
-    }
 
+    }
+    // Handle SaveAddress Here
     private void saveAddress(String address) {
-        DatabaseReference newAddressRef = userAddressRef.push();  // Generate a unique key
+        DatabaseReference newAddressRef = userAddressRef.push();  // this works only if "addresses" is not a string
+
         newAddressRef.setValue(address).addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
-                // ✅ Also update default address
+                // Also set the default address if needed
                 userAddressRef.getParent().child("default_address").setValue(address);
 
                 Toast.makeText(AddAddressActivity.this, "Address Added Successfully", Toast.LENGTH_SHORT).show();
@@ -67,8 +68,7 @@ public class AddAddressActivity extends AppCompatActivity {
                 Intent resultIntent = new Intent();
                 resultIntent.putExtra("new_address", address);
                 setResult(RESULT_OK, resultIntent);
-
-                finish(); // ✅ Close activity and return to AddressPopupActivity
+                finish();
             } else {
                 Toast.makeText(AddAddressActivity.this, "Failed to add address", Toast.LENGTH_SHORT).show();
             }

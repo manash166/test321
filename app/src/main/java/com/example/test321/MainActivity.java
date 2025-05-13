@@ -169,6 +169,7 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this, "Opening Address Popup", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(MainActivity.this, AddressPopupActivity.class);
                 intent.putExtra("username", username); // Ensure 'username' is initialized
+                intent.putExtra("username", username); // Ensure 'username' is initialized
                 intent.putExtra("phonenumber", phonenumber);
                 startActivityForResult(intent, 1); // Correct method to receive result
 
