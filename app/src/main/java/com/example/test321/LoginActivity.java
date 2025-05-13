@@ -236,22 +236,7 @@ public class LoginActivity extends AppCompatActivity {
                             //  login info to Firebase
 
                             LoginUserDataToFirebase.loginUserDataToFirebase(this, phoneNumber_final);
-                            String username = getIntent().getStringExtra("username");
-                            Log.d("LoginActivity", "username outside " + username);
 
-                            // Save data to SharedPreferences
-                            SharedPreferences sharedPreferences = getSharedPreferences("loginPrefs", MODE_PRIVATE);
-                            SharedPreferences.Editor editor = sharedPreferences.edit();
-                            editor.putBoolean("isLoggedIn", true);
-                            editor.putString("phoneNumber", phoneNumber_final);
-                            editor.putString("username", username);
-                            editor.apply();
-
-                            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                            intent.putExtra("phoneNumber", phoneNumber_final);
-                            intent.putExtra("username", username);
-                            startActivity(intent);
-                            finish();
                         }
 
                     } else {
