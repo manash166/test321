@@ -1,5 +1,4 @@
 package com.example.test321;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -7,9 +6,17 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.android.libraries.places.api.Places;
+import com.google.android.libraries.places.api.model.Place;
+import com.google.android.libraries.places.widget.Autocomplete;
+import com.google.android.libraries.places.widget.model.AutocompleteActivityMode;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import android.util.Log;  // Add this import at the top
+
+import java.util.Arrays;
+import java.util.List;
 
 public class AddAddressActivity extends AppCompatActivity {
     private EditText addressInput;
@@ -24,6 +31,17 @@ public class AddAddressActivity extends AppCompatActivity {
 
         addressInput = findViewById(R.id.address_input);
         continueButton = findViewById(R.id.continue_button);
+        // ✅ PLACE THIS BLOCK HERE 👇
+        if (!Places.isInitialized()) {
+            Places.initialize(getApplicationContext(), "YOUR_API_KEY_HERE");  // Replace with your actual API key
+        }
+
+        addressInput.setOnClickListener(v -> {
+            List<Place.Field> fields = Arrays.asList(Place.Field.ID, Place.Field.ADDRESS, Place.Field.LAT_LNG);
+            Intent intent = new Autocomplete.IntentBuilder(AutocompleteActivityMode.OVERLAY, fields)
+                    .build(AddAddressActivity.this);
+            startActivityForResult(intent, 1);
+        });
 
           // Get Phonenumber from Intent
         phonenumber = getIntent().getStringExtra("phonenumber");

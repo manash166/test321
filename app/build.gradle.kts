@@ -39,13 +39,14 @@ dependencies {
     implementation(libs.activity)
     implementation(libs.firebase.auth)
 
-
+     implementation(libs.places)
     implementation(libs.constraintlayout)
     implementation(libs.firebase.analytics)
     implementation(libs.firebase.database)
     implementation(libs.credentials)
     implementation(libs.credentials.play.services.auth)
     implementation(libs.googleid)
+    implementation(libs.play.services.maps)
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
