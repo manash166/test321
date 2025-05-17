@@ -5,12 +5,23 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.common.api.Status;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.libraries.places.api.Places;
 import com.google.android.libraries.places.api.model.Place;
 import com.google.android.libraries.places.widget.Autocomplete;
 import com.google.android.libraries.places.widget.AutocompleteActivity;
+import com.google.android.libraries.places.widget.AutocompleteSupportFragment;
+import com.google.android.libraries.places.widget.listener.PlaceSelectionListener;
 import com.google.android.libraries.places.widget.model.AutocompleteActivityMode;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -24,26 +35,66 @@ public class AddAddressActivity extends AppCompatActivity {
     private Button continueButton;
     private DatabaseReference userAddressRef;
     private String phonenumber;
+    private GoogleMap mMap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_address);
 
-        addressInput = findViewById(R.id.address_input);
         continueButton = findViewById(R.id.continue_button);
 
         if (!Places.isInitialized()) {
             Places.initialize(getApplicationContext(), "AIzaSyB7UvM1K9QJS0VkiUDW9qn7nKtU1tWepnU");  // Replace with your actual key
         }
+        AutocompleteSupportFragment autocompleteFragment = (AutocompleteSupportFragment)
+                getSupportFragmentManager().findFragmentById(R.id.autocomplete_fragment);
 
-            addressInput.setOnClickListener(v -> {
-            List<Place.Field> fields = Arrays.asList(Place.Field.ID, Place.Field.ADDRESS, Place.Field.LAT_LNG);
-            Intent intent = new Autocomplete.IntentBuilder(AutocompleteActivityMode.OVERLAY, fields)
-                    .build(AddAddressActivity.this);
-            startActivityForResult(intent, 1);
+        autocompleteFragment.setPlaceFields(Arrays.asList(Place.Field.ID, Place.Field.NAME, Place.Field.ADDRESS, Place.Field.LAT_LNG));
 
+        autocompleteFragment.setCountry("IN"); // restrict to India
+        autocompleteFragment.setHint("Enter your address");
+
+        autocompleteFragment.setOnPlaceSelectedListener(new PlaceSelectionListener() {
+            @Override
+            public void onPlaceSelected(@NonNull Place place) {
+                // Set text in map or save it
+                String address = place.getAddress();
+                LatLng latLng = place.getLatLng();
+
+                Log.d("PlaceSelected", "Address: " + address + ", LatLng: " + latLng);
+                saveAddress(address); // You can save address as before
+
+                // Show on map
+                if (mMap != null && latLng != null) {
+                    mMap.clear();
+                    mMap.addMarker(new MarkerOptions().position(latLng).title("Selected Location"));
+                    mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15));
+                }
+            }
+
+            @Override
+            public void onError(@NonNull Status status) {
+                Log.e("PlaceSelected", "Error: " + status.getStatusMessage());
+            }
         });
+        SupportMapFragment mapFragment = (SupportMapFragment)
+                getSupportFragmentManager().findFragmentById(R.id.map);
+
+        if (mapFragment != null) {
+            mapFragment.getMapAsync(new OnMapReadyCallback() {
+                @Override
+                public void onMapReady(@NonNull GoogleMap googleMap) {
+                    mMap = googleMap;
+
+                    // Optional: Move camera to Guwahati initially
+                    LatLng guwahati = new LatLng(26.1445, 91.7362);
+                    mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(guwahati, 15));
+                }
+            });
+        }
+
+
 
         phonenumber = getIntent().getStringExtra("phonenumber");
 

@@ -8,12 +8,12 @@
     android:padding="16dp">
 
     <!-- Address Autocomplete EditText (custom) -->
-    <EditText
-        android:id="@+id/address_input"
+    <fragment
+        android:id="@+id/autocomplete_fragment"
+        android:name="com.google.android.libraries.places.widget.AutocompleteSupportFragment"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Enter your address"
-        android:inputType="textPostalAddress" />
+        android:layout_height="wrap_content" />
+
 
     <!-- MapView for showing current location -->
     <fragment

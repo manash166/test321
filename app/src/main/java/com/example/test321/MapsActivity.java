@@ -1,7 +1,4 @@
 package com.example.test321;
-
-
-
 import android.os.Bundle;
 import androidx.fragment.app.FragmentActivity;
 

@@ -38,8 +38,7 @@ dependencies {
     implementation(libs.material)
     implementation(libs.activity)
     implementation(libs.firebase.auth)
-
-     implementation(libs.places)
+    implementation(libs.places)
     implementation(libs.constraintlayout)
     implementation(libs.firebase.analytics)
     implementation(libs.firebase.database)
