@@ -47,8 +47,12 @@ public class AddAddressActivity extends AppCompatActivity {
         if (!Places.isInitialized()) {
             Places.initialize(getApplicationContext(), "AIzaSyB7UvM1K9QJS0VkiUDW9qn7nKtU1tWepnU");  // Replace with your actual key
         }
-        AutocompleteSupportFragment autocompleteFragment = (AutocompleteSupportFragment)
-                getSupportFragmentManager().findFragmentById(R.id.autocomplete_fragment);
+        AutocompleteSupportFragment autocompleteFragment = new AutocompleteSupportFragment();
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.autocomplete_fragment, autocompleteFragment)
+                .commit();
+
 
         autocompleteFragment.setPlaceFields(Arrays.asList(Place.Field.ID, Place.Field.NAME, Place.Field.ADDRESS, Place.Field.LAT_LNG));
 
@@ -63,13 +67,13 @@ public class AddAddressActivity extends AppCompatActivity {
                 LatLng latLng = place.getLatLng();
 
                 Log.d("PlaceSelected", "Address: " + address + ", LatLng: " + latLng);
-                saveAddress(address); // You can save address as before
+//
 
                 // Show on map
                 if (mMap != null && latLng != null) {
                     mMap.clear();
                     mMap.addMarker(new MarkerOptions().position(latLng).title("Selected Location"));
-                    mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15));
+                    mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 13));
                 }
             }
 
@@ -143,7 +147,6 @@ public class AddAddressActivity extends AppCompatActivity {
 
     private void saveAddress(String address) {
         DatabaseReference newAddressRef = userAddressRef.push();
-
         newAddressRef.setValue(address).addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
                 userAddressRef.getParent().child("default_address").setValue(address);

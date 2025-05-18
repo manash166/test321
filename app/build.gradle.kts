@@ -44,6 +44,7 @@ dependencies {
     implementation(libs.firebase.database)
     implementation(libs.credentials)
     implementation(libs.credentials.play.services.auth)
+    implementation("com.google.android.gms:play-services-location:21.3.0")
     implementation(libs.googleid)
     implementation(libs.play.services.maps)
     testImplementation(libs.junit)
