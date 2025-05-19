@@ -18,8 +18,7 @@ public class AdminDashboard extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_admin_dashboard);
-        Button logoutBtn = findViewById(R.id.button_logout);
-
+        logoutBtn = findViewById(R.id.button_logout);
         logoutBtn.setOnClickListener(v -> {
             SharedPreferences preferences = getSharedPreferences("loginPrefs", MODE_PRIVATE);
             SharedPreferences.Editor editor = preferences.edit();
@@ -29,6 +28,11 @@ public class AdminDashboard extends AppCompatActivity {
             Intent intent = new Intent(AdminDashboard.this, LoginActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);
+
+
+
+
+
         });
 
     }
