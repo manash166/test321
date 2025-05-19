@@ -1,6 +1,7 @@
 package com.example.test321;
-
+import static android.content.Context.MODE_PRIVATE;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,13 +9,10 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-
 import java.util.ArrayList;
 
 public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.ViewHolder> {
@@ -23,6 +21,7 @@ public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.ViewHold
     private ArrayList<String> keyList;
     private String userId;
     private Context context;
+    private SharedPreferences sharedPreferences;
     private String selectedAddress = "";
     private OnAddressSelectedListener listener;
 
@@ -76,26 +75,33 @@ public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.ViewHold
     private void deleteAddress(int position, String key) {
         if (addressList.isEmpty()) {
             Log.w("AddressAdapter", "Address list is empty, cannot delete.");
-            return;  // Early return if the list is empty
-
+            return;
         }
 
         if (position >= 0 && position < addressList.size()) {
-            // Proceed with deletion only if the position is valid
             addressList.remove(position);
             keyList.remove(position);
 
-            // Remove from Firebase
+            // 🔽 Get phone number from SharedPreferences
+            SharedPreferences sharedPreferences = context.getSharedPreferences("loginPrefs", Context.MODE_PRIVATE);
+            String phoneNumber = sharedPreferences.getString("phoneNumber", null);
+
+            if (phoneNumber == null) {
+                Toast.makeText(context, "User not logged in properly", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            // 🔽 Correct Firebase reference using phone number
             DatabaseReference addressRef = FirebaseDatabase.getInstance()
                     .getReference("Users")
-                    .child(userId)
+                    .child(phoneNumber)
                     .child("addresses")
                     .child(key);
 
             addressRef.removeValue()
                     .addOnSuccessListener(aVoid -> {
                         Log.d("AddressAdapter", "Address deleted successfully");
-                        notifyDataSetChanged(); // Notify adapter to refresh the view
+                        notifyDataSetChanged();
                     })
                     .addOnFailureListener(e -> {
                         Log.e("AddressAdapter", "Failed to delete address", e);
