@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/admin_dashboard_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="24dp"
+    android:gravity="center"
+    android:background="#FFFFFF">
+
+    <!-- Centered Title -->
+    <TextView
+        android:id="@+id/admin_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Admin Dashboard"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:layout_gravity="center"
+        android:paddingBottom="24dp" />
+
+    <!-- Vertical Button List -->
+
+    <Button
+        android:id="@+id/button_master"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/admin_dashboard_button"
+        android:text="Master"
+        app:backgroundTint="@null" />
+
+    <Button
+        android:id="@+id/button_orders"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/admin_dashboard_button"
+        app:backgroundTint="@null"
+        android:text="Orders" />
+
+    <Button
+        android:id="@+id/button_report"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/admin_dashboard_button"
+        app:backgroundTint="@null"
+        android:text="Report" />
+
+    <Button
+        android:id="@+id/button_delivered"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/admin_dashboard_button"
+        app:backgroundTint="@null"
+        android:text="Delivered" />
+
+    <Button
+        android:id="@+id/button_user_details"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/admin_dashboard_button"
+        app:backgroundTint="@null"
+        android:text="User Details" />
+
+    <Button
+        android:id="@+id/button_logout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Logout"
+        android:layout_marginTop="16dp"
+        android:backgroundTint="@color/black"
+        android:textColor="@android:color/white" />
+
+</LinearLayout>
