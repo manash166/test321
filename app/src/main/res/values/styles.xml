@@ -1,19 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Base application theme -->
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <!-- Primary brand color -->
+        <item name="colorPrimary">@color/blue</item>
+        <item name="colorPrimaryVariant">@color/light_blue</item>
+        <item name="colorOnPrimary">@color/white</item>
+
+        <!-- Toolbar style -->
+        <item name="toolbarStyle">@style/Widget.Toolbar.Custom</item>
+    </style>
+
+    <style name="Widget.Toolbar.Custom" parent="Widget.MaterialComponents.Toolbar">
+        <item name="android:background">@color/blue</item>
+        <item name="titleTextColor">@color/white</item>
+    </style>
+
+    <!-- Your existing styles -->
+
     <style name="Widget.Test321.MaterialSwitch" parent="Widget.Material3.CompoundButton.MaterialSwitch">
         <item name="thumbTint">@color/light_blue</item>
         <item name="trackTint">@color/md_theme_light_primaryContainer</item>
     </style>
+
     <style name="PrefixTextAppearance" parent="TextAppearance.Material3.BodyMedium">
         <item name="android:textSize">15sp</item>
         <item name="fontFamily">@font/tinosregular</item>
     </style>
 
     <style name="CustomHintTextStyle" parent="TextAppearance.Material3.BodyLarge">
-        <item name="android:textColor">#4E83E2</item> <!-- Change to your color -->
-        <item name="android:textSize">15sp</item>      <!-- Adjust size -->
-        <item name="fontFamily">@font/tinosregular</item> <!-- Optional -->
+        <item name="android:textColor">#4E83E2</item>
+        <item name="android:textSize">15sp</item>
+        <item name="fontFamily">@font/tinosregular</item>
     </style>
-
-
 </resources>

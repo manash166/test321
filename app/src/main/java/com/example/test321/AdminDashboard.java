@@ -24,15 +24,14 @@ public class AdminDashboard extends AppCompatActivity {
             SharedPreferences.Editor editor = preferences.edit();
             editor.clear(); // or remove("isLoggedIn")
             editor.apply();
-
             Intent intent = new Intent(AdminDashboard.this, LoginActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);
-
-
-
-
-
+        });
+        Button masterBtn = findViewById(R.id.button_master);
+        masterBtn.setOnClickListener(v -> {
+            Intent intent = new Intent(AdminDashboard.this, MasterActivity.class);
+            startActivity(intent);
         });
 
     }
