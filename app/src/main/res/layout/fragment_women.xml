@@ -1,20 +1,20 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/fragment_root"
+    android:id="@+id/fragment_root_women"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="16dp">
     <!-- fragment_men.xml -->
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/men_toolbar"
+        android:id="@+id/women_toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="?attr/colorPrimary"
-        app:title="Men Services" />
+        app:title="Women Services" />
 
     <LinearLayout
-        android:id="@+id/services_container"
+        android:id="@+id/services_container_women"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
@@ -29,14 +29,14 @@
         android:paddingTop="16dp">
 
         <Button
-            android:id="@+id/button_edit"
+            android:id="@+id/button_edit_women"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="EDIT"
             android:visibility="visible" />
 
         <Button
-            android:id="@+id/button_save"
+            android:id="@+id/button_save_women"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="SAVE"

@@ -5,7 +5,7 @@
         <!-- Primary brand color -->
         <item name="colorPrimary">@color/blue</item>
         <item name="colorPrimaryVariant">@color/light_blue</item>
-        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorOnPrimary">@color/black</item>
 
         <!-- Toolbar style -->
         <item name="toolbarStyle">@style/Widget.Toolbar.Custom</item>
