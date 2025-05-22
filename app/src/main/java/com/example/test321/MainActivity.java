@@ -17,7 +17,6 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.RecyclerView;
@@ -46,9 +45,11 @@ public class MainActivity extends AppCompatActivity {
     private ImageButton btnMen, btnWomen, btnChildren;
     private String username,phonenumber;
 
-    private RecyclerView recyclerView_men;
+    private RecyclerView recyclerView_men,recyclerView_women;
     private List<MenService> menServices;
+    private List<WomenService> womenServices;
     private MenServiceAdapter adapter;
+    private WomenServiceAdapter adapter_women;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,6 +67,7 @@ public class MainActivity extends AppCompatActivity {
         goback=findViewById(R.id.goback_textview);
         LinearLayout bottom_part=findViewById(R.id.bottom_part);
         recyclerView_men=findViewById(R.id.recyclerview_men);
+        recyclerView_women=findViewById(R.id.recyclerview_women);
         TextView totalAmountTextView = findViewById(R.id.textView4);
 
         bottom_part.setVisibility(View.GONE);
@@ -180,17 +182,31 @@ public class MainActivity extends AppCompatActivity {
         TextView continueButton = findViewById(R.id.continue_button);
         continueButton.setOnClickListener(v -> openOrderReview());
 
+
+        //              For Men
         DatabaseReference menServicesRef = FirebaseDatabase.getInstance()
-                .getReference("services&prices").child("Men");
+        .getReference("services&prices").child("Men");
         // Initialize Men Services List
         menServices = new ArrayList<>();
         // Initialize the adapter and pass totalAmountTextView to track price updates
-
         adapter = new MenServiceAdapter(this, menServices, totalAmountTextView);
         recyclerView_men.setLayoutManager(new LinearLayoutManager(this));
         recyclerView_men.setAdapter(adapter);
         recyclerView_men.setVisibility(View.GONE); // Hide initially
         fetchMenServices(menServicesRef);
+
+        //              For Women
+        DatabaseReference womenServicesRef = FirebaseDatabase.getInstance()
+                .getReference("services&prices").child("Women");
+        // Initialize Women Services List
+        womenServices = new ArrayList<>();
+        // Initialize the adapter and pass totalAmountTextView to track price updates
+        adapter_women = new WomenServiceAdapter(this, womenServices, totalAmountTextView);
+        recyclerView_women.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView_women.setAdapter(adapter_women);
+        recyclerView_women.setVisibility(View.GONE); // Hide initially
+        fetchWomenServices(womenServicesRef);
+
         // Get the username from Intent and set it in the welcome text
         if (username != null) {
             welcometxt.setText("Welcome " + username);
@@ -306,7 +322,7 @@ public class MainActivity extends AppCompatActivity {
                 .child(phonenumber)  // Using username instead of userId
                 .child("default_address");
    defaultAddressRef.addListenerForSingleValueEvent(new ValueEventListener() {
-       @Override
+        @Override
        public void onDataChange(@NonNull DataSnapshot snapshot) {
            if (snapshot.exists()) {
                String defaultAddress = snapshot.getValue(String.class);
@@ -326,6 +342,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void openOrderReview() {
         List<MenService> selectedServices = adapter.getSelectedServices();
+       List<WomenService> selectedServices_women=adapter_women.getSelectedServices();
         TextView addressTextView = findViewById(R.id.textView6);
         String address = addressTextView.getText().toString().trim();
 
@@ -335,13 +352,14 @@ public class MainActivity extends AppCompatActivity {
             return; // Stop further execution if no address
         }
 
-        if (selectedServices.isEmpty()) {
+        if (selectedServices.isEmpty() && selectedServices_women.isEmpty()){
             Toast.makeText(this, "No services selected!", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        // Calculate total amount and prepare service details
+        // Calculate total amount and prepare service
         int totalAmount = 0;
+       //details for men
         StringBuilder serviceDetails = new StringBuilder();
         for (int i = 0; i < selectedServices.size(); i++) {
             MenService service = selectedServices.get(i);
@@ -350,18 +368,30 @@ public class MainActivity extends AppCompatActivity {
             // Extract and add price to total amount
             totalAmount += extractPrice(service.getPrice());
 
-
-
             // Add newline if it's not the last item
             if (i < selectedServices.size() - 1) {
                 serviceDetails.append("\n");
             }
         }
 
+        //details for women
+        StringBuilder serviceDetails_women = new StringBuilder();
+        for (int i = 0; i < selectedServices_women.size(); i++) {
+            WomenService service = selectedServices_women.get(i);
+            serviceDetails.append(service.getServiceName()).append(":").append(service.getPrice());
+
+            // Extract and add price to total amount
+            totalAmount += extractPrice(service.getPrice());
+
+            // Add newline if it's not the last item
+            if (i < selectedServices_women.size() - 1) {
+                serviceDetails_women.append("\n");
+            }
+        }
+
 
         // Generate a unique order ID
         String orderId = "ORD-" + (System.currentTimeMillis() % 100000);
-
         // Send data to order_review activity
         Intent intent = new Intent(this, order_review.class);
         intent.putExtra("orderId", orderId);
@@ -375,10 +405,9 @@ public class MainActivity extends AppCompatActivity {
 
     // Helper method to extract numeric price from a string (e.g., "₹200" -> 200)
     private int extractPrice(String price) {
-
         return Integer.parseInt(price.replaceAll("[^0-9]", ""));
     }
-
+    //For Fetching Men Services
     private void fetchMenServices(DatabaseReference menServicesRef) {
         menServicesRef.addValueEventListener(new ValueEventListener() {
             @Override
@@ -388,10 +417,8 @@ public class MainActivity extends AppCompatActivity {
                 for (DataSnapshot serviceSnapshot : snapshot.getChildren()) {
                     String serviceName = serviceSnapshot.getKey(); // Service Name
                     String price = "₹" + serviceSnapshot.getValue(String.class); // Price
-
                     menServices.add(new MenService(serviceName, price));
                 }
-
                 adapter.notifyDataSetChanged();  // Update RecyclerView
             }
 
@@ -401,7 +428,27 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+    //For Fetching Women Sercices
+    private void fetchWomenServices(DatabaseReference womenServicesRef) {
+        womenServicesRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                womenServices.clear();  // Clear previous data
 
+                for (DataSnapshot serviceSnapshot : snapshot.getChildren()) {
+                    String serviceName = serviceSnapshot.getKey(); // Service Name
+                    String price = "₹" + serviceSnapshot.getValue(String.class); // Price
+                    womenServices.add(new WomenService(serviceName, price));
+                }
+                adapter_women.notifyDataSetChanged();  // Update RecyclerView
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(MainActivity.this, "Failed to load data", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
 
     private void openDrawer() {
         drawerLayout.openDrawer(GravityCompat.START);
@@ -470,6 +517,7 @@ public class MainActivity extends AppCompatActivity {
             recyclerView_men.setVisibility(View.VISIBLE);
         } else if (selectedButton == btnWomen) {
             Toast.makeText(this, "Women Category Selected", Toast.LENGTH_SHORT).show();
+            recyclerView_women.setVisibility(View.VISIBLE);
         } else if (selectedButton == btnChildren) {
             Toast.makeText(this, "Children Category Selected", Toast.LENGTH_SHORT).show();
         }
