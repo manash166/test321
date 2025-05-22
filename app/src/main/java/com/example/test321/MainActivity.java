@@ -81,13 +81,8 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences sharedPreferences = getSharedPreferences("loginPrefs", MODE_PRIVATE);
         String username = sharedPreferences.getString("username", "Not Found");
         String phonenumber = sharedPreferences.getString("phoneNumber", "Not Found");
-
-
-
         Log.d("MainActivity", "Phone: " + phonenumber + ", Username: " + username);
-
         // Example usage: show username in a Toast
-
         Toast.makeText(this, "Welcome " + username, Toast.LENGTH_SHORT).show();
         Log.d("phone number in MainActivity", "phone number in MainActivity "+phonenumber);
         if (phonenumber == null || phonenumber.isEmpty()) {
@@ -95,8 +90,7 @@ public class MainActivity extends AppCompatActivity {
             finish();
             return;
         }
-
-
+       // Get Username by phonenunber
         DatabaseReference userRef = FirebaseDatabase.getInstance()
                 .getReference("Users")
                 .child(phonenumber);
@@ -132,11 +126,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
-
 //           Schedule date and time
         TextView textLater = findViewById(R.id.text_later);
-
         MaterialSwitch switchSchedule = findViewById(R.id.switch_schedule);
         switchSchedule.setOnCheckedChangeListener((buttonView, isChecked) -> {
             if (isChecked) {
@@ -147,14 +138,12 @@ public class MainActivity extends AppCompatActivity {
         //          For Animating the location in Address icon ,Calendar Icon
         ImageView animatedIcon = findViewById(R.id.animated_icon);
         ImageView animatedCalendar=findViewById(R.id.icon_service);
-
         // Load GIF with Glide and crossfade animation
         Glide.with(this)
                 .asGif() // Ensures animation for GIFs
                 .load(R.drawable.test) // Make sure test.gif is in res/drawable
                 .transition(DrawableTransitionOptions.withCrossFade(500)) // 500ms crossfade
                 .into(animatedIcon);
-
         // Load GIF with Glide and schedule icon animation
         Glide.with(this)
                 .asGif() // Ensures animation for GIFs
@@ -370,8 +359,6 @@ public class MainActivity extends AppCompatActivity {
    });
 
     }
-
-
     private void openOrderReview() {
         List<MenService> selectedServices = adapter.getSelectedServices();
         List<WomenService> selectedServices_women=adapter_women.getSelectedServices();
@@ -397,10 +384,8 @@ public class MainActivity extends AppCompatActivity {
         for (int i = 0; i < selectedServices.size(); i++) {
             MenService service = selectedServices.get(i);
             serviceDetails.append(service.getServiceName()).append(":").append(service.getPrice());
-
             // Extract and add price to total amount
             totalAmount += extractPrice(service.getPrice());
-
             // Add newline if it's not the last item
             if (i < selectedServices.size() - 1) {
                 serviceDetails.append("\n");
