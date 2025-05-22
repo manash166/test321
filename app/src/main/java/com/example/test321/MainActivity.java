@@ -163,7 +163,6 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this, "Opening Address Popup", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(MainActivity.this, AddressPopupActivity.class);
                 intent.putExtra("username", username); // Ensure 'username' is initialized
-                intent.putExtra("username", username); // Ensure 'username' is initialized
                 intent.putExtra("phonenumber", phonenumber);
                 startActivityForResult(intent, 1); // Correct method to receive result
 
@@ -342,7 +341,7 @@ public class MainActivity extends AppCompatActivity {
                 .getReference("Users")
                 .child(phonenumber)  // Using username instead of userId
                 .child("default_address");
-   defaultAddressRef.addListenerForSingleValueEvent(new ValueEventListener() {
+       defaultAddressRef.addListenerForSingleValueEvent(new ValueEventListener() {
         @Override
        public void onDataChange(@NonNull DataSnapshot snapshot) {
            if (snapshot.exists()) {
@@ -513,10 +512,14 @@ public class MainActivity extends AppCompatActivity {
 
         if (id == R.id.nav_address) {
             // Open AddressPopupActivity
-            Intent intent = new Intent(this, AddressPopupActivity.class);
+            SharedPreferences sharedPreferences = getSharedPreferences("loginPrefs", MODE_PRIVATE);
+            String username = sharedPreferences.getString("username", "Not Found");
+            String phonenumber = sharedPreferences.getString("phoneNumber", "Not Found");
+
+            Intent intent = new Intent(this,AddressPopupActivity.class);
             intent.putExtra("username", username);
             intent.putExtra("phonenumber",phonenumber);
-            startActivityForResult(intent, 1); // Use the same request code to capture updates
+            startActivity(intent);
             drawerLayout.closeDrawer(GravityCompat.START);
         }
 
