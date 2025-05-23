@@ -175,6 +175,14 @@
             android:text="Admin Login"
             android:textColor="#FFA500"
             android:textSize="14sp" />
+        <TextView
+            android:id="@+id/login_signup_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Didnt Sign up? Signup"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="5dp"/>
+
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

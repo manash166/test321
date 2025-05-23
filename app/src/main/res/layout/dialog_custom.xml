@@ -1,20 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/constraintLayout3"
     android:layout_width="match_parent"
-    android:layout_height="200dp">
+    android:layout_height="match_parent"
+    android:background="@drawable/dialog_background"
+    android:orientation="vertical">
 
     <!-- Background Image -->
     <!-- Replace with your image -->
 
     <!-- Dialog Content -->
-
     <TextView
         android:id="@+id/dialog_message"
-        android:layout_width="256dp"
-        android:layout_height="137dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
         android:layout_marginStart="103dp"
         android:layout_marginEnd="91dp"
         android:fontFamily="@font/meriweather"
@@ -22,38 +24,31 @@
         android:text="Do you want to go back?"
         android:textColor="@color/black"
         android:textFontWeight="800"
-        android:textSize="26sp"
-        app:layout_constraintBottom_toTopOf="@+id/btn_yes"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:textSize="26sp" />
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center_horizontal"
+    android:layout_marginBottom="10dp">
 
     <Button
         android:id="@+id/btn_yes"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="143dp"
-        android:layout_marginBottom="15dp"
+        android:padding="0dp"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
         android:background="@drawable/button_yes"
         app:backgroundTint="@null"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/btn_no"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/dialog_message" />
 
+        />
     <Button
         android:id="@+id/btn_no"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="121dp"
-        android:layout_marginBottom="15dp"
-        android:background="@drawable/button_no"
+        android:padding="0dp"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
         app:backgroundTint="@null"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/btn_yes"
-        app:layout_constraintTop_toBottomOf="@+id/dialog_message" />
+        android:background="@drawable/button_no" />
+</LinearLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</LinearLayout>
