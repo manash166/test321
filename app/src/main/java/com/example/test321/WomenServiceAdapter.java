@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,16 +32,27 @@ public class WomenServiceAdapter extends RecyclerView.Adapter<WomenServiceAdapte
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.item_men_service, parent, false);
+        View view = LayoutInflater.from(context).inflate(R.layout.item_women_service, parent, false);
         return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        ImageView imageService = holder.itemView.findViewById(R.id.imageService);
+
         WomenService service = serviceList.get(position);
         holder.serviceName.setText(service.getServiceName());
         holder.price.setText(service.getPrice());
-
+        String name = service.getServiceName().toLowerCase();
+        if (name.contains("hair")) {
+            imageService.setImageResource(R.drawable.ic_haircut);
+        } else if (name.contains("thread")) {
+            imageService.setImageResource(R.drawable.ic_threading);
+        } else if (name.contains("facial")) {
+            imageService.setImageResource(R.drawable.ic_facial);
+        } else {
+            imageService.setImageResource(R.drawable.ic_default_service);
+        }
         holder.btnAdd.setOnClickListener(v -> {
             if (holder.btnAdd.getText().toString().equals("Add")) {
                 holder.btnAdd.setText("Added");
