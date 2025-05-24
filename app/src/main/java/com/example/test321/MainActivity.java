@@ -406,7 +406,7 @@ public class MainActivity extends AppCompatActivity {
 
             // Add newline if it's not the last item
             if (i < selectedServices_women.size() - 1) {
-                serviceDetails_women.append("\n");
+                serviceDetails.append("\n");
             }
         }
 
@@ -421,7 +421,7 @@ public class MainActivity extends AppCompatActivity {
 
             // Add newline if it's not the last item
             if (i < selectedServices_children.size() - 1) {
-                serviceDetails_children.append("\n");
+                serviceDetails.append("\n");
             }
         }
 
@@ -432,6 +432,7 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, order_review.class);
         intent.putExtra("orderId", orderId);
         intent.putExtra("serviceDetails", serviceDetails.toString());
+
         intent.putExtra("totalAmount", totalAmount);
         intent.putExtra("address",address);
         intent.putExtra("userid",username);
