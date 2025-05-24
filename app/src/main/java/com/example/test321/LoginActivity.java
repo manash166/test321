@@ -37,7 +37,7 @@ public class LoginActivity extends AppCompatActivity {
     EditText phone_input;
     Button btnLogin, login_otp_btn;
     DatabaseReference databaseReference;
-    TextView admin;
+    TextView admin,login_signup_button;
     private LinearLayout otpLayout_login;
     private EditText otpDigit1_login, otpDigit2_login, otpDigit3_login, otpDigit4_login, otpDigit5_login, otpDigit6_login;
     private FirebaseAuth mAuth;
@@ -82,7 +82,7 @@ public class LoginActivity extends AppCompatActivity {
         otpDigit4_login = findViewById(R.id.otpDigit4_login);
         otpDigit5_login = findViewById(R.id.otpDigit5_login);
         otpDigit6_login = findViewById(R.id.otpDigit6_login);
-
+        login_signup_button=findViewById(R.id.login_signup_button);
 
 
 
@@ -165,7 +165,14 @@ public class LoginActivity extends AppCompatActivity {
             public void afterTextChanged(Editable s) {}
         });
 
+        login_signup_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent= new Intent(LoginActivity.this,signup_activity.class);
+                startActivity(intent);
 
+            }
+        });
 
 
 

@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -32,7 +33,7 @@ public class signup_activity extends AppCompatActivity {
     private Button getOtpButton, buttonSignup;
     private LinearLayout otpLayout;
     private EditText otpDigit1, otpDigit2, otpDigit3, otpDigit4, otpDigit5, otpDigit6;
-
+    TextView loginbutton_signup;
     private FirebaseAuth mAuth;
     private String verificationId;
 
@@ -54,7 +55,16 @@ public class signup_activity extends AppCompatActivity {
         otpDigit4 = findViewById(R.id.otpDigit4);
         otpDigit5 = findViewById(R.id.otpDigit5);
         otpDigit6 = findViewById(R.id.otpDigit6);
+        loginbutton_signup=findViewById(R.id.loginbutton_signup);
         TextInputLayout phoneInputLayout = findViewById(R.id.edit_phone);
+
+       loginbutton_signup.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View v) {
+               Intent intent =new Intent(signup_activity.this, LoginActivity.class);
+               startActivity(intent);
+            }
+       });
         editTextPhone.addTextChangedListener(new PhoneIconWatcher(phoneInputLayout, R.drawable.call_20px));
 
         getOtpButton.setOnClickListener(v -> {

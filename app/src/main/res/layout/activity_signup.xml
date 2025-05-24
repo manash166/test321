@@ -187,6 +187,13 @@
             android:textSize="15sp"
             app:backgroundTint="@null" />
 
+        <TextView
+            android:id="@+id/loginbutton_signup"
+            android:gravity="center_horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="ALready Signed up? Login" />
+
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

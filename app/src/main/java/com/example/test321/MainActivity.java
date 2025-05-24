@@ -270,7 +270,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 flagship.setVisibility(View.INVISIBLE);
                 selectButton(btnWomen);
-                drawerLayout.setBackgroundResource(R.drawable.background_salon);
+                drawerLayout.setBackgroundResource(R.drawable.background_women);
 
             }
         });
