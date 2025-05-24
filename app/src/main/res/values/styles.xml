@@ -42,4 +42,14 @@
         <item name="android:textColor">@color/black</item>
     </style>
 
+    <style name="MenTextStyle">
+        <item name="android:textColor">#FFFFFF</item> <!-- red -->
+        <item name="android:textSize">34sp</item>
+        <item name="android:fontFamily">@font/barriecito</item> <!-- optional -->
+    </style>
+    <style name="quickbookstyle">
+        <item name="android:textColor">#FFFFFF</item> <!-- red -->
+        <item name="android:textSize">29sp</item>
+        <item name="android:fontFamily">@font/barriecito</item> <!-- optional -->
+    </style>
 </resources>

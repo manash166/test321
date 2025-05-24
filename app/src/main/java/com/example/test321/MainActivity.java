@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
 
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
-    private TextView welcometxt,goback,mainactivity_default_address;
+    private TextView textView_quickbook,welcometxt,goback,mainactivity_default_address;
     private ImageButton btnMen, btnWomen, btnChildren;
     private String username,phonenumber;
 
@@ -62,6 +62,7 @@ public class MainActivity extends AppCompatActivity {
      
         // Find views
         drawerLayout = findViewById(R.id.drawer_layout);
+        textView_quickbook=findViewById(R.id.textView_quick);
         navigationView = findViewById(R.id.nav_view);
         welcometxt = findViewById(R.id.welcomeText);
         btnMen = findViewById(R.id.btnMen);
@@ -103,7 +104,7 @@ public class MainActivity extends AppCompatActivity {
                 if (snapshot.exists()) {
                     // Get name
                     String name = snapshot.child("name").getValue(String.class);
-                    welcometxt.setText("Welcome " + name);
+
                     String username = name; // if needed later
 
                     // Get default address
@@ -143,13 +144,14 @@ public class MainActivity extends AppCompatActivity {
         // Load GIF with Glide and crossfade animation
         Glide.with(this)
                 .asGif() // Ensures animation for GIFs
-                .load(R.drawable.test) // Make sure test.gif is in res/drawable
+                .load(R.drawable.location) // Make sure test.gif is in res/drawable
                 .transition(DrawableTransitionOptions.withCrossFade(500)) // 500ms crossfade
                 .into(animatedIcon);
+
         // Load GIF with Glide and schedule icon animation
         Glide.with(this)
                 .asGif() // Ensures animation for GIFs
-                .load(R.drawable.calendar) // Make sure test.gif is in res/drawable
+                .load(R.drawable.fast) // Make sure test.gif is in res/drawable
                 .transition(DrawableTransitionOptions.withCrossFade(500)) // 500ms crossfade
                 .into(animatedCalendar);
 
@@ -231,7 +233,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Get the username from Intent and set it in the welcome text
         if (username != null) {
-            welcometxt.setText("Welcome " + username);
+            welcometxt.setText("Welcome, " + username);
         }
         // Button to open the navigation drawer
         findViewById(R.id.buttonOpenDrawer).setOnClickListener(v -> openDrawer());
@@ -254,6 +256,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 flagship.setVisibility(View.INVISIBLE);
+                drawerLayout.setBackgroundResource(R.drawable.background_salon);
+                welcometxt.setTextAppearance(R.style.MenTextStyle);
+                textView_quickbook.setTextAppearance(R.style.quickbookstyle);
                 selectButton(btnMen);
 
             }
@@ -265,6 +270,8 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 flagship.setVisibility(View.INVISIBLE);
                 selectButton(btnWomen);
+                drawerLayout.setBackgroundResource(R.drawable.background_salon);
+
             }
         });
 

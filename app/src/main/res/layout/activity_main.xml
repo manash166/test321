@@ -5,18 +5,18 @@
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
     tools:context=".MainActivity">
 
     <!-- Main content of the screen -->
 
     <!-- Navigation Drawer -->
 
+
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/relativeLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#FFFEFE">
+        android:layout_height="match_parent">
 
         <!-- Welcome Text -->
 
@@ -24,10 +24,10 @@
             android:id="@+id/welcomeText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="5dp"
-            android:fontFamily="@font/robotodark"
+            android:layout_marginStart="15dp"
+            android:fontFamily="@font/cursive"
             android:text="Welcome"
-            android:textSize="34sp"
+            android:textSize="29sp"
             app:layout_constraintStart_toEndOf="@+id/buttonOpenDrawer"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -51,7 +51,6 @@
             android:layout_height="wrap_content"
 
             android:layout_marginTop="8dp"
-            android:background="@drawable/red_border"
 
             android:orientation="vertical"
             android:paddingLeft="10dp"
@@ -61,7 +60,7 @@
             <!-- Quick Book Text -->
 
             <TextView
-                android:id="@+id/textView"
+                android:id="@+id/textView_quick"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/barriecito"
@@ -129,7 +128,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:background="@drawable/red_border"
             android:orientation="vertical"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/schedule_layer">
@@ -171,7 +169,7 @@
                         android:layout_marginTop="5dp"
                         android:layout_width="40dp"
                         android:layout_height="40dp"
-                        android:src="@drawable/test" />
+                        android:src="@drawable/location" />
 
                     <!-- Button Text -->
                     <com.google.android.material.button.MaterialButton
@@ -200,26 +198,35 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                app:cardElevation="4dp"
+                android:layout_gravity="center_horizontal"
+                app:cardCornerRadius="10dp"
+                android:background="@color/light_blue">
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerview_men"
-                android:layout_width="403dp"
-                android:layout_height="166dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginRight="8dp"
-                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+
+                android:visibility="visible"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
-
+            </androidx.cardview.widget.CardView>
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerview_women"
                 android:layout_width="403dp"
-                android:layout_height="270dp" />
+                android:layout_height="270dp"
+                android:visibility="gone"/>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerview_children"
                 android:layout_width="403dp"
-                android:layout_height="166dp" />
+                android:layout_height="166dp"
+                android:visibility="gone"/>
 
             <LinearLayout
                 android:id="@+id/linearLayout2"
@@ -228,7 +235,6 @@
                 android:layout_marginStart="4dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
-                android:background="@drawable/continue_background"
                 android:visibility="visible"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView6">
@@ -272,7 +278,6 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
 
-            android:background="@drawable/red_border"
             android:orientation="vertical"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/bottom_part">
@@ -444,6 +449,9 @@
 
         </LinearLayout>
 
+
+
+
         <LinearLayout
             android:id="@+id/schedule_layer"
             android:layout_width="match_parent"
@@ -460,7 +468,7 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:contentDescription="Service Icon"
-                android:src="@drawable/calendar" />
+                android:src="@drawable/fast" />
 
             <!-- Left label: Service Now -->
             <TextView
