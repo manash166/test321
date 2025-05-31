@@ -12,11 +12,13 @@
 
         <!-- Background -->
         <item name="android:colorBackground">@color/md_theme_light_background</item>
+        <item name="android:textColorSecondary">@color/white</item>
 
 
         <!-- Optional corner treatment -->
         <item name="shapeAppearanceSmallComponent">@style/ShapeAppearance.Material3.Corner.Medium</item>
     </style>
+
 
     <style name="CustomDatePickerStyle" parent="@style/ThemeOverlay.Material3.MaterialCalendar">
         <item name="android:headerBackground">#309CF8</item> <!-- or your color -->

@@ -1,12 +1,46 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
     <style name="Theme.Test321" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Primary brand color -->
+        <item name="colorPrimaryContainer">@color/md_theme_light_onPrimaryContainer</item>
+        <item name="colorOnPrimaryContainer">@color/md_theme_light_onPrimaryContainer</item>
+        <item name="colorPrimary">@color/md_theme_light_background</item>
+        <item name="colorOnPrimary">@color/shrine_pink_900</item>
+        <!-- Surface colors -->
+        <item name="colorOnSurface">@color/md_theme_light_onSurface</item>
+        <item name="colorOnSurfaceVariant">@color/blue</item>
 
+        <!-- Background -->
+        <item name="android:colorBackground">@color/dark_background</item>
+        <item name="android:textColor">@color/dark_text_color</item>
 
-        <item name="android:statusBarColor" tools:targetApi="l">@android:color/transparent</item>
-        <item name="android:navigationBarColor" tools:targetApi="l">@android:color/transparent</item>
-
+        <!-- Optional corner treatment -->
         <item name="shapeAppearanceSmallComponent">@style/ShapeAppearance.Material3.Corner.Medium</item>
     </style>
+
+    <style name="CustomDatePickerStyle" parent="@style/ThemeOverlay.Material3.MaterialCalendar">
+        <item name="android:headerBackground">#309CF8</item> <!-- or your color -->
+        <item name="android:background">#CADCEB</item>
+        <item name="shapeCornerFamily">cut</item>
+    </style>
+
+    <style name="Custom_check_allsalon" parent="Widget.Material3.Button">
+        <item name="android:textColor">@color/md_theme_light_background</item>
+        <item name="backgroundTint">#4A7FF3</item>
+        <item name="strokeColor">@color/md_theme_light_onSurface</item>
+        <item name="strokeWidth">2dp</item>
+        <item name="elevation">25dp</item>
+    </style>
+
+    <style name="default_buttons" parent="Widget.Material3.Button">
+        <item name="android:textColor">@color/md_theme_light_background</item>
+        <item name="backgroundTint">#4A7FF3</item>
+        <item name="elevation">25dp</item>
+    </style>
+
+
+
+
+
 
 </resources>

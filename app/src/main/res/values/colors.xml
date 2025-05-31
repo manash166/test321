@@ -9,11 +9,12 @@
 
    <color name="shrine_pink_100">#4158EF</color>
     <color name="shrine_pink_900">#AC90E4</color>
-
+<color name="brown">#E6763502</color>
     <color name="light_blue">#6879F8</color>
 
     <color name="pink">#E91E63</color>
-
+   <color name="dark_background">#13023B</color>
+  <color name="dark_text_color">#FFFFFF</color>
     <!-- Material 3 light theme colors -->
     <color name="md_theme_light_primary">#6750A4</color>
     <color name="md_theme_light_onPrimary">#FFFFFF</color>
