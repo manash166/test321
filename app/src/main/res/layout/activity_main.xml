@@ -136,11 +136,9 @@
 
             <LinearLayout
                 android:id="@+id/address_linear"
-
-                android:layout_width="400dp"
+                android:layout_width="match_parent"
+                android:layout_marginLeft="8dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/recyclerview_men">
 
@@ -168,22 +166,22 @@
                     <!-- Animated GIF Icon -->
                     <ImageView
                         android:id="@+id/animated_icon"
-                        android:layout_marginTop="5dp"
                         android:layout_width="40dp"
                         android:layout_height="40dp"
+                        android:layout_marginTop="5dp"
                         android:src="@drawable/location" />
 
                     <!-- Button Text -->
                     <com.google.android.material.button.MaterialButton
-                        android:layout_marginTop="3dp"
-                        style="@style/Widget.Material3.Button.ElevatedButton"
                         android:id="@+id/change_address_button"
+                        style="@style/Widget.Material3.Button.ElevatedButton"
                         android:layout_width="wrap_content"
-                        android:fontFamily="@font/sariff"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="3dp"
                         android:backgroundTint="#606FE1"
-                        android:textColor="@color/md_theme_light_onPrimary"
+                        android:fontFamily="@font/sariff"
                         android:text="Add Address"
+                        android:textColor="@color/md_theme_light_onPrimary"
                         android:textSize="20sp" />
                 </LinearLayout>
 
@@ -192,11 +190,11 @@
 
             <TextView
                 android:id="@+id/textView6"
-                android:layout_width="408dp"
+                style="@style/bottom_color"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
 
-                android:layout_height="63dp"
-                android:layout_marginStart="8dp"
-                android:textSize="22sp"
+                android:gravity="center_horizontal"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
@@ -204,9 +202,9 @@
             <androidx.cardview.widget.CardView
                 android:layout_width="380dp"
                 android:layout_height="match_parent"
-                app:cardBackgroundColor="@color/light_blue"
-               android:layout_gravity="center_horizontal"
-                >
+                android:layout_gravity="center_horizontal"
+                app:cardBackgroundColor="?attr/cardBackgroundColor"
+                  >
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerview_men"
@@ -214,6 +212,7 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_height="250dp"
                 android:visibility="gone"
+
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
@@ -490,6 +489,7 @@
                 android:layout_marginEnd="8dp"
                 android:fontFamily="@font/tinosregular"
                 android:text="Service Now"
+                style="@style/bottom_color"
                 android:textSize="24sp"
                 android:textStyle="bold" />
 

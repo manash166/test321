@@ -271,6 +271,9 @@ public class MainActivity extends AppCompatActivity {
                 flagship.setVisibility(View.INVISIBLE);
                 selectButton(btnWomen);
                 drawerLayout.setBackgroundResource(R.drawable.background_women);
+                textView_quickbook.setTextAppearance(R.style.quickbookstyle);
+                welcometxt.setTextAppearance(R.style.WomenTextStyle);
+
 
             }
         });
@@ -280,6 +283,10 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 flagship.setVisibility(View.INVISIBLE);
                 selectButton(btnChildren);
+                textView_quickbook.setTextAppearance(R.style.quickbookstyle);
+                welcometxt.setTextAppearance(R.style.ChildrenTextStyle);
+                drawerLayout.setBackgroundResource(R.drawable.background_children);
+
             }
         });
 
