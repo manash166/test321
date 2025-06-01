@@ -90,6 +90,7 @@ public class MenServiceAdapter extends RecyclerView.Adapter<MenServiceAdapter.Vi
             btnAdd = itemView.findViewById(R.id.buttonAdd);
             btnAdd.setText("Add"); // Default state
             btnAdd.setBackgroundColor(Color.LTGRAY);
+
         }
     }
 }
