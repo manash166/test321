@@ -26,6 +26,21 @@
         <item name="android:ellipsize">end</item>
     </style>
 
+    <style name="lateron" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">20sp</item>
+        <item name="fontFamily">sans-serif</item>
+        <item name="android:lineSpacingExtra">2dp</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    <style name="money" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">19sp</item>
+        <item name="fontFamily">sans-serif-condensed</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
     <style name="CustomDatePickerStyle" parent="@style/ThemeOverlay.Material3.MaterialCalendar">
         <item name="android:headerBackground">#309CF8</item> <!-- or your color -->
         <item name="android:background">#CADCEB</item>

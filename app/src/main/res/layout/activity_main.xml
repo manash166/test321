@@ -128,16 +128,21 @@
         <LinearLayout
             android:id="@+id/bottom_part"
             android:layout_width="wrap_content"
+
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
+
+            android:layout_marginBottom="5dp"
             android:orientation="vertical"
+            android:gravity="center_horizontal"
+
+            app:layout_constraintBottom_toTopOf="@+id/flagship_part"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/schedule_layer">
 
             <LinearLayout
                 android:id="@+id/address_linear"
                 android:layout_width="match_parent"
-                android:layout_marginLeft="8dp"
                 android:layout_height="wrap_content"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/recyclerview_men">
@@ -193,29 +198,28 @@
                 style="@style/bottom_color"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-
+                android:background="@drawable/address_background"
                 android:gravity="center_horizontal"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
-                 <!--Men Card view-->
+            <!--Men Card view-->
             <androidx.cardview.widget.CardView
                 android:layout_width="380dp"
                 android:layout_height="match_parent"
                 android:layout_gravity="center_horizontal"
-                app:cardBackgroundColor="?attr/cardBackgroundColor"
-                  >
+                app:cardBackgroundColor="?attr/cardBackgroundColor">
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerview_men"
-                android:layout_width="360dp"
-                android:layout_gravity="center_horizontal"
-                android:layout_height="250dp"
-                android:visibility="gone"
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerview_men"
+                    android:layout_width="360dp"
+                    android:layout_height="250dp"
+                    android:layout_gravity="center_horizontal"
+                    android:visibility="gone"
 
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
             </androidx.cardview.widget.CardView>
             <!--Women Card view-->
             <androidx.cardview.widget.CardView
@@ -234,7 +238,7 @@
             <!--Children Card view-->
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" >
+                android:layout_height="match_parent">
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recyclerview_children"
@@ -259,22 +263,24 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/sariff"
-                    android:text="Continue"
+                    android:text="Checkout"
                     android:textSize="24sp"
                     app:layout_constraintEnd_toStartOf="@+id/textView4"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
                 <View
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:layout_weight="1" />
+
                 <TextView
                     android:id="@+id/textView4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/tinosregular"
+                    style="@style/money"
                     android:text="₹ 0"
-                    android:textSize="29sp"
+                    android:layout_marginRight="10dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/textView2"
@@ -486,12 +492,10 @@
                 android:id="@+id/text_service_now"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                android:fontFamily="@font/tinosregular"
                 android:text="Service Now"
                 style="@style/bottom_color"
-                android:textSize="24sp"
-                android:textStyle="bold" />
+                android:textSize="20sp"
+                 />
 
             <!-- Toggle Button in center -->
             <com.google.android.material.materialswitch.MaterialSwitch
@@ -506,12 +510,12 @@
             <!-- Right label: Later on? -->
             <TextView
                 android:id="@+id/text_later"
+                style="@style/lateron"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Later on? Schedule it"
-                android:fontFamily="@font/tinosbold"
                 android:textColor="@color/black"
-                android:textSize="24dp" />
+                 />
 
 
         </LinearLayout>
