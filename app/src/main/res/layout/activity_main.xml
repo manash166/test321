@@ -134,6 +134,7 @@
             android:layout_marginBottom="5dp"
             android:orientation="vertical"
             android:gravity="center_horizontal"
+            android:background="@drawable/address_background"
 
             app:layout_constraintBottom_toTopOf="@+id/flagship_part"
             app:layout_constraintEnd_toEndOf="parent"
@@ -156,6 +157,7 @@
                     android:fontFamily="@font/sariff"
                     android:text="Address"
                     android:textSize="24sp"
+                    android:layout_marginLeft="8dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
@@ -171,7 +173,7 @@
                     <!-- Animated GIF Icon -->
                     <ImageView
                         android:id="@+id/animated_icon"
-                        android:layout_width="40dp"
+                        android:layout_width="35dp"
                         android:layout_height="40dp"
                         android:layout_marginTop="5dp"
                         android:src="@drawable/location" />
@@ -179,15 +181,18 @@
                     <!-- Button Text -->
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/change_address_button"
-                        style="@style/Widget.Material3.Button.ElevatedButton"
-                        android:layout_width="wrap_content"
+                        style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
+                        android:gravity="center"
+                        android:layout_width="65dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="3dp"
-                        android:backgroundTint="#606FE1"
+                        android:backgroundTint="#7784ED"
+                       app:iconGravity="textStart"
+                        android:padding="0dp"
                         android:fontFamily="@font/sariff"
-                        android:text="Add Address"
-                        android:textColor="@color/md_theme_light_onPrimary"
-                        android:textSize="20sp" />
+                        app:icon="@drawable/add_icon"
+                        app:iconPadding="0dp"
+                        android:text="ADD"
+                        android:textSize="18sp" />
                 </LinearLayout>
 
 
@@ -197,9 +202,10 @@
                 android:id="@+id/textView6"
                 style="@style/bottom_color"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
                 android:background="@drawable/address_background"
+                android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
+ android:paddingBottom="5dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
@@ -289,6 +295,7 @@
 
         </LinearLayout>
 
+
         <LinearLayout
             android:id="@+id/flagship_part"
             android:layout_width="match_parent"
@@ -311,18 +318,10 @@
                 android:textStyle="bold" />
 
             <!-- Navigation Button -->
-            <com.google.android.material.button.MaterialButton
-                style="@style/Custom_check_allsalon"
-                android:id="@+id/btnCheckAllSalon"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:fontFamily="@font/sariff"
-                android:padding="8dp"
-                android:text="Check All Salon"
-                android:textSize="18sp" />
 
             <!-- Salon Image Grid -->
+
+
             <GridLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -463,7 +462,16 @@
                 </androidx.cardview.widget.CardView>
 
             </GridLayout>
-
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnCheckAllSalon"
+                style="@style/Custom_check_allsalon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:fontFamily="@font/sariff"
+                android:padding="8dp"
+                android:text="Check All Salon"
+                android:textSize="18sp" />
         </LinearLayout>
 
 

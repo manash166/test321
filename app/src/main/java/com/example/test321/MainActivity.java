@@ -195,7 +195,10 @@ public class MainActivity extends AppCompatActivity {
                 .getReference("services&prices").child("Women");
         // Initialize Women Services List
         womenServices = new ArrayList<>();
-        // Initialize the adapter and pass totalAmountTextView to track price updates
+        // Initialize the
+        //
+        //
+        // and pass totalAmountTextView to track price updates
         adapter_women = new WomenServiceAdapter(this, womenServices, totalAmountTextView);
         recyclerView_women.setLayoutManager(new LinearLayoutManager(this));
         recyclerView_women.setAdapter(adapter_women);
@@ -205,7 +208,7 @@ public class MainActivity extends AppCompatActivity {
 //              For Children
         DatabaseReference childrenServicesRef = FirebaseDatabase.getInstance()
                 .getReference("services&prices").child("Children");
-        // Initialize Women Services List
+        // Initialize Childrenjj Services List
         childrenServices = new ArrayList<>();
         // Initialize the adapter and pass totalAmountTextView to track price updates
         adapter_children = new ChildrenServiceAdapter(this, childrenServices, totalAmountTextView);
