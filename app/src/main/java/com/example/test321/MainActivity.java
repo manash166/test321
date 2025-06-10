@@ -5,6 +5,8 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -23,6 +25,7 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.viewpager2.widget.ViewPager2;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
@@ -37,10 +40,14 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-
+import com.example.cubeviewpagerlib.CubeTransformer;
+import com.example.cubeviewpagerlib.ViewPagerAdapter;
 
 public class MainActivity extends AppCompatActivity {
-
+    private ViewPager2 viewPager;
+    private Handler sliderHandler = new Handler(Looper.getMainLooper());
+    private Runnable sliderRunnable;
+    private final long AUTO_SLIDE_DELAY = 10000;
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
     private TextView textView_quickbook,welcometxt,goback,mainactivity_default_address;
@@ -61,6 +68,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
      
         // Find views
+        viewPager = findViewById(com.example.cubeviewpagerlib.R.id.viewPager);
         drawerLayout = findViewById(R.id.drawer_layout);
         textView_quickbook=findViewById(R.id.textView_quick);
         navigationView = findViewById(R.id.nav_view);
@@ -75,9 +83,32 @@ public class MainActivity extends AppCompatActivity {
         recyclerView_women=findViewById(R.id.recyclerview_women);
         recyclerView_children=findViewById(R.id.recyclerview_children);
         TextView totalAmountTextView = findViewById(R.id.textView4);
-
         bottom_part.setVisibility(View.GONE);
-        LinearLayout flagship=findViewById(R.id.flagship_part);
+
+
+        ViewPagerAdapter adapter_page = new ViewPagerAdapter(this);
+        viewPager.setAdapter(adapter_page);
+        viewPager.setPageTransformer(new CubeTransformer());
+        sliderRunnable = new Runnable() {
+            @Override
+            public void run() {
+                int next = (viewPager.getCurrentItem() + 1) % adapter_page.getItemCount();
+                viewPager.setCurrentItem(next, true);
+                sliderHandler.postDelayed(this, AUTO_SLIDE_DELAY);
+            }
+        };
+        sliderHandler.postDelayed(sliderRunnable, AUTO_SLIDE_DELAY);
+
+        viewPager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
+            @Override
+            public void onPageScrollStateChanged(int state) {
+                if (state == ViewPager2.SCROLL_STATE_DRAGGING) {
+                    sliderHandler.removeCallbacks(sliderRunnable);
+                } else if (state == ViewPager2.SCROLL_STATE_IDLE) {
+                    sliderHandler.postDelayed(sliderRunnable, AUTO_SLIDE_DELAY);
+                }
+            }
+        });
 
 
         // Get data from SharedPreferences
@@ -218,22 +249,6 @@ public class MainActivity extends AppCompatActivity {
         fetchChildrenServices(childrenServicesRef);
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         // Get the username from Intent and set it in the welcome text
         if (username != null) {
             welcometxt.setText("Welcome, " + username);
@@ -258,9 +273,9 @@ public class MainActivity extends AppCompatActivity {
         btnMen.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                flagship.setVisibility(View.INVISIBLE);
                 drawerLayout.setBackgroundResource(R.drawable.background_salon);
                 welcometxt.setTextAppearance(R.style.MenTextStyle);
+                viewPager.setVisibility(View.GONE);
                 textView_quickbook.setTextAppearance(R.style.quickbookstyle);
                 selectButton(btnMen);
 
@@ -271,8 +286,9 @@ public class MainActivity extends AppCompatActivity {
         btnWomen.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                flagship.setVisibility(View.INVISIBLE);
                 selectButton(btnWomen);
+                viewPager.setVisibility(View.GONE);
+
                 drawerLayout.setBackgroundResource(R.drawable.background_women);
                 textView_quickbook.setTextAppearance(R.style.quickbookstyle);
                 welcometxt.setTextAppearance(R.style.WomenTextStyle);
@@ -284,10 +300,10 @@ public class MainActivity extends AppCompatActivity {
         btnChildren.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                flagship.setVisibility(View.INVISIBLE);
                 selectButton(btnChildren);
                 textView_quickbook.setTextAppearance(R.style.quickbookstyle);
                 welcometxt.setTextAppearance(R.style.ChildrenTextStyle);
+                viewPager.setVisibility(View.GONE);
                 drawerLayout.setBackgroundResource(R.drawable.background_children);
 
             }
@@ -338,6 +354,11 @@ public class MainActivity extends AppCompatActivity {
             finish();  // ✅ Stop the app to prevent Firebase crash
             return;
         }
+    }
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        sliderHandler.removeCallbacks(sliderRunnable);
     }
 
     @Override

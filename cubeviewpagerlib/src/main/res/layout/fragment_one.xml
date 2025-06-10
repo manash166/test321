@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#FFCDD2"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center">
+
+            <LinearLayout
+            android:id="@+id/flagship_part"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+
+            android:orientation="vertical"
+
+            >
+
+            <!-- Title Text -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:paddingBottom="3dp"
+                android:text="Our Flagship Service Provider"
+                android:textSize="25sp"
+                android:textStyle="bold" />
+
+            <!-- Navigation Button -->
+
+            <!-- Salon Image Grid -->
+
+
+            <GridLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:columnCount="2"
+                android:paddingTop="5dp"
+                android:rowCount="2">
+
+                <!-- Salon 1 -->
+                <androidx.cardview.widget.CardView
+                    android:layout_width="0dp"
+                    android:layout_height="150dp"
+                    android:layout_columnWeight="1"
+                    android:layout_margin="8dp"
+                    app:cardElevation="8dp">
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <ImageView
+                            android:id="@+id/salon1"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:contentDescription="Salon 1"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/salon_image_1" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="bottom|center_horizontal"
+                            android:background="#80000000"
+                            android:padding="4dp"
+                            android:text="Salon 1"
+                            android:textColor="#FFFFFF"
+                            android:textSize="16sp" />
+                    </FrameLayout>
+                </androidx.cardview.widget.CardView>
+
+                <!-- Salon 2 -->
+                <androidx.cardview.widget.CardView
+                    android:layout_width="0dp"
+                    android:layout_height="150dp"
+                    android:layout_columnWeight="1"
+                    android:layout_margin="8dp"
+                    app:cardCornerRadius="16dp"
+                    app:cardElevation="8dp">
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <ImageView
+                            android:id="@+id/salon2"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:contentDescription="Salon 2"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/salon_image_2" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="bottom|center_horizontal"
+                            android:background="#80000000"
+                            android:padding="4dp"
+                            android:text="Salon 2"
+                            android:textColor="#FFFFFF"
+                            android:textSize="16sp" />
+                    </FrameLayout>
+                </androidx.cardview.widget.CardView>
+
+                <!-- Salon 3 -->
+                <androidx.cardview.widget.CardView
+                    android:layout_width="0dp"
+                    android:layout_height="150dp"
+                    android:layout_columnWeight="1"
+                    android:layout_margin="8dp"
+                    app:cardCornerRadius="16dp"
+                    app:cardElevation="8dp">
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <ImageView
+                            android:id="@+id/salon3"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:contentDescription="Salon 3"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/salon_image_3" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="bottom|center_horizontal"
+                            android:background="#80000000"
+                            android:padding="4dp"
+                            android:text="Salon 3"
+                            android:textColor="#FFFFFF"
+                            android:textSize="16sp" />
+                    </FrameLayout>
+                </androidx.cardview.widget.CardView>
+
+                <!-- Salon 4 -->
+                <androidx.cardview.widget.CardView
+                    android:layout_width="0dp"
+                    android:layout_height="150dp"
+                    android:layout_columnWeight="1"
+                    android:layout_margin="8dp"
+                    app:cardCornerRadius="16dp"
+                    app:cardElevation="8dp">
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <ImageView
+                            android:id="@+id/salon4"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:contentDescription="Salon 4"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/salon_image_4" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="bottom|center_horizontal"
+                            android:background="#80000000"
+                            android:padding="4dp"
+                            android:text="Salon 4"
+                            android:textColor="#FFFFFF"
+                            android:textSize="16sp" />
+                    </FrameLayout>
+                </androidx.cardview.widget.CardView>
+
+            </GridLayout>
+
+                <Button
+                    android:id="@+id/btnCheckAllSalon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:padding="8dp"
+                    android:text="Check All Salon"
+                    android:textSize="18sp" />
+        </LinearLayout>
+
+</LinearLayout>
+

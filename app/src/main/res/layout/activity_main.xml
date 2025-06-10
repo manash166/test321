@@ -13,7 +13,6 @@
     <!-- Navigation Drawer -->
 
 
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/relativeLayout"
         android:layout_width="match_parent"
@@ -21,26 +20,26 @@
 
         <!-- Welcome Text -->
 
+        <!-- Button to open Drawer -->
+
+
         <TextView
             android:id="@+id/welcomeText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
-            android:fontFamily="@font/tinosbold"
+            android:layout_marginStart="18dp"
             android:layout_marginTop="5dp"
+            android:fontFamily="@font/tinosbold"
             android:text="Welcome"
             android:textSize="25sp"
             app:layout_constraintStart_toEndOf="@+id/buttonOpenDrawer"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <!-- Button to open Drawer -->
-
-
         <Button
             android:id="@+id/buttonOpenDrawer"
-            android:layout_width="53dp"
-            android:layout_height="47dp"
-            android:layout_marginStart="5dp"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_marginStart="16dp"
             android:layout_marginTop="5dp"
             android:background="@drawable/settings_icon"
             app:backgroundTint="@null"
@@ -53,10 +52,10 @@
             android:layout_height="wrap_content"
 
             android:layout_marginTop="8dp"
-
             android:orientation="vertical"
             android:paddingLeft="10dp"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/schedule_layer"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/buttonOpenDrawer">
 
             <!-- Quick Book Text -->
@@ -67,7 +66,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/barriecito"
                 android:text="Quick Book !! Your Favourite Hair Style at your home"
-                android:textSize="24sp"
+                android:textSize="21sp"
                 tools:layout_editor_absoluteX="6dp"
                 tools:layout_editor_absoluteY="113dp" />
 
@@ -131,12 +130,11 @@
 
             android:layout_height="wrap_content"
 
-            android:layout_marginBottom="5dp"
-            android:orientation="vertical"
-            android:gravity="center_horizontal"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
             android:background="@drawable/address_background"
-
-            app:layout_constraintBottom_toTopOf="@+id/flagship_part"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/schedule_layer">
@@ -153,11 +151,11 @@
 
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
                     android:layout_marginTop="10dp"
                     android:fontFamily="@font/sariff"
                     android:text="Address"
                     android:textSize="24sp"
-                    android:layout_marginLeft="8dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
@@ -182,17 +180,17 @@
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/change_address_button"
                         style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
-                        android:gravity="center"
                         android:layout_width="65dp"
                         android:layout_height="wrap_content"
                         android:backgroundTint="#7784ED"
-                       app:iconGravity="textStart"
-                        android:padding="0dp"
                         android:fontFamily="@font/sariff"
-                        app:icon="@drawable/add_icon"
-                        app:iconPadding="0dp"
+                        android:gravity="center"
+                        android:padding="0dp"
                         android:text="ADD"
-                        android:textSize="18sp" />
+                        android:textSize="18sp"
+                        app:icon="@drawable/add_icon"
+                        app:iconGravity="textStart"
+                        app:iconPadding="0dp" />
                 </LinearLayout>
 
 
@@ -202,10 +200,10 @@
                 android:id="@+id/textView6"
                 style="@style/bottom_color"
                 android:layout_width="match_parent"
-                android:background="@drawable/address_background"
                 android:layout_height="wrap_content"
+                android:background="@drawable/address_background"
                 android:gravity="center_horizontal"
- android:paddingBottom="5dp"
+                android:paddingBottom="5dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
@@ -282,11 +280,11 @@
 
                 <TextView
                     android:id="@+id/textView4"
+                    style="@style/money"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    style="@style/money"
-                    android:text="₹ 0"
                     android:layout_marginRight="10dp"
+                    android:text="₹ 0"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/textView2"
@@ -295,196 +293,14 @@
 
         </LinearLayout>
 
-
-        <LinearLayout
-            android:id="@+id/flagship_part"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-
-            android:orientation="vertical"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/bottom_part">
-
-            <!-- Title Text -->
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:fontFamily="@font/sariff"
-                android:paddingBottom="3dp"
-                android:text="Our Flagship Service Provider"
-                android:textSize="25sp"
-                android:textStyle="bold" />
-
-            <!-- Navigation Button -->
-
-            <!-- Salon Image Grid -->
-
-
-            <GridLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:columnCount="2"
-                android:paddingTop="5dp"
-                android:rowCount="2">
-
-                <!-- Salon 1 -->
-                <androidx.cardview.widget.CardView
-                    android:layout_width="0dp"
-                    android:layout_height="150dp"
-                    android:layout_columnWeight="1"
-                    android:layout_margin="8dp"
-                    app:cardCornerRadius="16dp"
-                    app:cardElevation="8dp">
-
-                    <FrameLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent">
-
-                        <ImageView
-                            android:id="@+id/salon1"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:contentDescription="Salon 1"
-                            android:scaleType="centerCrop"
-                            android:src="@drawable/salon_image_1" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="bottom|center_horizontal"
-                            android:background="#80000000"
-                            android:padding="4dp"
-                            android:text="Salon 1"
-                            android:textColor="#FFFFFF"
-                            android:textSize="16sp" />
-                    </FrameLayout>
-                </androidx.cardview.widget.CardView>
-
-                <!-- Salon 2 -->
-                <androidx.cardview.widget.CardView
-                    android:layout_width="0dp"
-                    android:layout_height="150dp"
-                    android:layout_columnWeight="1"
-                    android:layout_margin="8dp"
-                    app:cardCornerRadius="16dp"
-                    app:cardElevation="8dp">
-
-                    <FrameLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent">
-
-                        <ImageView
-                            android:id="@+id/salon2"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:contentDescription="Salon 2"
-                            android:scaleType="centerCrop"
-                            android:src="@drawable/salon_image_2" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="bottom|center_horizontal"
-                            android:background="#80000000"
-                            android:padding="4dp"
-                            android:text="Salon 2"
-                            android:textColor="#FFFFFF"
-                            android:textSize="16sp" />
-                    </FrameLayout>
-                </androidx.cardview.widget.CardView>
-
-                <!-- Salon 3 -->
-                <androidx.cardview.widget.CardView
-                    android:layout_width="0dp"
-                    android:layout_height="150dp"
-                    android:layout_columnWeight="1"
-                    android:layout_margin="8dp"
-                    app:cardCornerRadius="16dp"
-                    app:cardElevation="8dp">
-
-                    <FrameLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent">
-
-                        <ImageView
-                            android:id="@+id/salon3"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:contentDescription="Salon 3"
-                            android:scaleType="centerCrop"
-                            android:src="@drawable/salon_image_3" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="bottom|center_horizontal"
-                            android:background="#80000000"
-                            android:padding="4dp"
-                            android:text="Salon 3"
-                            android:textColor="#FFFFFF"
-                            android:textSize="16sp" />
-                    </FrameLayout>
-                </androidx.cardview.widget.CardView>
-
-                <!-- Salon 4 -->
-                <androidx.cardview.widget.CardView
-                    android:layout_width="0dp"
-                    android:layout_height="150dp"
-                    android:layout_columnWeight="1"
-                    android:layout_margin="8dp"
-                    app:cardCornerRadius="16dp"
-                    app:cardElevation="8dp">
-
-                    <FrameLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent">
-
-                        <ImageView
-                            android:id="@+id/salon4"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:contentDescription="Salon 4"
-                            android:scaleType="centerCrop"
-                            android:src="@drawable/salon_image_4" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="bottom|center_horizontal"
-                            android:background="#80000000"
-                            android:padding="4dp"
-                            android:text="Salon 4"
-                            android:textColor="#FFFFFF"
-                            android:textSize="16sp" />
-                    </FrameLayout>
-                </androidx.cardview.widget.CardView>
-
-            </GridLayout>
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnCheckAllSalon"
-                style="@style/Custom_check_allsalon"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:fontFamily="@font/sariff"
-                android:padding="8dp"
-                android:text="Check All Salon"
-                android:textSize="18sp" />
-        </LinearLayout>
-
-
-
-
         <LinearLayout
             android:id="@+id/schedule_layer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:visibility="gone"
             android:orientation="horizontal"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toTopOf="@+id/bottom_part"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/linearLayout3">
             <!-- Icon -->
@@ -498,22 +314,21 @@
             <!-- Left label: Service Now -->
             <TextView
                 android:id="@+id/text_service_now"
+                style="@style/bottom_color"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Service Now"
-                style="@style/bottom_color"
-                android:textSize="20sp"
-                 />
+                android:textSize="20sp" />
 
             <!-- Toggle Button in center -->
             <com.google.android.material.materialswitch.MaterialSwitch
-                app:thumbIcon="@drawable/check_20px"
                 android:id="@+id/switch_schedule"
+                style="@style/Widget.Test321.MaterialSwitch"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                style="@style/Widget.Test321.MaterialSwitch"
                 android:checked="false"
-                android:contentDescription="Toggle service time" />
+                android:contentDescription="Toggle service time"
+                app:thumbIcon="@drawable/check_20px" />
 
             <!-- Right label: Later on? -->
             <TextView
@@ -522,12 +337,18 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Later on? Schedule it"
-                android:textColor="@color/black"
-                 />
+                android:textColor="@color/black" />
 
 
         </LinearLayout>
 
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/viewPager"
+            android:layout_width="300dp"
+            android:layout_height="300dp"
+            android:foregroundGravity="center_horizontal"
+            app:layout_constraintTop_toBottomOf="@+id/bottom_part"
+            tools:layout_editor_absoluteX="16dp" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
