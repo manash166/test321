@@ -10,7 +10,7 @@ public class CubeTransformer implements ViewPager2.PageTransformer {
 
     @Override
     public void transformPage(@NonNull View page, float position) {
-        page.setCameraDistance(20000);
+        page.setCameraDistance(50000);
 
         if (position < -1) { // way off-screen to the left
             page.setAlpha(0);

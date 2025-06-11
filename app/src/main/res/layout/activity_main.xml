@@ -51,7 +51,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
 
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="25dp"
+            android:layout_marginBottom="15dp"
             android:orientation="vertical"
             android:paddingLeft="10dp"
             app:layout_constraintBottom_toTopOf="@+id/schedule_layer"
@@ -65,7 +66,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/barriecito"
-                android:text="Quick Book !! Your Favourite Hair Style at your home"
+                android:text="Quic Book !! Your Favourite Hair Style at your home"
                 android:textSize="21sp"
                 tools:layout_editor_absoluteX="6dp"
                 tools:layout_editor_absoluteY="113dp" />
@@ -73,6 +74,7 @@
             <!-- Image Buttons for Men, Women, and Children -->
             <LinearLayout
                 android:id="@+id/buttonLayout"
+                android:layout_marginTop="15dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
@@ -131,6 +133,7 @@
             android:layout_height="wrap_content"
 
             android:layout_marginStart="5dp"
+            android:layout_marginTop="15dp"
             android:layout_marginEnd="5dp"
             android:background="@drawable/address_background"
             android:gravity="center_horizontal"
@@ -297,6 +300,8 @@
             android:id="@+id/schedule_layer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
             android:orientation="horizontal"
             android:visibility="invisible"
             app:layout_constraintBottom_toTopOf="@+id/bottom_part"
@@ -344,11 +349,14 @@
 
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/viewPager"
-            android:layout_width="300dp"
-            android:layout_height="300dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="41dp"
             android:foregroundGravity="center_horizontal"
-            app:layout_constraintTop_toBottomOf="@+id/bottom_part"
-            tools:layout_editor_absoluteX="16dp" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/bottom_part" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

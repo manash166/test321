@@ -86,6 +86,7 @@ public class MainActivity extends AppCompatActivity {
         bottom_part.setVisibility(View.GONE);
 
 
+         textView_quickbook.setTextAppearance(R.style.quickbookstyle_front);;
         ViewPagerAdapter adapter_page = new ViewPagerAdapter(this);
         viewPager.setAdapter(adapter_page);
         viewPager.setPageTransformer(new CubeTransformer());
