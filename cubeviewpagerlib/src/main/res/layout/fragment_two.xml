@@ -1,14 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:background="#304FFE"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center">
 
-    <TextView
+          <!--Women Linear Layout-->
+          <LinearLayout
+              android:orientation="horizontal"
+              android:id="@+id/women_welcome_linearlayout"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content">
+
+              <ImageView
+                  android:id="@+id/brideGif"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:background="@drawable/rbm"
+                  />
+
+              <TextView
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:text="Bridal Special"/>
+
+
+
+
+          </LinearLayout>
+
+
+
+
+
+
+
+
+    <!--Men Linear Layout-->
+    <LinearLayout
+        android:orientation="horizontal"
+        android:id="@+id/men_welcome_linearlayout"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Fragment Two"
-        android:textSize="35sp" />
+        android:layout_height="wrap_content">
+
+    </LinearLayout>
 </LinearLayout>

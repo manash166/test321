@@ -28,4 +28,6 @@ dependencies {
     implementation(libs.appcompat)
     implementation(libs.material)
     implementation(libs.viewpager2)
+    implementation(libs.glide)
+
 }
