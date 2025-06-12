@@ -1,47 +1,102 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:gravity="center">
-
-          <!--Women Linear Layout-->
-          <LinearLayout
-              android:orientation="horizontal"
-              android:id="@+id/women_welcome_linearlayout"
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content">
-
-              <ImageView
-                  android:id="@+id/brideGif"
-                  android:layout_width="wrap_content"
-                  android:layout_height="wrap_content"
-                  android:background="@drawable/rbm"
-                  />
-
-              <TextView
-                  android:layout_width="wrap_content"
-                  android:layout_height="wrap_content"
-                  android:text="Bridal Special"/>
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linearLayout_groom_bride"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center_horizontal"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
 
 
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/delius_swash"
+        android:text="Bride and Groom Service Combos"
+        android:textColor="@color/black"
+        android:textSize="25sp" />
+    <!--Women Card-->
 
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        app:cardCornerRadius="15dp"
+        app:cardElevation="12dp"
+        android:layout_marginBottom="10dp">
 
-          </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="5dp"
+            android:orientation="horizontal">
 
+            <ImageView
+                android:id="@+id/brideGif"
+                android:layout_width="200dp"
+                android:layout_height="180dp"
+                android:background="@drawable/rbm" />
 
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:layout_marginTop="45dp"
+                android:layout_weight="1"
+                android:fontFamily="@font/variablefont"
+                android:textFontWeight="700"
+                android:textStyle="bold"
+                android:padding="5dp"
+                android:text="For Bride"
+                android:textSize="25dp" />
+        </LinearLayout>
 
-
-
-
+    </androidx.cardview.widget.CardView>
 
 
     <!--Men Linear Layout-->
-    <LinearLayout
-        android:orientation="horizontal"
-        android:id="@+id/men_welcome_linearlayout"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView2"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="15dp"
+        app:cardElevation="12dp"
+        android:layout_marginBottom="10dp">
 
-    </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+>
+
+            <TextView
+                android:id="@+id/textView3"
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="45dp"
+                android:layout_weight="1"
+                android:fontFamily="@font/variablefont"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:textFontWeight="700"
+                android:padding="5dp"
+                android:text="For Groom"
+                android:textSize="25dp" />
+
+            <ImageView
+                android:id="@+id/groomGif"
+                android:layout_width="195dp"
+                android:layout_height="180dp"
+                android:background="@drawable/rbf" />
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
 </LinearLayout>

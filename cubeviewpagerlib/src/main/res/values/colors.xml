@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Your existing custom colors -->
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="gray">#695C5C</color>
+    <color name="purple_200">#BB86FC</color>
+    <color name="blue">#6921F3</color>
+
+    <color name="shrine_pink_100">#4158EF</color>
+    <color name="shrine_pink_900">#AC90E4</color>
+    <color name="brown">#E6763502</color>
+    <color name="light_blue">#6879F8</color>
+
+    <color name="pink">#E91E63</color>
+    <color name="dark_background">#13023B</color>
+    <color name="dark_text_color">#AFA0A0</color>
+    <!-- Material 3 light theme colors -->
+    <color name="md_theme_light_primary">#6750A4</color>
+    <color name="md_theme_light_onPrimary">#FFFFFF</color>
+    <color name="md_theme_light_primaryContainer">#EADDFF</color>
+    <color name="md_theme_light_onPrimaryContainer">#21005D</color>
+    <color name="md_theme_light_surface">#FFFBFE</color>
+    <color name="md_theme_light_onSurface">#1C1B1F</color>
+    <color name="md_theme_light_surfaceVariant">#E7E0EC</color>
+    <color name="md_theme_light_onSurfaceVariant">#49454F</color> <!-- ✅ This one fixes your tint error -->
+    <color name="md_theme_light_background">#FFFFFF</color>
+    <color name="md_theme_light_outline">#79747E</color>
+</resources>

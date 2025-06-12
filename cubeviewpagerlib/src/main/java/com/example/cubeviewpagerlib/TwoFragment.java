@@ -26,13 +26,16 @@ public class TwoFragment extends Fragment {
 
         // Find the ImageView (Make sure it exists in fragment_two.xml)
         ImageView brideGif = view.findViewById(R.id.brideGif);
-
+        ImageView groomGif = view.findViewById(R.id.groomGif);
         // Load the GIF using Glide
         Glide.with(this)
                 .asGif()
                 .load(R.drawable.rbm)  // Replace with your actual GIF file name
                 .into(brideGif);
-
+        Glide.with(this)
+                .asGif()
+                .load(R.drawable.rbf)  // Replace with your actual GIF file name
+                .into(groomGif);
         return view;
     }
 }
