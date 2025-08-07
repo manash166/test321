@@ -44,6 +44,7 @@ public class MenServiceAdapter extends RecyclerView.Adapter<MenServiceAdapter.Vi
         holder.btnAdd.setOnClickListener(v -> {
             if (holder.btnAdd.getText().toString().equals("Add")) {
                 holder.btnAdd.setText("Added");
+
                 holder.btnAdd.setBackgroundColor(Color.GREEN);
                 selectedServices.add(service);
                 totalAmount += extractPrice(service.getPrice()); // Add price

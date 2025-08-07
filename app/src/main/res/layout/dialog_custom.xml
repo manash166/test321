@@ -5,6 +5,7 @@
     android:id="@+id/constraintLayout3"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_gravity="center_horizontal"
     android:background="@drawable/dialog_background"
     android:orientation="vertical">
 
@@ -12,43 +13,69 @@
     <!-- Replace with your image -->
 
     <!-- Dialog Content -->
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_gravity="center_horizontal"
+        app:srcCompat="@drawable/faq" />
+
     <TextView
         android:id="@+id/dialog_message"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
-        android:layout_marginStart="103dp"
-        android:layout_marginEnd="91dp"
+        android:layout_gravity="center_horizontal"
         android:fontFamily="@font/meriweather"
-        android:gravity="center"
-        android:text="Do you want to go back?"
+        android:text="Are you sure?"
         android:textColor="@color/black"
-        android:textFontWeight="800"
+        android:textFontWeight="500"
         android:textSize="26sp" />
-<LinearLayout
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_gravity="center_horizontal"
-    android:layout_marginBottom="10dp">
 
-    <Button
-        android:id="@+id/btn_yes"
-        android:padding="0dp"
-        android:layout_width="35dp"
-        android:layout_height="35dp"
-        android:background="@drawable/button_yes"
-        app:backgroundTint="@null"
+    <TextView
+        android:id="@+id/dialog_message2"
+        android:layout_width="220dp"
+        android:layout_height="87dp"
+        android:layout_gravity="center_horizontal"
+        android:fontFamily="@font/delius_swash"
+        android:gravity="center"
+        android:text="Do you really\n want to go to the HomeScreen ?"
+        android:textColor="@color/black"
+        android:textSize="21sp" />
 
-        />
-    <Button
-        android:id="@+id/btn_no"
-        android:padding="0dp"
-        android:layout_width="35dp"
-        android:layout_height="35dp"
-        app:backgroundTint="@null"
-        android:background="@drawable/button_no" />
-</LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="10dp">
 
+        <Button
+            android:id="@+id/btn_no"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#E0F2F1"
+            android:textColor="#00C853"
+            android:textAllCaps="true"
+            android:text="NO"
+            android:fontFamily="sans-serif-medium"
+             />
+
+        <Button
+            android:id="@+id/btn_yes"
+            android:layout_width="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_height="wrap_content"
+            android:textColor="#FFF3F3"
+            android:backgroundTint="#00C853"
+            android:textAllCaps="true"
+            android:text="YES"
+
+
+
+            />
+
+    </LinearLayout>
 
 
 </LinearLayout>

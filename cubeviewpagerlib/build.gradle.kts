@@ -29,5 +29,7 @@ dependencies {
     implementation(libs.material)
     implementation(libs.viewpager2)
     implementation(libs.glide)
+    implementation(libs.activity)
+    implementation(libs.constraintlayout)
 
 }
