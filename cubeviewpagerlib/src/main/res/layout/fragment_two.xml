@@ -195,7 +195,7 @@
                             android:text="Add and Customize\n Your Pack"
                             android:textColor="#FFFFFF"
                             android:textSize="14sp"
-                            android:background="#441C09"
+                            android:background="#42291B"
                             android:textStyle="bold" />
                     </LinearLayout>
 

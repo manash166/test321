@@ -41,22 +41,6 @@ public class TwoFragment extends Fragment {
 
         });
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         // Find the ImageView (Make sure it exists in fragment_two.xml)
         ImageView glow_animation = view.findViewById(R.id.glowStar);
         ImageView brideGif = view.findViewById(R.id.brideGif);

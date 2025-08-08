@@ -1,0 +1,69 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <style name="Theme.Test321" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Primary brand color -->
+        <item name="colorPrimaryContainer">@color/md_theme_light_onPrimaryContainer</item>
+        <item name="colorOnPrimaryContainer">@color/md_theme_light_onPrimaryContainer</item>
+        <item name="colorPrimary">@color/md_theme_light_background</item>
+        <item name="colorOnPrimary">@color/shrine_pink_900</item>
+        <!-- Surface colors -->
+        <item name="colorOnSurface">@color/md_theme_light_onSurface</item>
+        <item name="colorOnSurfaceVariant">@color/blue</item>
+
+        <!-- Background -->
+        <item name="cardBackgroundColor">@color/md_theme_light_onPrimary</item>
+
+        <item name="android:textColor">@color/dark_text_color</item>
+        <!-- Optional corner treatment -->
+        <item name="shapeAppearanceSmallComponent">@style/ShapeAppearance.Material3.Corner.Medium</item>
+    </style>
+
+    <style name="bottom_color" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">17sp</item>
+        <item name="fontFamily">sans-serif</item>
+        <item name="android:lineSpacingExtra">2dp</item>
+        <item name="android:ellipsize">end</item>
+    </style>
+
+    <style name="lateron" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">20sp</item>
+        <item name="fontFamily">sans-serif</item>
+        <item name="android:lineSpacingExtra">2dp</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    <style name="money" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">19sp</item>
+        <item name="fontFamily">sans-serif-condensed</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="CustomDatePickerStyle" parent="@style/ThemeOverlay.Material3.MaterialCalendar">
+        <item name="android:headerBackground">#309CF8</item> <!-- or your color -->
+        <item name="android:background">#CADCEB</item>
+        <item name="shapeCornerFamily">cut</item>
+    </style>
+
+    <style name="Custom_check_allsalon" parent="Widget.Material3.Button">
+        <item name="android:textColor">@color/md_theme_light_background</item>
+        <item name="backgroundTint">#4A7FF3</item>
+        <item name="strokeColor">@color/md_theme_light_onSurface</item>
+        <item name="strokeWidth">2dp</item>
+        <item name="elevation">25dp</item>
+    </style>
+
+    <style name="default_buttons" parent="Widget.Material3.Button">
+        <item name="android:textColor">@color/md_theme_light_background</item>
+        <item name="backgroundTint">#4A7FF3</item>
+        <item name="elevation">25dp</item>
+    </style>
+
+
+
+
+
+
+</resources>
