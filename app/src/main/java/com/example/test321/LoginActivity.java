@@ -29,6 +29,10 @@ import com.google.firebase.auth.PhoneAuthOptions;
 import com.google.firebase.auth.PhoneAuthProvider;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.appcheck.FirebaseAppCheck;
+import com.google.firebase.appcheck.playintegrity.PlayIntegrityAppCheckProviderFactory;
+
 
 import java.util.concurrent.TimeUnit;
 
@@ -47,6 +51,21 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        FirebaseApp.initializeApp(this);
+
+        if (BuildConfig.DEBUG) {
+            // DEBUG mode: skip App Check to avoid token errors
+            Log.d("LoginActivity", "DEBUG mode: Firebase App Check not enforced");
+        } else {
+            // RELEASE mode: enforce App Check with Play Integrity
+            FirebaseAppCheck firebaseAppCheck = FirebaseAppCheck.getInstance();
+            firebaseAppCheck.installAppCheckProviderFactory(
+                    PlayIntegrityAppCheckProviderFactory.getInstance());
+            Log.d("LoginActivity", "RELEASE mode: Firebase App Check initialized");
+        }
+
+
+
         SharedPreferences sharedPreferences = getSharedPreferences("loginPrefs", MODE_PRIVATE);
 
         boolean isLoggedIn = sharedPreferences.getBoolean("isLoggedIn", false);
@@ -217,6 +236,7 @@ public class LoginActivity extends AppCompatActivity {
 
                             @Override
                             public void onVerificationFailed(@NonNull FirebaseException e) {
+                                Log.d("orbit", "Main Problem-->: "+e.getMessage());
                                 Toast.makeText(LoginActivity.this, "OTP Failed: " + e.getMessage(), Toast.LENGTH_LONG).show();
                             }
 

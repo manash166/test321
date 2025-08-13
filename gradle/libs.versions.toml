@@ -1,18 +1,18 @@
 [versions]
 agp = "8.12.0"
 junit = "4.13.2"
-junitVersion = "1.2.1"
-espressoCore = "3.6.1"
-appcompat = "1.7.0"
+junitVersion = "1.3.0"
+espressoCore = "3.7.0"
+appcompat = "1.7.1"
 material = "1.12.0"
-activity = "1.9.3"
-constraintlayout = "2.2.0"
+activity = "1.10.1"
+constraintlayout = "2.2.1"
 glide = "4.16.0"
 gms = "21.0.1"
-googleGmsGoogleServices = "4.4.2"
-firebase-bom = "33.13.0"
-firebaseAnalytics = "22.2.0"
-firebaseDatabase = "21.0.0"
+googleGmsGoogleServices = "4.4.3"
+firebase-bom = "34.1.0"
+firebaseAnalytics = "23.0.0"
+firebaseDatabase = "22.0.0"
 credentials = "1.5.0"
 credentialsPlayServicesAuth = "1.5.0"
 googleid = "1.1.1"
@@ -31,7 +31,8 @@ material = { group = "com.google.android.material", name = "material", version.r
 activity = { group = "androidx.activity", name = "activity", version.ref = "activity" }
 constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
 firebase-auth = "com.google.firebase:firebase-auth:22.3.1"
-firebase-bom = { module = "com.google.firebase:firebase-bom", version.ref = "firebase-bom" }
+firebase-bom = { module = "com.google.firebase:firebase-bom", version = "34.1.0" }
+firebase-appcheck-playintegrity = { module = "com.google.firebase:firebase-appcheck-playintegrity" }
 firebase-firestore = { module = "com.google.firebase:firebase-firestore" }
 firebase-analytics = { group = "com.google.firebase", name = "firebase-analytics", version.ref = "firebaseAnalytics" }
 firebase-database = { group = "com.google.firebase", name = "firebase-database", version.ref = "firebaseDatabase" }

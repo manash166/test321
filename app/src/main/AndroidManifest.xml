@@ -27,7 +27,7 @@
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyB7UvM1K9QJS0VkiUDW9qn7nKtU1tWepnU" />
+            android:value="AIzaSyD237Ue5LvPeNL7AmHhaUN52AMG0bUhP4Y" />
 
         <activity
             android:name=".order_review"

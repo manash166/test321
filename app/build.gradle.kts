@@ -27,8 +27,8 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
 }
 
@@ -51,5 +51,9 @@ dependencies {
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
     implementation(project(":cubeviewpagerlib"))
-
+    // Import the Firebase BoM
+    implementation(platform(libs.firebase.bom))
+    implementation("com.google.firebase:firebase-appcheck-playintegrity")
+    // Add App Check
+   // implementation(libs.firebase.appcheck.playintegrity)
 }

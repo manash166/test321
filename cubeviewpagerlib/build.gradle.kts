@@ -1,10 +1,11 @@
 plugins {
     id("com.android.library")
+
 }
 
 android {
     namespace = "com.example.cubeviewpagerlib"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         minSdk = 21
