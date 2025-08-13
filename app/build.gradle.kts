@@ -30,30 +30,36 @@ android {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
     }
+    buildFeatures {
+        buildConfig = true
+    }
 }
 
 dependencies {
+
+
+
+    implementation(platform(libs.firebase.bom))
+    implementation(libs.firebase.auth)
+    implementation(libs.firebase.database)
+    implementation(libs.firebase.analytics)
+    implementation(libs.firebase.appcheck.debug)
     implementation(libs.glide)
     implementation(libs.appcompat)
     implementation(libs.material)
     implementation(libs.activity)
-    implementation(libs.firebase.auth)
     implementation(libs.places)
     implementation(libs.constraintlayout)
-    implementation(libs.firebase.analytics)
-    implementation(libs.firebase.database)
     implementation(libs.credentials)
     implementation(libs.credentials.play.services.auth)
-    implementation("com.google.android.gms:play-services-location:21.3.0")
+    implementation(libs.play.services.location)
     implementation(libs.googleid)
     implementation(libs.play.services.maps)
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
     implementation(project(":cubeviewpagerlib"))
-    // Import the Firebase BoM
-    implementation(platform(libs.firebase.bom))
-    implementation("com.google.firebase:firebase-appcheck-playintegrity")
+    implementation(libs.firebase.appcheck.playintegrity)
     // Add App Check
    // implementation(libs.firebase.appcheck.playintegrity)
 }
