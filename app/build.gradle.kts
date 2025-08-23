@@ -5,7 +5,7 @@ plugins {
 
 android {
     namespace = "com.example.test321"
-    compileSdk = 35
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "com.example.test321"
@@ -15,6 +15,7 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        multiDexEnabled = true
     }
 
     buildTypes {
@@ -38,6 +39,7 @@ android {
 dependencies {
 
 
+    implementation("androidx.multidex:multidex:2.0.1")
 
     implementation(platform(libs.firebase.bom))
     implementation(libs.firebase.auth)
@@ -60,6 +62,5 @@ dependencies {
     androidTestImplementation(libs.espresso.core)
     implementation(project(":cubeviewpagerlib"))
     implementation(libs.firebase.appcheck.playintegrity)
-    // Add App Check
-   // implementation(libs.firebase.appcheck.playintegrity)
+
 }

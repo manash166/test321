@@ -3,7 +3,7 @@
 
     <application>
         <activity
-            android:name=".bride_special"
+            android:name="com.example.test321.bride_special"
             android:exported="true" />
     </application>
 

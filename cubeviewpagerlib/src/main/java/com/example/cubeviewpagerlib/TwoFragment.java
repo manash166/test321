@@ -5,11 +5,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -30,16 +27,15 @@ public class TwoFragment extends Fragment {
 
         Button btnAddBride = view.findViewById(R.id.button_for_bride);
 
-
-        btnAddBride.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Navigate to BridesSpecialActivity
-                Intent intent = new Intent(getActivity(), bride_special.class);
-                startActivity(intent);
-            }
-
+        btnAddBride.setOnClickListener(v -> {
+            Intent intent = new Intent();
+            intent.setClassName(
+                    requireActivity().getPackageName(),  // "com.example.test321"
+                    "com.example.test321.bride_special"  // full package + class name
+            );
+            startActivity(intent);
         });
+
 
         // Find the ImageView (Make sure it exists in fragment_two.xml)
         ImageView glow_animation = view.findViewById(R.id.glowStar);

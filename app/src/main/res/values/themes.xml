@@ -65,8 +65,16 @@
         <item name="backgroundTint">#4A7FF3</item>
         <item name="elevation">25dp</item>
     </style>
+<style name="toolbar" parent="Theme.Material3.Light">
+
+</style>
 
 
+    <style name="CustomToolbarTitle" parent="TextAppearance.Material3.TitleLarge">
+        <item name="fontFamily">@font/delius_swash</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
 
 
 

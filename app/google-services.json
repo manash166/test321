@@ -1,21 +1,21 @@
 {
   "project_info": {
-    "project_number": "265535720702",
-    "firebase_url": "https://test321-59b47-default-rtdb.firebaseio.com",
-    "project_id": "test321-59b47",
-    "storage_bucket": "test321-59b47.firebasestorage.app"
+    "project_number": "720348991595",
+    "firebase_url": "https://orbit123-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "orbit123",
+    "storage_bucket": "orbit123.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:265535720702:android:9328de03d7944dc746e9af",
+        "mobilesdk_app_id": "1:720348991595:android:647258fb7418878c7ca12e",
         "android_client_info": {
           "package_name": "com.example.test321"
         }
       },
       "oauth_client": [
         {
-          "client_id": "265535720702-7gogm5cqv2br3mjo1vl02591ov4060do.apps.googleusercontent.com",
+          "client_id": "720348991595-beamrrm1sa8babr2f12lbi4ja7tim5f9.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.example.test321",
@@ -23,20 +23,20 @@
           }
         },
         {
-          "client_id": "265535720702-pgsolvhar4mm428vih46jcuv3766n1hu.apps.googleusercontent.com",
+          "client_id": "720348991595-rc0o40hrs5b3rkiu90seh5fe5er062bd.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyD237Ue5LvPeNL7AmHhaUN52AMG0bUhP4Y"
+          "current_key": "AIzaSyDbhTtMCv6JHoJ_NLectRIMTJjSJ38bLnc"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "265535720702-pgsolvhar4mm428vih46jcuv3766n1hu.apps.googleusercontent.com",
+              "client_id": "720348991595-rc0o40hrs5b3rkiu90seh5fe5er062bd.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

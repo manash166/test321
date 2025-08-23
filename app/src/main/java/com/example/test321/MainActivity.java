@@ -134,7 +134,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.exists()) {
-                    // Get name
+                    // Get name`
                     String name = snapshot.child("name").getValue(String.class);
 
                     String username = name; // if needed later
