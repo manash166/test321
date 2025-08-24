@@ -1,12 +1,12 @@
 <shape xmlns:android="http://schemas.android.com/apk/res/android"
     android:shape="rectangle">
 
-    <solid android:color="@android:color/transparent"/>
+    <solid android:color="@color/red_toolbar"/>
 
     <!-- only bottom corners rounded -->
     <corners
-        android:bottomLeftRadius="24dp"
-        android:bottomRightRadius="24dp"
+        android:bottomLeftRadius="26dp"
+        android:bottomRightRadius="26dp"
         android:topLeftRadius="0dp"
         android:topRightRadius="0dp" />
 </shape>

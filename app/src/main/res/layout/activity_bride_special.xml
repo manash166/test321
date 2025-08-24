@@ -1,40 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+   tools:ignore="HardCodedText"
     android:orientation="vertical"
     tools:context="com.example.test321.bride_special">
 
-    <!-- Container with rounded corners -->
+    <!-- Toolbar Container -->
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:clipToOutline="true"
-        android:background="@drawable/toolbar_bg">
+        android:layout_height="60dp"
+        android:background="@drawable/toolbar_bg"
+        android:clipToOutline="true">
 
-        <!-- Background image -->
+        <!-- Background Image -->
         <ImageView
             android:layout_width="match_parent"
-            android:layout_height="52dp"
-            android:scaleType="centerCrop"
-            android:src="@drawable/your_toolbar_image" />
+            android:layout_height="match_parent"
+            android:src="@drawable/bg_bride_toolbar"
+            android:scaleType="fitCenter"
+            android:adjustViewBounds="true" />
 
-        <!-- Toolbar on top of image -->
+        <!-- Toolbar on top -->
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/materialToolbar"
             android:layout_width="match_parent"
-            android:layout_height="52dp"
-            style="@style/toolbar"
+            android:layout_height="match_parent"
             android:background="@android:color/transparent"
-            app:elevation="3dp"
             app:navigationIcon="@drawable/menu_24px"
-            app:navigationIconTint="@color/white"
-            app:title="Bride Special"
-            app:titleTextColor="@color/white"
-            app:titleTextAppearance="@style/CustomToolbarTitle" />
+           app:navigationIconTint="@color/white"
+            app:title="Bride Special Package"
+            app:titleTextColor="@color/white"/>
 
     </FrameLayout>
+
+    <LinearLayout
+       android:background="@drawable/bride_bg_2"
+       android:layout_margin="10dp"
+       android:layout_width="match_parent"
+       android:layout_height="50dp"
+       android:orientation="horizontal">
+
+        <TextView
+            android:layout_marginLeft="8dp"
+            android:id="@+id/textView15"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:text="Book" />
+
+    </LinearLayout>
 
 </LinearLayout>

@@ -1,0 +1,10 @@
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+
+    <stroke android:color="@color/red_toolbar"
+        android:width="5dp"
+        />
+<corners android:radius="12dp"/>
+    <!-- only bottom corners rounded -->
+    <solid android:color="@android:color/transparent"/>
+</shape>
