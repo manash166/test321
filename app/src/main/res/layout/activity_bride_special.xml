@@ -33,24 +33,43 @@
             app:navigationIcon="@drawable/menu_24px"
            app:navigationIconTint="@color/white"
             app:title="Bride Special Package"
-            app:titleTextColor="@color/white"/>
+            app:titleTextColor="@color/white"
+            android:theme="@style/AppTheme"/>
 
     </FrameLayout>
 
     <LinearLayout
-       android:background="@drawable/bride_bg_2"
-       android:layout_margin="10dp"
-       android:layout_width="match_parent"
-       android:layout_height="50dp"
-       android:orientation="horizontal">
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_margin="5dp"
+        android:background="@drawable/bride_bg_2"
+        android:gravity="center_horizontal|center_vertical"
+        android:orientation="horizontal">
 
-        <TextView
-            android:layout_marginLeft="8dp"
-            android:id="@+id/textView15"
+        <com.google.android.material.textview.MaterialTextView
+
+            android:id="@+id/datetime_textview_bride"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="18sp"
-            android:text="Book Now" />
+            android:fontFamily="@font/roboto"
+            android:text="Date and Time "
+            android:textColor="@color/black"
+            android:textFontWeight="900"
+            android:textSize="15sp" />
+
+        <com.google.android.material.textview.MaterialTextView
+
+            android:id="@+id/booknow_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto"
+            android:text="Book Now "
+            android:textColor="@color/black"
+            android:textFontWeight="900"
+            android:textSize="15sp" />
+
+
+
 
     </LinearLayout>
 
