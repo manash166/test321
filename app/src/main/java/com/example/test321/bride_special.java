@@ -45,19 +45,20 @@ public class bride_special extends AppCompatActivity {
     }
 
     // Handle menu clicks
+    
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
 
-        switch (id) {
-            case R.id.action_settings:
-                Toast.makeText(this, "Settings clicked!", Toast.LENGTH_SHORT).show();
-                return true;
-            case R.id.action_help:
-                Toast.makeText(this, "Help clicked!", Toast.LENGTH_SHORT).show();
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
+        if (id == R.id.action_settings) {
+            Toast.makeText(this, "Settings clicked", Toast.LENGTH_SHORT).show();
+            return true;
+        } else if (id == R.id.action_help) {
+            Toast.makeText(this, "Help clicked", Toast.LENGTH_SHORT).show();
+            return true;
         }
+
+        return super.onOptionsItemSelected(item);
     }
+
 }
